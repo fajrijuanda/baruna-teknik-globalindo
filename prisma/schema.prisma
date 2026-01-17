@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Admin untuk Login Dashboard
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // Hashed
+  name      String?
+  createdAt DateTime @default(now())
+}
+
+// Kategori Produk (Misal: Industrial Pump, Valve, Sparepart)
+model Category {
+  id        String    @id @default(cuid())
+  name      Json      // { en: string, id: string }
+  slug      String    @unique // Untuk URL SEO Friendly
+  products  Product[]
+}
+
+// Data Produk Utama
+model Product {
+  id          String   @id @default(cuid())
+  title       Json     // { en: string, id: string }
+  slug        String   @unique
+  description Json     @db.Json // { en: string, id: string }
+  specifications Json? @db.Json // { en: string, id: string } or distinct structure
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  images      Image[]
+  isFeatured  Boolean  @default(false) // Untuk tampil di Home
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Gambar Produk (Support Multi Image)
+model Image {
+  id        String  @id @default(cuid())
+  url       String
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
