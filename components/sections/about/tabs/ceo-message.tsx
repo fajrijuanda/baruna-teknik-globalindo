@@ -4,8 +4,16 @@ import Image from "next/image";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Quote } from "lucide-react";
 
-export function CEOMessageTab() {
-    const { t } = useLanguage();
+export function CEOMessageTab({ content }: { content?: any }) {
+    const { t, language } = useLanguage();
+    const isId = language === "id";
+
+    const name = content?.name || t.aboutPage.ceoMessage.name;
+    const role = isId ? (content?.roleId || t.aboutPage.ceoMessage.role) : (content?.roleEn || t.aboutPage.ceoMessage.role);
+    const title = isId ? (content?.titleId || t.aboutPage.ceoMessage.title) : (content?.titleEn || t.aboutPage.ceoMessage.title);
+    const subtitle = isId ? (content?.subtitleId || t.aboutPage.ceoMessage.subtitle) : (content?.subtitleEn || t.aboutPage.ceoMessage.subtitle);
+    const messageContent = isId ? (content?.contentId || t.aboutPage.ceoMessage.content) : (content?.contentEn || t.aboutPage.ceoMessage.content);
+    const image = content?.image || "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800";
 
     return (
         <div className="animate-in fade-in slide-in-from-right-4 duration-500">
@@ -14,15 +22,15 @@ export function CEOMessageTab() {
                     {/* Image Section */}
                     <div className="relative h-96 lg:h-auto min-h-[400px]">
                         <Image
-                            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800"
+                            src={image}
                             alt="CEO Portrait"
                             fill
                             className="object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent lg:bg-gradient-to-r" />
                         <div className="absolute bottom-0 left-0 p-8 text-white">
-                            <h3 className="text-3xl font-bold font-oswald mb-2">{t.aboutPage.ceoMessage.name}</h3>
-                            <p className="text-blue-400 font-medium">{t.aboutPage.ceoMessage.role}</p>
+                            <h3 className="text-3xl font-bold font-oswald mb-2">{name}</h3>
+                            <p className="text-blue-400 font-medium">{role}</p>
                         </div>
                     </div>
 
@@ -30,14 +38,14 @@ export function CEOMessageTab() {
                     <div className="p-8 lg:p-12 flex flex-col justify-center">
                         <Quote className="h-12 w-12 text-blue-500/20 mb-6" />
                         <h2 className="text-3xl font-bold font-oswald mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
-                            {t.aboutPage.ceoMessage.title}
+                            {title}
                         </h2>
                         <h4 className="text-lg font-medium text-slate-500 dark:text-slate-400 mb-8 italic">
-                            &quot;{t.aboutPage.ceoMessage.subtitle}&quot;
+                            &quot;{subtitle}&quot;
                         </h4>
 
                         <div className="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed">
-                            {t.aboutPage.ceoMessage.content.map((paragraph, idx) => (
+                            {(messageContent || []).map((paragraph: string, idx: number) => (
                                 <p key={idx}>{paragraph}</p>
                             ))}
                         </div>

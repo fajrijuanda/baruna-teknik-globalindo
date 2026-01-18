@@ -2,24 +2,42 @@
 
 import { useLanguage } from "@/components/providers/language-provider";
 
-export function HistoryTab() {
-    const { t } = useLanguage();
+export function HistoryTab({ content }: { content?: any }) {
+    const { t, language } = useLanguage();
+    const isId = language === "id";
+
+    const title = isId ? (content?.titleId || t.aboutPage.history.title) : (content?.titleEn || t.aboutPage.history.title);
+    const description = isId ? (content?.descriptionId || t.aboutPage.history.description) : (content?.descriptionEn || t.aboutPage.history.description);
+
+    // Milestones need careful handling as content milestones have En/Id fields but translation fallback does not (it's hardcoded in translation file structure)
+    // Translation file structure: milestones: [{ title, description, year }] (implied bilingual by file separation)
+    // Content structure: milestones: [{ titleEn, titleId, descriptionEn, descriptionId, year }]
+
+    // We map content milestones to the display format
+    const contentMilestones = (content?.milestones || []).map((m: any) => ({
+        year: m.year,
+        title: isId ? m.titleId : m.titleEn,
+        description: isId ? m.descriptionId : m.descriptionEn
+    }));
+
+    const displayMilestones = contentMilestones.length > 0 ? contentMilestones : t.aboutPage.history.milestones;
 
     return (
         <div className="animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold font-oswald mb-4">{t.aboutPage.history.title}</h2>
+                <h2 className="text-3xl font-bold font-oswald mb-4">{title}</h2>
                 <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                    {t.aboutPage.history.description}
+                    {description}
                 </p>
             </div>
 
+            {/* ... rest of layout ... */}
             <div className="relative max-w-4xl mx-auto">
                 {/* Center Line */}
                 <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800 md:-translate-x-1/2 ml-4 md:ml-0" />
 
                 <div className="space-y-12">
-                    {t.aboutPage.history.milestones.map((milestone, index) => (
+                    {displayMilestones.map((milestone: any, index: number) => (
                         <div key={index} className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
 
                             {/* Content Side */}

@@ -1,0 +1,19 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import { useState } from "react";
+import { CategoryDialog } from "@/components/admin/categories/category-dialog";
+
+export const CategoryDialogWrapper = () => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <>
+            <Button onClick={() => setOpen(true)}>
+                <Plus className="mr-2 h-4 w-4" /> Add New
+            </Button>
+            <CategoryDialog open={open} onOpenChange={setOpen} />
+        </>
+    );
+};

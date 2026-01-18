@@ -14,6 +14,7 @@ model Admin {
   email     String   @unique
   password  String   // Hashed
   name      String?
+  role      String   @default("admin") // "superadmin" | "admin"
   createdAt DateTime @default(now())
 }
 
@@ -46,4 +47,58 @@ model Image {
   url       String
   productId String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// Client / Partner Logos
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  logoUrl   String
+  website   String?
+  isFeatured Boolean @default(true)
+  createdAt DateTime @default(now())
+  testimonials Testimonial[]
+}
+
+// Dynamic Page Content (Key-Value Store for Page Settings)
+model PageContent {
+  id        String   @id @default(cuid())
+  page      String   // e.g., "home", "about", "contact"
+  section   String   // e.g., "hero", "vision", "info"
+  content   Json     // Flexible JSON storage for text/images
+  updatedAt DateTime @updatedAt
+
+  @@unique([page, section]) // Ensure one content entry per section per page
+}
+
+// Testimonials (Linked to Clients)
+model Testimonial {
+  id        String   @id @default(cuid())
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  personName String
+  personRole String
+  content    Json    // { en: string, id: string }
+  rating     Int     @default(5)
+  isVisible  Boolean @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// Visitor Tracking
+model Visitor {
+  id        String   @id @default(cuid())
+  ipAddress String?
+  userAgent String?
+  path      String?  
+  createdAt DateTime @default(now())
+}
+
+// Admin Activity Logging
+model ActivityLog {
+  id        String   @id @default(cuid())
+  action    String   // e.g., "CREATE", "UPDATE", "DELETE"
+  entity    String   // e.g., "Product", "Category"
+  details   String   // Description of the action
+  createdAt DateTime @default(now())
 }

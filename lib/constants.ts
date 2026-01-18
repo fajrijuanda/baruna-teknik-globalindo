@@ -2,10 +2,10 @@ export const SITE_CONFIG = {
   name: "PT BARUNA TEKNIK GLOBALINDO",
   description: "Specialist in Industrial Pumps, Valves, and Spareparts",
   email: "info@barunateknik.co.id",
-  phone: "+62 812-3456-7890", // Placeholder
+  phone: "0877-8848-7287",
   address:
-    "Komplek Pergudangan Era Prima, Jl. Daan Mogot Km. 21 No. 1, Tangerang", // Placeholder
-  googleMapsUrl: "https://maps.google.com",
+    "Jl. Letjen M.T. Haryono No.Kav.10, Bidara Cina, Kecamatan Jatinegara, Jakarta, Daerah Khusus Ibukota Jakarta 13330",
+  googleMapsUrl: "https://maps.app.goo.gl/Nt8DtDkEQ9jce2AYA",
 };
 
 export const NAV_LINKS = [

@@ -17,12 +17,12 @@ export function AboutContent() {
     ];
 
     return (
-        <section className="py-24 bg-slate-950 text-white overflow-hidden relative">
+        <section className="py-12 lg:py-24 bg-slate-950 text-white overflow-hidden relative">
             {/* Decorative Grid Lines */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
                     {/* Left Column: Image with "Futuristic" Frame */}
                     <div className="relative group">
@@ -63,7 +63,7 @@ export function AboutContent() {
                                 <div className="h-px w-8 bg-blue-500" />
                                 <span className="text-blue-400 uppercase tracking-widest text-sm font-medium">Established 2010</span>
                             </div>
-                            <h2 className="text-4xl md:text-5xl font-bold font-oswald leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
+                            <h2 className="text-2xl lg:text-5xl font-bold font-oswald leading-tight mb-4 lg:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
                                 {t.about.title}
                             </h2>
                             <p className="text-lg text-slate-400 leading-relaxed border-l-2 border-slate-800 pl-6">

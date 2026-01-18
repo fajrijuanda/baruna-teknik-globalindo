@@ -50,9 +50,9 @@ export function ProductCarousel({ products = [] }: ProductCarouselProps) {
                 <div className="absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-slate-50 to-transparent dark:from-slate-950/50 dark:to-transparent pointer-events-none" />
                 <div className="absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-slate-50 to-transparent dark:from-slate-950/50 dark:to-transparent pointer-events-none" />
 
-                <div className="flex w-max animate-scroll hover:pause gap-8 pl-4">
-                    {/* Duplicate array for seamless scroll loop */}
-                    {[...products, ...products].map(
+                <div className="flex w-max animate-scroll gap-8 pl-4">
+                    {/* Duplicate array (4x) for seamless scroll loop even on wide screens */}
+                    {[...products, ...products, ...products, ...products].map(
                         (product, index) => (
                             <div key={`${product.id}-${index}`} className="w-[300px] flex-shrink-0">
                                 <ProductCard

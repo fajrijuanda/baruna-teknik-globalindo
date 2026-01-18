@@ -31,6 +31,7 @@ export default auth((req) => {
     object-src 'none';
     base-uri 'self';
     form-action 'self';
+    frame-src 'self' https://maps.google.com https://www.google.com;
     frame-ancestors 'none';
     upgrade-insecure-requests;
   `

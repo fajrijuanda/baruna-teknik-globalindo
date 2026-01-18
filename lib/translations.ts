@@ -53,7 +53,7 @@ export const translations = {
       subtitle: "Jelajahi beberapa solusi industri terlaris kami.",
     },
     clients: {
-      title: "DIPERCAYA OLEH PEMIMPIN INDUSTRI",
+      title: "KLIEN & MITRA KAMI",
     },
     testimonials: {
       title: "TESTIMONI KLIEN",
@@ -241,7 +241,7 @@ export const translations = {
       subtitle: "Explore some of our best-selling industrial solutions.",
     },
     clients: {
-      title: "TRUSTED BY INDUSTRY LEADERS",
+      title: "OUR CLIENTS & PARTNERS",
     },
     testimonials: {
       title: "CLIENT TESTIMONIALS",

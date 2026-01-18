@@ -1,170 +1,144 @@
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // 1. Create Admin
-  const email = "admin@barunateknik.com";
-  const password = "password123";
-  const hashedPassword = await bcrypt.hash(password, 10);
+  console.log("Seeding database...");
 
-  const admin = await prisma.admin.upsert({
-    where: { email },
+  // Seed Clients (Example data from previous step, just ensuring they exist or can be skipped)
+  // We will focus on PageContent here as requested.
+
+  // --- Home Page Content ---
+
+  // 1. Hero Section
+  await prisma.pageContent.upsert({
+    where: { page_section: { page: "home", section: "hero" } },
     update: {},
     create: {
-      email,
-      password: hashedPassword,
-      name: "Admin Baruna",
+      page: "home",
+      section: "hero",
+      content: {
+        heroImage:
+          "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070", // Default placeholder
+        titleEn: "YOUR TRUSTED PARTNER FOR INDUSTRIAL SOLUTIONS",
+        titleId: "MITRA TERPERCAYA UNTUK SOLUSI INDUSTRI",
+        subtitleEn:
+          "Specialist in Industrial Pumps, Valves, and Spareparts. Committed to excellence, we provide high-quality products to support your operational success.",
+        subtitleId:
+          "Spesialis dalam Pompa Industri, Valve, dan Suku Cadang. Berkomitmen pada keunggulan, kami menyediakan produk berkualitas tinggi untuk mendukung kesuksesan operasional Anda.",
+      },
     },
   });
 
-  console.log("Admin created:", admin.email);
+  // 2. About Section
+  await prisma.pageContent.upsert({
+    where: { page_section: { page: "home", section: "about" } },
+    update: {},
+    create: {
+      page: "home",
+      section: "about",
+      content: {
+        image: "/images/about-image.png",
+        titleEn: "ABOUT PT BARUNA TEKNIK GLOBALINDO",
+        titleId: "TENTANG PT BARUNA TEKNIK GLOBALINDO",
+        descriptionEn:
+          "Established in the heart of Indonesia's industrial sector, PT Baruna Teknik Globalindo has grown to become a premier distributor for industrial pumps, valves, and engineering solutions.",
+        descriptionId:
+          "Berdiri di jantung kawasan industri Indonesia, PT Baruna Teknik Globalindo telah tumbuh menjadi distributor terkemuka untuk pompa industri, valve, dan solusi teknik. Kami menjembatani kesenjangan antara produsen kelas dunia dan industri lokal.",
+        stat1LabelEn: "Years Experience",
+        stat1LabelId: "Tahun Pengalaman",
+        stat2LabelEn: "Happy Clients",
+        stat2LabelId: "Klien Puas",
+        stat3LabelEn: "Partner Brands",
+        stat3LabelId: "Merek Mitra",
+        ctaTextEn: "Learn More About Us",
+        ctaTextId: "Pelajari Lebih Lanjut",
+      },
+    },
+  });
 
-  // 2. Create Categories
-  const categoriesData = [
-    {
-      id: "industrial-pump",
-      slug: "industrial-pump",
-      name: { en: "Industrial Pump", id: "Pompa Industri" },
+  // 3. Features Section
+  await prisma.pageContent.upsert({
+    where: { page_section: { page: "home", section: "features" } },
+    update: {},
+    create: {
+      page: "home",
+      section: "features",
+      content: {
+        titleEn: "WHY CHOOSE US",
+        titleId: "MENGAPA MEMILIH KAMI",
+        subtitleEn:
+          "We deliver more than just products; we provide complete industrial solutions tailored to your operational needs.",
+        subtitleId:
+          "Kami memberikan lebih dari sekadar produk; kami memberikan solusi industri lengkap yang disesuaikan dengan kebutuhan operasional Anda.",
+        // Note: Individual cards are kept static for MVP simplicity as per plan, or can be added later if needed.
+      },
     },
-    {
-      id: "valve",
-      slug: "valve",
-      name: { en: "Valve", id: "Valve" },
-    },
-    {
-      id: "sparepart",
-      slug: "sparepart",
-      name: { en: "Spare Parts", id: "Suku Cadang" },
-    },
-  ];
+  });
 
-  for (const cat of categoriesData) {
-    await prisma.category.upsert({
-      where: { slug: cat.slug },
-      update: {},
-      create: cat,
-    });
-  }
-  console.log("Categories seeded.");
+  // 4. Testimonials Section
+  await prisma.pageContent.upsert({
+    where: { page_section: { page: "home", section: "testimonials" } },
+    update: {},
+    create: {
+      page: "home",
+      section: "testimonials",
+      content: {
+        titleEn: "CLIENT TESTIMONIALS",
+        titleId: "TESTIMONI KLIEN",
+        subtitleEn: "What our partners say about our products and services.",
+        subtitleId: "Apa kata mitra kami tentang produk dan layanan kami.",
+      },
+    },
+  });
 
-  // 3. Create Products
-  const productsData = [
-    {
-      title: {
-        en: "Ebara 50x40 FSJA - Centrifugal Pump",
-        id: "Ebara 50x40 FSJA - Pompa Sentrifugal",
+  // 5. Contact Info
+  await prisma.pageContent.upsert({
+    where: { page_section: { page: "contact", section: "info" } },
+    update: {
+      content: {
+        address:
+          "Jl. Letjen M.T. Haryono No.Kav.10, Bidara Cina, Kecamatan Jatinegara, Jakarta, Daerah Khusus Ibukota Jakarta 13330",
+        phone: "0877-8848-7287",
+        email: "info@barunateknik.co.id",
+        hours: "Senin - Jumat: 08:00 - 17:00",
+        hoursDesc:
+          "Hari Sabtu & Minggu Libur\nLayanan Darurat 24 Jam via WhatsApp",
+        googleMapsUrl:
+          "https://maps.google.com/maps?q=Jl.+Letjen+M.T.+Haryono+No.Kav.10,+Jakarta&z=15&output=embed",
+        facebook: "https://facebook.com/barunateknik",
+        instagram: "https://instagram.com/barunateknik",
+        linkedin: "https://linkedin.com/company/baruna-teknik",
       },
-      description: {
-        en: "High efficiency centrifugal pump suitable for water supply, industrial water, and irrigation.",
-        id: "Pompa sentrifugal efisiensi tinggi yang cocok untuk pasokan air, air industri, dan irigasi.",
-      },
-      slug: "ebara-50x40-fsja",
-      categoryId: "industrial-pump",
-      isFeatured: true,
-      image:
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop",
     },
-    {
-      title: {
-        en: "Kitz Butterfly Valve 10 Inch",
-        id: "Kitz Butterfly Valve 10 Inci",
+    create: {
+      page: "contact",
+      section: "info",
+      content: {
+        address:
+          "Jl. Letjen M.T. Haryono No.Kav.10, Bidara Cina, Kecamatan Jatinegara, Jakarta, Daerah Khusus Ibukota Jakarta 13330",
+        phone: "0877-8848-7287",
+        email: "info@barunateknik.co.id",
+        hours: "Senin - Jumat: 08:00 - 17:00",
+        hoursDesc:
+          "Hari Sabtu & Minggu Libur\nLayanan Darurat 24 Jam via WhatsApp",
+        googleMapsUrl:
+          "https://maps.google.com/maps?q=Jl.+Letjen+M.T.+Haryono+No.Kav.10,+Jakarta&z=15&output=embed",
+        facebook: "https://facebook.com/barunateknik",
+        instagram: "https://instagram.com/barunateknik",
+        linkedin: "https://linkedin.com/company/baruna-teknik",
       },
-      description: {
-        en: "Durable butterfly valve for flow control in various industrial applications.",
-        id: "Valve kupu-kupu tahan lama untuk kontrol aliran dalam berbagai aplikasi industri.",
-      },
-      slug: "kitz-butterfly-valve-10-inch",
-      categoryId: "valve",
-      isFeatured: true,
-      image:
-        "https://plus.unsplash.com/premium_photo-1664303847960-586318f59035?q=80&w=2574&auto=format&fit=crop",
     },
-    {
-      title: {
-        en: "Grundfos CR 10-16 Vertical Pump",
-        id: "Grundfos CR 10-16 Pompa Vertikal",
-      },
-      description: {
-        en: "Vertical multistage centrifugal pump for high pressure applications.",
-        id: "Pompa sentrifugal multistage vertikal untuk aplikasi tekanan tinggi.",
-      },
-      slug: "grundfos-cr-10-16",
-      categoryId: "industrial-pump",
-      isFeatured: true,
-      image:
-        "https://images.unsplash.com/photo-1581092921461-eab62e97a782?q=80&w=2670&auto=format&fit=crop",
-    },
-    {
-      title: {
-        en: "Torishima ETA-N 65-50-250",
-        id: "Torishima ETA-N 65-50-250",
-      },
-      description: {
-        en: "Standardized centrifugal pump for reliable operation in utility services.",
-        id: "Pompa sentrifugal terstandarisasi untuk operasi andal dalam layanan utilitas.",
-      },
-      slug: "torishima-eta-n",
-      categoryId: "industrial-pump",
-      isFeatured: true,
-      image:
-        "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2669&auto=format&fit=crop",
-    },
-    {
-      title: { en: "Mechanical Seal Type 1", id: "Mechanical Seal Tipe 1" },
-      description: {
-        en: "Durable mechanical seal for leak-free pump operation.",
-        id: "Seal mekanis tahan lama untuk operasi pompa bebas bocor.",
-      },
-      slug: "mechanical-seal-type-1",
-      categoryId: "sparepart",
-      isFeatured: false,
-      image:
-        "https://images.unsplash.com/photo-1628102491629-778571d893a3?q=80&w=2670&auto=format&fit=crop",
-    },
-    {
-      title: { en: "Gate Valve ANSI 150", id: "Gate Valve ANSI 150" },
-      description: {
-        en: "Robust gate valve for precise flow control.",
-        id: "Valve gerbang kokoh untuk kontrol aliran yang presisi.",
-      },
-      slug: "gate-valve-ansi-150",
-      categoryId: "valve",
-      isFeatured: false,
-      image:
-        "https://images.unsplash.com/photo-1615826938953-29a33827ec56?q=80&w=1974&auto=format&fit=crop",
-    },
-  ];
+  });
 
-  for (const prod of productsData) {
-    const existing = await prisma.product.findUnique({
-      where: { slug: prod.slug },
-    });
-    if (!existing) {
-      await prisma.product.create({
-        data: {
-          title: prod.title,
-          description: prod.description,
-          slug: prod.slug,
-          isFeatured: prod.isFeatured,
-          category: { connect: { slug: prod.categoryId } },
-          images: {
-            create: { url: prod.image }, // Prisma handles ID link
-          },
-        },
-      });
-    }
-  }
-  console.log("Products seeded.");
+  console.log("Seeding completed.");
 }
 
 main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
+  .catch((e) => {
     console.error(e);
-    await prisma.$disconnect();
     process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
   });

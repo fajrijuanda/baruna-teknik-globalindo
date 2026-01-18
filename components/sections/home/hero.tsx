@@ -5,14 +5,27 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/language-provider";
 
-export function Hero() {
-    const { t } = useLanguage();
+interface HeroProps {
+    titleEn?: string;
+    titleId?: string;
+    subtitleEn?: string;
+    subtitleId?: string;
+    heroImage?: string;
+}
+
+export function Hero({ titleEn, titleId, subtitleEn, subtitleId, heroImage }: HeroProps) {
+    const { t, language } = useLanguage();
+
+    // Determine content based on language and props
+    const title = language === "en" ? (titleEn || t.hero.title) : (titleId || t.hero.title);
+    const subtitle = language === "en" ? (subtitleEn || t.hero.subtitle) : (subtitleId || t.hero.subtitle);
+    const bgImage = heroImage || "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop";
 
     return (
         <section className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950">
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop"
+                    src={bgImage}
                     alt="Industrial Background"
                     fill
                     className="object-cover opacity-60"
@@ -36,23 +49,16 @@ export function Hero() {
                 <div className="max-w-4xl mx-auto space-y-8">
                     <div className="inline-block animate-fade-in-up">
                         <span className="px-4 py-1.5 rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-300 text-sm font-medium backdrop-blur-sm">
-                            {/* Using contactUs as a placeholder for a tag if needed, or keep static 'Industrial Solutions'? Dictionary didn't have a tag. Let's use hardcoded or add to dict. Keeping it static 'Industrial Excellence' for now or map to subtitle? 
-                             Wait, the original code had "Industrial Excellence". I missed adding it to the dictionary. I will just hardcode it or use a close enough translation or add it.
-                             Let's assume "PT BARUNA TEKNIK GLOBALINDO" or similar.
-                             I'll stick to 'Industrial Excellence' for now or remove. 
-                             Actually I will use t.hero.title but that is the main H1. 
-                             Let's just use "BARUNA TEKNIK GLOBALINDO"
-                             */}
                             BARUNA TEKNIK GLOBALINDO
                         </span>
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-none font-oswald animate-slide-up">
-                        {t.hero.title}
+                        {title}
                     </h1>
 
-                    <p className="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto leading-relaxed animate-slide-up-delay-1">
-                        {t.hero.subtitle}
+                    <p className="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto leading-relaxed animate-slide-up-delay-1 whitespace-pre-line">
+                        {subtitle}
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up-delay-2">

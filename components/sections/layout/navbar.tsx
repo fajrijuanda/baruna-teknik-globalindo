@@ -3,16 +3,9 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, Search, Home, Info, Package, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Search, Home, Info, Package, Phone } from "lucide-react";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet";
 import {
     Select,
     SelectContent,
@@ -20,7 +13,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
+
+import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/providers/language-provider";
 
@@ -81,8 +75,13 @@ export function Navbar() {
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
-                    <div className="h-10 w-10 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold text-xl font-oswald">
-                        B
+                    <div className="relative h-10 w-10">
+                        <Image
+                            src="/images/logo.png"
+                            alt="Baruna Teknik"
+                            fill
+                            className="object-contain"
+                        />
                     </div>
                     <span
                         className={cn(
@@ -156,84 +155,18 @@ export function Navbar() {
 
                 </div>
 
-                {/* Mobile Navigation */}
+                {/* Mobile Navigation (Logo + Lang Only) */}
                 <div className="md:hidden flex items-center gap-4">
-                    <Sheet>
-                        <SheetTrigger asChild>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className={cn(
-                                    isScrolled ? "text-foreground" : "text-white hover:bg-white/10"
-                                )}
-                            >
-                                <Menu className="h-6 w-6" />
-                                <span className="sr-only">Toggle menu</span>
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="right">
-                            <SheetHeader>
-                                <SheetTitle className="font-oswald text-left">Menu</SheetTitle>
-                            </SheetHeader>
-                            <div className="flex flex-col gap-6 mt-8">
-                                <div className="relative">
-                                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                                    <Input
-                                        type="search"
-                                        placeholder={t.nav.searchPlaceholder}
-                                        className="pl-9"
-                                    />
-                                </div>
-                                <nav className="flex flex-col gap-4">
-                                    {NAV_LINKS.map((link) => {
-                                        const isActive = isActiveLink(link.href);
-                                        return (
-                                            <Link
-                                                key={link.href}
-                                                href={link.href}
-                                                className={cn(
-                                                    "text-lg font-medium transition-colors flex items-center gap-3",
-                                                    isActive
-                                                        ? "text-blue-600 dark:text-blue-400 font-bold"
-                                                        : "text-foreground/80 hover:text-primary"
-                                                )}
-                                            >
-                                                {getIcon(link.label)}
-                                                {getTranslatedLabel(link.label)}
-                                            </Link>
-                                        );
-                                    })}
-                                </nav>
-                                <div className="border-t pt-6">
-                                    {/* Mobile Language Switcher - Flags Only */}
-                                    <div className="flex gap-2 mb-6 justify-center">
-                                        <Button
-                                            variant={language === 'id' ? 'default' : 'outline'}
-                                            size="lg"
-                                            onClick={() => setLanguage('id')}
-                                            className="flex-1 text-2xl h-12"
-                                        >
-                                            🇮🇩
-                                        </Button>
-                                        <Button
-                                            variant={language === 'en' ? 'default' : 'outline'}
-                                            size="lg"
-                                            onClick={() => setLanguage('en')}
-                                            className="flex-1 text-2xl h-12"
-                                        >
-                                            🇺🇸
-                                        </Button>
-                                    </div>
-
-                                    <div className="text-sm text-muted-foreground mb-2">
-                                        {t.nav.contactUs}
-                                    </div>
-                                    <div className="font-medium">{SITE_CONFIG.phone}</div>
-                                    <div className="text-sm">{SITE_CONFIG.email}</div>
-                                </div>
-                            </div>
-                        </SheetContent>
-                    </Sheet>
+                    {/* Language Switcher Mobile */}
+                    <Select value={language} onValueChange={(val: string) => setLanguage(val as 'id' | 'en')}>
+                        <SelectTrigger className={cn("w-[60px] h-9 border-none bg-transparent focus:ring-0 focus:ring-offset-0 text-2xl", isScrolled ? "text-slate-900 dark:text-white" : "text-white")}>
+                            <SelectValue placeholder="Lang" />
+                        </SelectTrigger>
+                        <SelectContent align="end" className="min-w-[70px]">
+                            <SelectItem value="id" className="text-2xl justify-center">🇮🇩</SelectItem>
+                            <SelectItem value="en" className="text-2xl justify-center">🇺🇸</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
         </header>

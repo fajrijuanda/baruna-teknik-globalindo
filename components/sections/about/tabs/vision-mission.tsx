@@ -4,8 +4,15 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Target, Lightbulb } from "lucide-react";
 
-export function VisionMissionTab() {
-    const { t } = useLanguage();
+export function VisionMissionTab({ content, missionContent }: { content?: any, missionContent?: any }) {
+    const { t, language } = useLanguage();
+    const isId = language === "id";
+
+    const visionTitle = isId ? (content?.titleId || t.aboutPage.vision.title) : (content?.titleEn || t.aboutPage.vision.title);
+    const visionDesc = isId ? (content?.descriptionId || t.aboutPage.vision.description) : (content?.descriptionEn || t.aboutPage.vision.description);
+
+    const missionTitle = isId ? (missionContent?.titleId || t.aboutPage.mission.title) : (missionContent?.titleEn || t.aboutPage.mission.title);
+    const missionList = isId ? (missionContent?.listId || t.aboutPage.mission.list) : (missionContent?.listEn || t.aboutPage.mission.list);
 
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
@@ -16,10 +23,10 @@ export function VisionMissionTab() {
                         <Target className="h-8 w-8 text-blue-600" />
                     </div>
                     <h3 className="text-2xl font-bold font-oswald text-slate-900 dark:text-white mb-4">
-                        {t.aboutPage.vision.title}
+                        {visionTitle}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-                        {t.aboutPage.vision.description}
+                        {visionDesc}
                     </p>
                 </CardContent>
             </Card>
@@ -31,10 +38,10 @@ export function VisionMissionTab() {
                         <Lightbulb className="h-8 w-8 text-indigo-600" />
                     </div>
                     <h3 className="text-2xl font-bold font-oswald text-slate-900 dark:text-white mb-4">
-                        {t.aboutPage.mission.title}
+                        {missionTitle}
                     </h3>
                     <ul className="space-y-4">
-                        {t.aboutPage.mission.list.map((item, index) => (
+                        {(missionList || []).map((item: string, index: number) => (
                             <li key={index} className="flex items-start gap-3">
                                 <span className="h-2 w-2 mt-2.5 rounded-full bg-indigo-600 shrink-0" />
                                 <span className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
