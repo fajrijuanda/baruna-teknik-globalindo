@@ -30,6 +30,7 @@ export function Hero({ titleEn, titleId, subtitleEn, subtitleId, heroImage }: He
                     fill
                     className="object-cover opacity-60"
                     priority
+                    sizes="100vw"
                 />
 
                 {/* Gradient Overlays */}

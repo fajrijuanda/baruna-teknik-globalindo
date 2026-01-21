@@ -24,6 +24,7 @@ export function Footer({ contactContent }: { contactContent?: ContactContent }) 
                     <div className="lg:col-span-4">
                         <div className="rounded-2xl overflow-hidden h-64 w-full shadow-lg border border-slate-800 grayscale hover:grayscale-0 transition-all duration-500 relative">
                             <iframe
+                                title="Google Maps Location of Baruna Teknik"
                                 src={googleMapsUrl}
                                 width="100%"
                                 height="100%"
@@ -107,17 +108,17 @@ export function Footer({ contactContent }: { contactContent?: ContactContent }) 
 
                         <div className="flex gap-4">
                             {contactContent?.facebook && (
-                                <Link href={contactContent.facebook} target="_blank" className="h-10 w-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 hover:text-white text-slate-400 transition-all duration-300">
+                                <Link href={contactContent.facebook} target="_blank" aria-label="Visit our Facebook page" className="h-10 w-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 hover:text-white text-slate-400 transition-all duration-300">
                                     <Facebook className="h-5 w-5" />
                                 </Link>
                             )}
                             {contactContent?.instagram && (
-                                <Link href={contactContent.instagram} target="_blank" className="h-10 w-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-pink-600 hover:border-pink-600 hover:text-white text-slate-400 transition-all duration-300">
+                                <Link href={contactContent.instagram} target="_blank" aria-label="Visit our Instagram page" className="h-10 w-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-pink-600 hover:border-pink-600 hover:text-white text-slate-400 transition-all duration-300">
                                     <Instagram className="h-5 w-5" />
                                 </Link>
                             )}
                             {contactContent?.linkedin && (
-                                <Link href={contactContent.linkedin} target="_blank" className="h-10 w-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-blue-500 hover:border-blue-500 hover:text-white text-slate-400 transition-all duration-300">
+                                <Link href={contactContent.linkedin} target="_blank" aria-label="Visit our LinkedIn page" className="h-10 w-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-blue-500 hover:border-blue-500 hover:text-white text-slate-400 transition-all duration-300">
                                     <Linkedin className="h-5 w-5" />
                                 </Link>
                             )}

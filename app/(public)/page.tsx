@@ -8,7 +8,7 @@ import { Clients } from "@/components/sections/home/clients";
 import { Testimonials } from "@/components/sections/home/testimonials";
 import { getPageContent } from "@/lib/actions/content";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function HomePage() {
     const featuredProducts = await prisma.product.findMany({
