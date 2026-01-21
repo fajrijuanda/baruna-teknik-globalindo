@@ -2,18 +2,8 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown, MoreHorizontal, Pencil, Trash } from "lucide-react";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { deleteProduct } from "@/lib/actions/products";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { ProductDialog } from "./product-dialog";
+import { ArrowUpDown } from "lucide-react";
+import { CellAction } from "./cell-action";
 import { createSelectColumn } from "@/components/admin/data-table/data-table";
 
 // Define the shape of our data
@@ -66,57 +56,6 @@ export const columns: ColumnDef<ProductColumn>[] = [
     },
     {
         id: "actions",
-        cell: ({ row }) => {
-            const product = row.original;
-
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const router = useRouter();
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const [open, setOpen] = useState(false);
-
-            const handleDelete = async () => {
-                if (confirm("Are you sure?")) {
-                    await deleteProduct(product.id);
-                    router.refresh();
-                }
-            }
-
-            return (
-                <>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="h-8 w-8 p-0">
-                                <span className="sr-only">Open menu</span>
-                                <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem onClick={() => setOpen(true)}>
-                                <Pencil className="mr-2 h-4 w-4" /> Edit
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={handleDelete} className="text-red-600">
-                                <Trash className="mr-2 h-4 w-4" /> Delete
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-
-                    <ProductDialog
-                        open={open}
-                        onOpenChange={setOpen}
-                        initialData={{
-                            id: product.id,
-                            slug: product.slug,
-                            categoryId: product.categoryId,
-                            titleEn: product.titleEn,
-                            titleId: product.titleId,
-                            descEn: product.descEn,
-                            descId: product.descId,
-                            imageUrl: product.imageUrl,
-                        }}
-                    />
-                </>
-            )
-        },
+        cell: ({ row }) => <CellAction data={row.original} />,
     },
 ]
