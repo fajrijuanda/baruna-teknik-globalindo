@@ -14,6 +14,7 @@ import { deleteProduct } from "@/lib/actions/products";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ProductDialog } from "./product-dialog";
+import { createSelectColumn } from "@/components/admin/data-table/data-table";
 
 // Define the shape of our data
 export type ProductColumn = {
@@ -31,6 +32,7 @@ export type ProductColumn = {
 }
 
 export const columns: ColumnDef<ProductColumn>[] = [
+    createSelectColumn<ProductColumn>(),
     {
         accessorKey: "titleEn",
         header: ({ column }) => {

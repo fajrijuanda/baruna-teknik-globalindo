@@ -14,6 +14,7 @@ import { deleteCategory } from "@/lib/actions/categories";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CategoryDialog } from "./category-dialog";
+import { createSelectColumn } from "@/components/admin/data-table/data-table";
 
 export type CategoryColumn = {
     id: string;
@@ -24,6 +25,7 @@ export type CategoryColumn = {
 }
 
 export const columns: ColumnDef<CategoryColumn>[] = [
+    createSelectColumn<CategoryColumn>(),
     {
         accessorKey: "nameEn",
         header: ({ column }) => {

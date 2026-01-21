@@ -8,7 +8,6 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
@@ -16,6 +15,7 @@ import { useState } from "react";
 import { ClientDialog } from "./client-dialog";
 import { deleteClient } from "@/lib/actions/clients";
 import { useRouter } from "next/navigation";
+import { createSelectColumn } from "@/components/admin/data-table/data-table";
 
 // Define the shape of our data
 export type ClientColumn = {
@@ -28,6 +28,7 @@ export type ClientColumn = {
 }
 
 export const columns: ColumnDef<ClientColumn>[] = [
+    createSelectColumn<ClientColumn>(),
     {
         accessorKey: "logoUrl",
         header: "Logo",

@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
+import { createSelectColumn } from "@/components/admin/data-table/data-table";
 
 export type UserColumn = {
     id: string;
@@ -12,6 +13,7 @@ export type UserColumn = {
 };
 
 export const columns: ColumnDef<UserColumn>[] = [
+    createSelectColumn<UserColumn>(),
     {
         accessorKey: "name",
         header: "Name",
@@ -27,8 +29,8 @@ export const columns: ColumnDef<UserColumn>[] = [
             const role = row.getValue("role") as string;
             return (
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${role === "superadmin"
-                        ? "bg-purple-100 text-purple-700 border border-purple-200"
-                        : "bg-slate-100 text-slate-700 border border-slate-200"
+                    ? "bg-purple-100 text-purple-700 border border-purple-200"
+                    : "bg-slate-100 text-slate-700 border border-slate-200"
                     }`}>
                     {role.toUpperCase()}
                 </span>

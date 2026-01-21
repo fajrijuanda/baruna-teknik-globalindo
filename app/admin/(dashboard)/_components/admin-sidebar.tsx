@@ -1,7 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutDashboard, Package, FolderOpen, LogOut, User, FileText, MessageSquareQuote, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+    LayoutDashboard,
+    Package,
+    FolderOpen,
+    LogOut,
+    Users,
+    FileText,
+    MessageSquareQuote,
+    ChevronLeft,
+    ChevronRight,
+    Building2,
+    type LucideIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -17,11 +29,77 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 
+// ============================================================================
+// Types
+// ============================================================================
+
+interface NavLink {
+    href: string;
+    label: string;
+    icon: LucideIcon;
+}
+
+interface NavGroup {
+    title: string;
+    links: NavLink[];
+}
+
 interface AdminSidebarProps {
     isCollapsed: boolean;
     onToggle: () => void;
     userRole?: string;
 }
+
+// ============================================================================
+// Navigation Configuration
+// ============================================================================
+
+function getNavigationGroups(userRole?: string): NavGroup[] {
+    const groups: NavGroup[] = [
+        {
+            title: "Overview",
+            links: [
+                { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+            ],
+        },
+        {
+            title: "Catalog",
+            links: [
+                { href: "/admin/products", label: "Products", icon: Package },
+                { href: "/admin/categories", label: "Categories", icon: FolderOpen },
+            ],
+        },
+        {
+            title: "Business",
+            links: [
+                { href: "/admin/clients", label: "Clients", icon: Building2 },
+                { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
+            ],
+        },
+        {
+            title: "Content",
+            links: [
+                { href: "/admin/content", label: "Site Content", icon: FileText },
+            ],
+        },
+    ];
+
+    // Admin-only section
+    if (userRole === "superadmin") {
+        groups.push({
+            title: "Administration",
+            links: [
+                { href: "/admin/users", label: "User Manager", icon: Users },
+            ],
+        });
+    }
+
+    return groups;
+}
+
+// ============================================================================
+// Component
+// ============================================================================
 
 export function AdminSidebar({ isCollapsed, onToggle, userRole }: AdminSidebarProps) {
     const pathname = usePathname();
@@ -31,18 +109,7 @@ export function AdminSidebar({ isCollapsed, onToggle, userRole }: AdminSidebarPr
         await signOut({ callbackUrl: "/admin/login" });
     };
 
-    const links = [
-        { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-        { href: "/admin/products", label: "Products", icon: Package },
-        { href: "/admin/categories", label: "Categories", icon: FolderOpen },
-        { href: "/admin/clients", label: "Clients", icon: User },
-        { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
-        { href: "/admin/content", label: "Site Content", icon: FileText },
-    ];
-
-    if (userRole === "superadmin") {
-        links.push({ href: "/admin/users", label: "User Manager", icon: User });
-    }
+    const navigationGroups = getNavigationGroups(userRole);
 
     return (
         <>
@@ -80,36 +147,52 @@ export function AdminSidebar({ isCollapsed, onToggle, userRole }: AdminSidebarPr
                 </div>
 
                 {/* Navigation */}
-                <nav className="p-4 space-y-2 flex-1">
-                    {links.map((link) => {
-                        const isActive = pathname === link.href;
-                        const Icon = link.icon;
-                        return (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className={cn(
-                                    "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors group relative",
-                                    isActive ? "bg-blue-600 text-white" : "hover:bg-slate-800 text-slate-300 hover:text-white",
-                                    isCollapsed && "justify-center px-2"
-                                )}
-                                title={isCollapsed ? link.label : undefined}
-                            >
-                                <Icon className="w-5 h-5 flex-shrink-0" />
-                                {!isCollapsed && <span>{link.label}</span>}
+                <nav className="p-4 flex-1 overflow-y-auto">
+                    {navigationGroups.map((group, groupIndex) => (
+                        <div key={group.title} className={cn(groupIndex > 0 && "mt-6")}>
+                            {/* Group Title */}
+                            {!isCollapsed && (
+                                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-4">
+                                    {group.title}
+                                </h3>
+                            )}
+                            {isCollapsed && groupIndex > 0 && (
+                                <div className="border-t border-slate-700 mb-2 mx-2" />
+                            )}
 
-                                {/* Tooltip for collapsed mode */}
-                                {isCollapsed && (
-                                    <div className="absolute left-full ml-2 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap pointer-events-none">
-                                        {link.label}
-                                    </div>
-                                )}
-                            </Link>
-                        );
-                    })}
+                            {/* Group Links */}
+                            <div className="space-y-1">
+                                {group.links.map((link) => {
+                                    const isActive = pathname === link.href ||
+                                        (link.href !== "/admin" && pathname.startsWith(link.href));
+                                    const Icon = link.icon;
+                                    return (
+                                        <Link
+                                            key={link.href}
+                                            href={link.href}
+                                            className={cn(
+                                                "flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors group relative",
+                                                isActive ? "bg-blue-600 text-white" : "hover:bg-slate-800 text-slate-300 hover:text-white",
+                                                isCollapsed && "justify-center px-2"
+                                            )}
+                                            title={isCollapsed ? link.label : undefined}
+                                        >
+                                            <Icon className="w-5 h-5 flex-shrink-0" />
+                                            {!isCollapsed && <span className="text-sm">{link.label}</span>}
+
+                                            {/* Tooltip for collapsed mode */}
+                                            {isCollapsed && (
+                                                <div className="absolute left-full ml-2 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap pointer-events-none">
+                                                    {link.label}
+                                                </div>
+                                            )}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ))}
                 </nav>
-
-
 
                 {/* Logout */}
                 <div className="p-4 border-t border-slate-800">
@@ -148,5 +231,3 @@ export function AdminSidebar({ isCollapsed, onToggle, userRole }: AdminSidebarPr
         </>
     );
 }
-
-// Ensure to export types/state if needed by layout wrapper
