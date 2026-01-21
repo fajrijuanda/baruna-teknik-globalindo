@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription } from "@/components/ui/alert"; // Assuming you have an Alert component or I will create simple one.
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -33,7 +33,7 @@ export default function LoginPage() {
                 router.push("/admin");
                 router.refresh(); // Refresh to update session in server components
             }
-        } catch (err) {
+        } catch {
             setError("An unexpected error occurred");
         } finally {
             setIsLoading(false);
@@ -44,8 +44,14 @@ export default function LoginPage() {
         <div className="min-h-screen flex items-center justify-center bg-slate-100">
             <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-lg border border-slate-200">
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-900 text-white font-oswald text-xl font-bold mb-4">
-                        B
+                    <div className="inline-flex items-center justify-center w-16 h-16 mb-4">
+                        <Image
+                            src="/images/logo.png"
+                            alt="Baruna Teknik Logo"
+                            width={64}
+                            height={64}
+                            className="object-contain"
+                        />
                     </div>
                     <h1 className="text-2xl font-bold text-slate-900">Admin Login</h1>
                     <p className="text-slate-500 text-sm">Sign in to manage Baruna Teknik</p>
