@@ -1,79 +1,141 @@
 "use server";
 
+/**
+ * Client management server actions
+ * Handles CRUD operations for clients/partners
+ */
+
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { logActivity } from "@/lib/activity";
+import { REVALIDATION_PATHS } from "@/lib/constants";
+import type { ActionResult } from "@/lib/types";
+import {
+  successResult,
+  errorResult,
+  handleActionError,
+} from "@/lib/utils/action-helpers";
+
+// ============================================================================
+// Validation Schemas
+// ============================================================================
 
 const ClientSchema = z.object({
   name: z.string().min(1, "Name is required"),
   logoUrl: z.string().min(1, "Logo URL is required"),
-  website: z.string().optional(),
+  website: z.string().url("Invalid website URL").optional().or(z.literal("")),
   isFeatured: z.boolean().default(true),
 });
 
-export async function createClient(data: z.infer<typeof ClientSchema>) {
+type ClientInput = z.infer<typeof ClientSchema>;
+
+// ============================================================================
+// Create Operations
+// ============================================================================
+
+/**
+ * Creates a new client
+ * @param data - Client data
+ * @returns ActionResult indicating success or failure
+ */
+export async function createClient(data: ClientInput): Promise<ActionResult> {
   const result = ClientSchema.safeParse(data);
 
   if (!result.success) {
-    return { error: "Invalid input" };
+    return errorResult("Invalid input: " + result.error.issues[0]?.message);
   }
 
   try {
     await prisma.client.create({
-      data: result.data,
+      data: {
+        name: result.data.name,
+        logoUrl: result.data.logoUrl,
+        website: result.data.website || null,
+        isFeatured: result.data.isFeatured,
+      },
     });
+
     await logActivity(
       "CREATE",
       "Client",
       `Created client: ${result.data.name}`,
     );
-    revalidatePath("/admin/clients");
-    revalidatePath("/");
-    return { success: "Client created" };
+    revalidatePath(REVALIDATION_PATHS.ADMIN_CLIENTS);
+    revalidatePath(REVALIDATION_PATHS.HOME);
+
+    return successResult();
   } catch (error) {
-    return { error: "Failed to create client" };
+    return handleActionError(error, "Failed to create client");
   }
 }
 
+// ============================================================================
+// Update Operations
+// ============================================================================
+
+/**
+ * Updates an existing client
+ * @param id - Client ID to update
+ * @param data - Client data to update
+ * @returns ActionResult indicating success or failure
+ */
 export async function updateClient(
   id: string,
-  data: z.infer<typeof ClientSchema>,
-) {
+  data: ClientInput,
+): Promise<ActionResult> {
   const result = ClientSchema.safeParse(data);
 
   if (!result.success) {
-    return { error: "Invalid input" };
+    return errorResult("Invalid input: " + result.error.issues[0]?.message);
   }
 
   try {
     await prisma.client.update({
       where: { id },
-      data: result.data,
+      data: {
+        name: result.data.name,
+        logoUrl: result.data.logoUrl,
+        website: result.data.website || null,
+        isFeatured: result.data.isFeatured,
+      },
     });
+
     await logActivity(
       "UPDATE",
       "Client",
       `Updated client: ${result.data.name}`,
     );
-    revalidatePath("/admin/clients");
-    revalidatePath("/");
-    return { success: "Client updated" };
+    revalidatePath(REVALIDATION_PATHS.ADMIN_CLIENTS);
+    revalidatePath(REVALIDATION_PATHS.HOME);
+
+    return successResult();
   } catch (error) {
-    return { error: "Failed to update client" };
+    return handleActionError(error, "Failed to update client");
   }
 }
 
-export async function deleteClient(id: string) {
+// ============================================================================
+// Delete Operations
+// ============================================================================
+
+/**
+ * Deletes a client
+ * @param id - Client ID to delete
+ * @returns ActionResult indicating success or failure
+ */
+export async function deleteClient(id: string): Promise<ActionResult> {
   try {
     await prisma.client.delete({
       where: { id },
     });
+
     await logActivity("DELETE", "Client", `Deleted client ID: ${id}`);
-    revalidatePath("/admin/clients");
-    revalidatePath("/");
-    return { success: "Client deleted" };
+    revalidatePath(REVALIDATION_PATHS.ADMIN_CLIENTS);
+    revalidatePath(REVALIDATION_PATHS.HOME);
+
+    return successResult();
   } catch (error) {
-    return { error: "Failed to delete client" };
+    return handleActionError(error, "Failed to delete client");
   }
 }

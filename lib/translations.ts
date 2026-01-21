@@ -375,6 +375,9 @@ export const translations = {
       },
     },
   },
-};
+} as const;
 
 export type Language = "id" | "en";
+
+/** Type for accessing translation keys with proper inference */
+export type TranslationKeys = typeof translations.id;

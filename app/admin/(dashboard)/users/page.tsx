@@ -5,20 +5,20 @@ import { columns, UserColumn } from "@/components/admin/users/columns";
 import { UserDialogWrapper } from "./_components/user-dialog-wrapper";
 import { getAdmins } from "@/lib/actions/users";
 import { format } from "date-fns";
-
+import type { AdminRole } from "@/lib/types";
 
 export default async function UsersPage() {
     const session = await auth();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const role = (session?.user as any)?.role;
+    const role = (session?.user as { role?: AdminRole } | undefined)?.role;
 
     if (role !== "superadmin") {
         redirect("/admin");
     }
 
-    const { data: admins } = await getAdmins();
+    const result = await getAdmins();
+    const admins = result.success ? result.data ?? [] : [];
 
-    const formattedUsers: UserColumn[] = (admins || []).map((item) => ({
+    const formattedUsers: UserColumn[] = admins.map((item) => ({
         id: item.id,
         name: item.name || "",
         email: item.email,

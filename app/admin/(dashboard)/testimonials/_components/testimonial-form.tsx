@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -27,6 +26,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { createTestimonial, updateTestimonial } from "@/lib/actions/testimonial";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import type { BilingualContent } from "@/lib/types";
+
+// ============================================================================
+// Form Schema & Types
+// ============================================================================
 
 const formSchema = z.object({
     clientId: z.string().min(1, "Client is required"),
@@ -38,11 +42,30 @@ const formSchema = z.object({
     isVisible: z.boolean().default(true),
 });
 
+type FormValues = z.infer<typeof formSchema>;
+
+/**
+ * Initial data shape when editing an existing testimonial
+ */
+interface TestimonialInitialData {
+    id: string;
+    clientId: string;
+    personName: string;
+    personRole: string;
+    content?: BilingualContent;
+    rating: number;
+    isVisible: boolean;
+}
+
 interface TestimonialFormProps {
-    initialData?: any;
+    initialData?: TestimonialInitialData;
     clients: { id: string; name: string }[];
     onClose?: () => void;
 }
+
+// ============================================================================
+// Component
+// ============================================================================
 
 export const TestimonialForm: React.FC<TestimonialFormProps> = ({
     initialData,
@@ -52,36 +75,40 @@ export const TestimonialForm: React.FC<TestimonialFormProps> = ({
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: initialData
-            ? {
-                ...initialData,
-                contentEn: initialData.content?.en || "",
-                contentId: initialData.content?.id || "",
-            }
-            : {
-                clientId: "",
-                personName: "",
-                personRole: "",
-                contentEn: "",
-                contentId: "",
-                rating: 5,
-                isVisible: true,
-            },
+    const defaultValues: FormValues = initialData
+        ? {
+            clientId: initialData.clientId,
+            personName: initialData.personName,
+            personRole: initialData.personRole,
+            contentEn: initialData.content?.en || "",
+            contentId: initialData.content?.id || "",
+            rating: initialData.rating,
+            isVisible: initialData.isVisible,
+        }
+        : {
+            clientId: "",
+            personName: "",
+            personRole: "",
+            contentEn: "",
+            contentId: "",
+            rating: 5,
+            isVisible: true,
+        };
+
+    const form = useForm<FormValues>({
+        resolver: zodResolver(formSchema) as never, // Type assertion for zod v4 compatibility
+        defaultValues,
     });
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const onSubmit: SubmitHandler<FormValues> = async (values) => {
         try {
             setLoading(true);
             const data = {
                 clientId: values.clientId,
                 personName: values.personName,
                 personRole: values.personRole,
-                content: {
-                    en: values.contentEn,
-                    id: values.contentId
-                },
+                contentEn: values.contentEn,
+                contentId: values.contentId,
                 rating: values.rating,
                 isVisible: values.isVisible,
             };

@@ -1,88 +1,142 @@
 "use server";
 
+/**
+ * Product management server actions
+ * Handles CRUD operations for products
+ */
+
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { logActivity } from "@/lib/activity";
+import { REVALIDATION_PATHS } from "@/lib/constants";
+import type {
+  ActionResult,
+  BilingualContent,
+  CategoryOption,
+} from "@/lib/types";
+import {
+  successResult,
+  errorResult,
+  handleActionError,
+} from "@/lib/utils/action-helpers";
 
-const productSchema = z.object({
-  slug: z.string().min(1),
-  categoryId: z.string().min(1),
-  titleEn: z.string().min(1),
-  titleId: z.string().min(1),
-  descEn: z.string().min(1),
-  descId: z.string().min(1),
+// ============================================================================
+// Validation Schemas
+// ============================================================================
+
+const ProductSchema = z.object({
+  slug: z.string().min(1, "Slug is required"),
+  categoryId: z.string().min(1, "Category is required"),
+  titleEn: z.string().min(1, "English title is required"),
+  titleId: z.string().min(1, "Indonesian title is required"),
+  descEn: z.string().min(1, "English description is required"),
+  descId: z.string().min(1, "Indonesian description is required"),
+  imageUrl: z.string().optional(),
 });
 
-export async function createProduct(
-  data: z.infer<typeof productSchema> & { imageUrl?: string },
-) {
-  const parsed = productSchema.safeParse(data);
+type ProductInput = z.infer<typeof ProductSchema>;
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Creates bilingual content object for Prisma JSON fields
+ */
+function createBilingualContent(en: string, id: string): BilingualContent {
+  return { en, id };
+}
+
+// ============================================================================
+// Create Operations
+// ============================================================================
+
+/**
+ * Creates a new product
+ * @param data - Product data including bilingual title and description
+ * @returns ActionResult indicating success or failure
+ */
+export async function createProduct(data: ProductInput): Promise<ActionResult> {
+  const parsed = ProductSchema.safeParse(data);
 
   if (!parsed.success) {
-    return { success: false, error: "Invalid data" };
+    return errorResult("Invalid data: " + parsed.error.issues[0]?.message);
   }
 
-  const { slug, categoryId, titleEn, titleId, descEn, descId } = parsed.data;
-  const imageUrl = data.imageUrl;
+  const { slug, categoryId, titleEn, titleId, descEn, descId, imageUrl } =
+    parsed.data;
 
   try {
     await prisma.product.create({
       data: {
         slug,
         categoryId,
-        title: { en: titleEn, id: titleId },
-        description: { en: descEn, id: descId },
+        title: createBilingualContent(titleEn, titleId),
+        description: createBilingualContent(descEn, descId),
         images: imageUrl
           ? {
               create: { url: imageUrl },
             }
           : undefined,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any,
+      },
     });
 
     await logActivity("CREATE", "Product", `Created product: ${titleEn}`);
-    revalidatePath("/admin/products");
-    return { success: true };
-  } catch (err) {
-    console.error(err);
-    return { success: false, error: "Failed to create product" };
+    revalidatePath(REVALIDATION_PATHS.ADMIN_PRODUCTS);
+    revalidatePath(REVALIDATION_PATHS.PRODUCTS);
+    revalidatePath(REVALIDATION_PATHS.HOME);
+
+    return successResult();
+  } catch (error) {
+    return handleActionError(error, "Failed to create product");
   }
 }
 
+// ============================================================================
+// Update Operations
+// ============================================================================
+
+/**
+ * Updates an existing product
+ * @param id - Product ID to update
+ * @param data - Product data to update
+ * @returns ActionResult indicating success or failure
+ */
 export async function updateProduct(
   id: string,
-  data: z.infer<typeof productSchema> & { imageUrl?: string },
-) {
-  const parsed = productSchema.safeParse(data);
+  data: ProductInput,
+): Promise<ActionResult> {
+  const parsed = ProductSchema.safeParse(data);
 
   if (!parsed.success) {
-    return { success: false, error: "Invalid data" };
+    return errorResult("Invalid data: " + parsed.error.issues[0]?.message);
   }
 
-  const { slug, categoryId, titleEn, titleId, descEn, descId } = parsed.data;
-  const imageUrl = data.imageUrl;
+  const { slug, categoryId, titleEn, titleId, descEn, descId, imageUrl } =
+    parsed.data;
 
   try {
+    // Update product
     await prisma.product.update({
       where: { id },
       data: {
         slug,
         categoryId,
-        title: { en: titleEn, id: titleId },
-        description: { en: descEn, id: descId },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any,
+        title: createBilingualContent(titleEn, titleId),
+        description: createBilingualContent(descEn, descId),
+      },
     });
 
+    // Handle image update
     if (imageUrl) {
-      const existing = await prisma.image.findFirst({
+      const existingImage = await prisma.image.findFirst({
         where: { productId: id },
       });
-      if (existing) {
+
+      if (existingImage) {
         await prisma.image.update({
-          where: { id: existing.id },
+          where: { id: existingImage.id },
           data: { url: imageUrl },
         });
       } else {
@@ -93,31 +147,63 @@ export async function updateProduct(
     }
 
     await logActivity("UPDATE", "Product", `Updated product: ${titleEn}`);
-    revalidatePath("/admin/products");
-    return { success: true };
-  } catch (err) {
-    console.error(err);
-    return { success: false, error: "Failed to update product" };
+    revalidatePath(REVALIDATION_PATHS.ADMIN_PRODUCTS);
+    revalidatePath(REVALIDATION_PATHS.PRODUCTS);
+    revalidatePath(REVALIDATION_PATHS.HOME);
+
+    return successResult();
+  } catch (error) {
+    return handleActionError(error, "Failed to update product");
   }
 }
 
-export async function deleteProduct(id: string) {
+// ============================================================================
+// Delete Operations
+// ============================================================================
+
+/**
+ * Deletes a product
+ * @param id - Product ID to delete
+ * @returns ActionResult indicating success or failure
+ */
+export async function deleteProduct(id: string): Promise<ActionResult> {
   try {
     await prisma.product.delete({ where: { id } });
+
     await logActivity("DELETE", "Product", `Deleted product ID: ${id}`);
-    revalidatePath("/admin/products");
-  } catch (err) {
-    console.error(err);
+    revalidatePath(REVALIDATION_PATHS.ADMIN_PRODUCTS);
+    revalidatePath(REVALIDATION_PATHS.PRODUCTS);
+    revalidatePath(REVALIDATION_PATHS.HOME);
+
+    return successResult();
+  } catch (error) {
+    return handleActionError(error, "Failed to delete product");
   }
 }
 
-export async function getCategoryOptions() {
-  const categories = await prisma.category.findMany({
-    select: { id: true, name: true },
-  });
-  return categories.map((c) => ({
-    id: c.id,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    name: (c.name as any)?.en + " / " + (c.name as any)?.id,
-  }));
+// ============================================================================
+// Read Operations
+// ============================================================================
+
+/**
+ * Gets category options for product form dropdowns
+ * @returns Array of category options with combined bilingual names
+ */
+export async function getCategoryOptions(): Promise<CategoryOption[]> {
+  try {
+    const categories = await prisma.category.findMany({
+      select: { id: true, name: true },
+    });
+
+    return categories.map((category) => {
+      const name = category.name as BilingualContent | null;
+      return {
+        id: category.id,
+        name: name ? `${name.en} / ${name.id}` : "Unknown",
+      };
+    });
+  } catch (error) {
+    console.error("Failed to fetch category options:", error);
+    return [];
+  }
 }

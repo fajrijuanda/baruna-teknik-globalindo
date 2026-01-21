@@ -5,16 +5,7 @@ import Image from "next/image";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { SITE_CONFIG, PRODUCT_CATEGORIES, NAV_LINKS } from "@/lib/constants";
 import { useLanguage } from "@/components/providers/language-provider";
-
-interface ContactContent {
-    address?: string;
-    phone?: string;
-    email?: string;
-    googleMapsUrl?: string;
-    facebook?: string;
-    instagram?: string;
-    linkedin?: string;
-}
+import type { ContactContent } from "@/lib/types";
 
 export function Footer({ contactContent }: { contactContent?: ContactContent }) {
     const { t } = useLanguage();
