@@ -63,7 +63,7 @@ export const AboutSettingsForm: React.FC<SettingsFormProps> = ({ initialContent 
     const onSubmit = async () => {
         setLoading(true);
         try {
-            await updatePageContent("home", "about", data);
+            await updatePageContent("home", "about", data as any);
             alert("About settings updated!");
             router.refresh();
         } catch (error) {

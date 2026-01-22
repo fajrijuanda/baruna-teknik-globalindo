@@ -68,10 +68,10 @@ export const UserForm: React.FC<UserFormProps> = ({ initialData, onSuccess }) =>
 
             let result;
             if (initialData) {
-                result = await updateAdmin(initialData.id, values);
+                result = await updateAdmin(initialData.id, values as any);
             } else {
                 // We know password is present thanks to check above
-                result = await createAdmin(values as FormValues & { password: string });
+                result = await createAdmin(values as any);
             }
 
             if (result.success) {

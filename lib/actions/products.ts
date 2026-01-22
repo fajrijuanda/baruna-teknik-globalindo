@@ -89,7 +89,27 @@ export async function createProduct(data: ProductInput): Promise<ActionResult> {
 
     return successResult();
   } catch (error) {
+    if ((error as any).code === "P2002") {
+      return errorResult("Product with this slug already exists.");
+    }
     return handleActionError(error, "Failed to create product");
+  }
+}
+
+export async function createProductAction(formData: FormData): Promise<void> {
+  const data = {
+    slug: formData.get("slug") as string,
+    categoryId: formData.get("categoryId") as string,
+    titleEn: formData.get("titleEn") as string,
+    titleId: formData.get("titleId") as string,
+    descEn: formData.get("descEn") as string,
+    descId: formData.get("descId") as string,
+    imageUrl: (formData.get("imageUrl") as string) || undefined,
+  };
+
+  const result = await createProduct(data);
+  if (!result.success) {
+    throw new Error(result.error);
   }
 }
 

@@ -79,6 +79,19 @@ export async function createCategory(
   }
 }
 
+export async function createCategoryAction(formData: FormData): Promise<void> {
+  const data = {
+    slug: formData.get("slug") as string,
+    nameEn: formData.get("nameEn") as string,
+    nameId: formData.get("nameId") as string,
+  };
+
+  const result = await createCategory(data);
+  if (!result.success) {
+    throw new Error(result.error);
+  }
+}
+
 // ============================================================================
 // Update Operations
 // ============================================================================

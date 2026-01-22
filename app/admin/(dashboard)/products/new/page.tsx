@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "../../../../components/ui/label";
+import { Label } from "@/components/ui/label";
 import { prisma } from "@/lib/prisma";
-import { createProduct } from "@/lib/actions/products";
+import { createProductAction } from "@/lib/actions/products";
 import {
     Select,
     SelectContent,
@@ -18,7 +18,7 @@ export default async function NewProductPage() {
         <div className="max-w-2xl bg-white p-8 rounded-xl shadow-sm border border-slate-200">
             <h1 className="text-2xl font-bold text-slate-800 mb-6">Create New Product</h1>
 
-            <form action={createProduct} className="space-y-6">
+            <form action={createProductAction} className="space-y-6">
                 <div className="space-y-2">
                     <Label>Slug (URL Friendly)</Label>
                     <Input name="slug" placeholder="e.g. industrial-pump-x1" required />

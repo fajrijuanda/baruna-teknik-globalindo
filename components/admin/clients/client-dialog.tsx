@@ -4,7 +4,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { toast } from "sonner"; // Assuming sonner or generic toast
+
 import { useRouter } from "next/navigation";
 
 import {
@@ -12,7 +12,6 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import {
     Form,
@@ -53,7 +52,8 @@ export const ClientDialog: React.FC<ClientDialogProps> = ({
     const [loading, setLoading] = useState(false);
 
     const form = useForm<ClientFormValues>({
-        resolver: zodResolver(formSchema),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        resolver: zodResolver(formSchema as any),
         defaultValues: initialData || {
             name: "",
             logoUrl: "",

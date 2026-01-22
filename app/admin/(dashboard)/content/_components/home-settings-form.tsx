@@ -40,7 +40,7 @@ export const HomeSettingsForm: React.FC<SettingsFormProps> = ({ initialContent }
     const onSubmit = async () => {
         setLoading(true);
         try {
-            await updatePageContent("home", "hero", data);
+            await updatePageContent("home", "hero", data as any);
             alert("Home settings updated!"); // Placeholder for toast
             router.refresh();
         } catch (error) {

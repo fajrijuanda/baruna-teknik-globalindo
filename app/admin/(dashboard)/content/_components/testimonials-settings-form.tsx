@@ -36,7 +36,7 @@ export const TestimonialsSettingsForm: React.FC<SettingsFormProps> = ({ initialC
     const onSubmit = async () => {
         setLoading(true);
         try {
-            await updatePageContent("home", "testimonials", data);
+            await updatePageContent("home", "testimonials", data as any);
             alert("Testimonials settings updated!");
             router.refresh();
         } catch (error) {

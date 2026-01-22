@@ -82,7 +82,8 @@ export const FeaturesSettingsForm: React.FC<SettingsFormProps> = ({ initialConte
     const onSubmit = async () => {
         setLoading(true);
         try {
-            await updatePageContent("home", "features", data);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            await updatePageContent("home", "features", data as any);
             alert("Features settings updated!");
             router.refresh();
         } catch (error) {
@@ -94,15 +95,10 @@ export const FeaturesSettingsForm: React.FC<SettingsFormProps> = ({ initialConte
     };
 
     const renderCardFields = (num: number) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const iconKey = `card${num}Icon` as keyof FeaturesContent;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const titleEnKey = `card${num}TitleEn` as keyof FeaturesContent;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const titleIdKey = `card${num}TitleId` as keyof FeaturesContent;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const descEnKey = `card${num}DescEn` as keyof FeaturesContent;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const descIdKey = `card${num}DescId` as keyof FeaturesContent;
 
         return (

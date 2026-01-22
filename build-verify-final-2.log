@@ -1,0 +1,77 @@
+
+> baruna-teknik-web@0.1.0 build
+> next build
+
+▲ Next.js 16.1.3 (Turbopack)
+- Environments: .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 9.2s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/17) ...
+prisma:query SELECT "public"."Product"."id", "public"."Product"."title", "public"."Product"."slug", "public"."Product"."description", "public"."Product"."specifications", "public"."Product"."categoryId", "public"."Product"."isFeatured", "public"."Product"."createdAt", "public"."Product"."updatedAt" FROM "public"."Product" WHERE "public"."Product"."isFeatured" = $1 ORDER BY "public"."Product"."createdAt" DESC LIMIT $2 OFFSET $3
+prisma:query SELECT "public"."Category"."id", "public"."Category"."name", "public"."Category"."slug" FROM "public"."Category" WHERE "public"."Category"."id" IN ($1,$2) OFFSET $3
+prisma:query SELECT "public"."Image"."id", "public"."Image"."url", "public"."Image"."productId" FROM "public"."Image" WHERE "public"."Image"."productId" IN ($1,$2,$3,$4) OFFSET $5
+prisma:query SELECT "public"."PageContent"."id", "public"."PageContent"."page", "public"."PageContent"."section", "public"."PageContent"."content", "public"."PageContent"."updatedAt" FROM "public"."PageContent" WHERE (("public"."PageContent"."page" = $1 AND "public"."PageContent"."section" = $2) AND 1=1) LIMIT $3 OFFSET $4
+prisma:query SELECT "public"."PageContent"."id", "public"."PageContent"."page", "public"."PageContent"."section", "public"."PageContent"."content", "public"."PageContent"."updatedAt" FROM "public"."PageContent" WHERE (("public"."PageContent"."page" = $1 AND "public"."PageContent"."section" = $2) AND 1=1) LIMIT $3 OFFSET $4
+prisma:query SELECT "public"."PageContent"."id", "public"."PageContent"."page", "public"."PageContent"."section", "public"."PageContent"."content", "public"."PageContent"."updatedAt" FROM "public"."PageContent" WHERE (("public"."PageContent"."page" = $1 AND "public"."PageContent"."section" = $2) AND 1=1) LIMIT $3 OFFSET $4
+prisma:query SELECT "public"."PageContent"."id", "public"."PageContent"."page", "public"."PageContent"."section", "public"."PageContent"."content", "public"."PageContent"."updatedAt" FROM "public"."PageContent" WHERE (("public"."PageContent"."page" = $1 AND "public"."PageContent"."section" = $2) AND 1=1) LIMIT $3 OFFSET $4
+prisma:query SELECT "public"."PageContent"."id", "public"."PageContent"."page", "public"."PageContent"."section", "public"."PageContent"."content", "public"."PageContent"."updatedAt" FROM "public"."PageContent" WHERE (("public"."PageContent"."page" = $1 AND "public"."PageContent"."section" = $2) AND 1=1) LIMIT $3 OFFSET $4
+prisma:query SELECT "public"."Testimonial"."id", "public"."Testimonial"."clientId", "public"."Testimonial"."personName", "public"."Testimonial"."personRole", "public"."Testimonial"."content", "public"."Testimonial"."rating", "public"."Testimonial"."isVisible", "public"."Testimonial"."createdAt", "public"."Testimonial"."updatedAt" FROM "public"."Testimonial" WHERE "public"."Testimonial"."isVisible" = $1 ORDER BY "public"."Testimonial"."createdAt" DESC LIMIT $2 OFFSET $3
+prisma:query SELECT "public"."Category"."id", "public"."Category"."name", "public"."Category"."slug", COALESCE("aggr_selection_0_Product"."_aggr_count_products", 0) AS "_aggr_count_products" FROM "public"."Category" LEFT JOIN (SELECT "public"."Product"."categoryId", COUNT(*) AS "_aggr_count_products" FROM "public"."Product" WHERE 1=1 GROUP BY "public"."Product"."categoryId") AS "aggr_selection_0_Product" ON ("public"."Category"."id" = "aggr_selection_0_Product"."categoryId") WHERE 1=1 ORDER BY "public"."Category"."slug" ASC OFFSET $1
+prisma:query SELECT COUNT(*) FROM (SELECT "public"."Product"."id" FROM "public"."Product" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."PageContent"."id", "public"."PageContent"."page", "public"."PageContent"."section", "public"."PageContent"."content", "public"."PageContent"."updatedAt" FROM "public"."PageContent" WHERE (("public"."PageContent"."page" = $1 AND "public"."PageContent"."section" = $2) OR ("public"."PageContent"."page" = $3 AND "public"."PageContent"."section" = $4)) OFFSET $5
+prisma:query SELECT "public"."Client"."id", "public"."Client"."name", "public"."Client"."logoUrl", "public"."Client"."website", "public"."Client"."isFeatured", "public"."Client"."createdAt" FROM "public"."Client" WHERE "public"."Client"."isFeatured" = $1 ORDER BY "public"."Client"."createdAt" DESC OFFSET $2
+prisma:query SELECT COUNT(*) FROM (SELECT "public"."Visitor"."id" FROM "public"."Visitor" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT "public"."Client"."id", "public"."Client"."name", "public"."Client"."logoUrl", "public"."Client"."website", "public"."Client"."isFeatured", "public"."Client"."createdAt" FROM "public"."Client" WHERE 1=1 ORDER BY "public"."Client"."createdAt" DESC OFFSET $1
+prisma:query SELECT COUNT(*) FROM (SELECT "public"."Admin"."id" FROM "public"."Admin" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT COUNT(*) FROM (SELECT "public"."Category"."id" FROM "public"."Category" WHERE 1=1 OFFSET $1) AS "sub"
+prisma:query SELECT COUNT(*) FROM (SELECT "public"."Client"."id" FROM "public"."Client" WHERE 1=1 OFFSET $1) AS "sub"
+  Generating static pages using 15 workers (4/17) 
+prisma:query SELECT "public"."ActivityLog"."id", "public"."ActivityLog"."action", "public"."ActivityLog"."entity", "public"."ActivityLog"."details", "public"."ActivityLog"."createdAt" FROM "public"."ActivityLog" WHERE 1=1 ORDER BY "public"."ActivityLog"."createdAt" DESC LIMIT $1 OFFSET $2
+  Generating static pages using 15 workers (8/17) 
+prisma:query SELECT "public"."Category"."id", "public"."Category"."name", "public"."Category"."slug" FROM "public"."Category" WHERE 1=1 OFFSET $1
+prisma:query SELECT "public"."Product"."id", "public"."Product"."title", "public"."Product"."slug", "public"."Product"."description", "public"."Product"."specifications", "public"."Product"."categoryId", "public"."Product"."isFeatured", "public"."Product"."createdAt", "public"."Product"."updatedAt" FROM "public"."Product" WHERE 1=1 ORDER BY "public"."Product"."createdAt" DESC OFFSET $1
+prisma:query SELECT "public"."Category"."id", "public"."Category"."name", "public"."Category"."slug" FROM "public"."Category" WHERE "public"."Category"."id" IN ($1,$2,$3) OFFSET $4
+prisma:query SELECT "public"."Image"."id", "public"."Image"."url", "public"."Image"."productId" FROM "public"."Image" WHERE "public"."Image"."productId" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."Testimonial"."id", "public"."Testimonial"."clientId", "public"."Testimonial"."personName", "public"."Testimonial"."personRole", "public"."Testimonial"."content", "public"."Testimonial"."rating", "public"."Testimonial"."isVisible", "public"."Testimonial"."createdAt", "public"."Testimonial"."updatedAt" FROM "public"."Testimonial" WHERE 1=1 ORDER BY "public"."Testimonial"."createdAt" DESC OFFSET $1
+prisma:query SELECT "public"."Client"."id", "public"."Client"."name" FROM "public"."Client" WHERE 1=1 ORDER BY "public"."Client"."name" ASC OFFSET $1
+  Generating static pages using 15 workers (12/17) 
+prisma:query SELECT "public"."Product"."id", "public"."Product"."slug", "public"."Product"."updatedAt" FROM "public"."Product" WHERE 1=1 OFFSET $1
+prisma:query SELECT "public"."Category"."id", "public"."Category"."slug" FROM "public"."Category" WHERE 1=1 OFFSET $1
+✓ Generating static pages using 15 workers (17/17) in 867.7ms
+  Finalizing page optimization ...
+
+Route (app)                      Revalidate  Expire
+┌ ○ /                                    1m      1y
+├ ○ /_not-found
+├ ƒ /about
+├ ƒ /admin
+├ ƒ /admin/categories
+├ ƒ /admin/categories/[id]/edit
+├ ƒ /admin/categories/new
+├ ƒ /admin/clients
+├ ƒ /admin/content
+├ ○ /admin/login
+├ ƒ /admin/products
+├ ƒ /admin/products/[id]/edit
+├ ƒ /admin/products/new
+├ ƒ /admin/testimonials
+├ ƒ /admin/users
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/debug
+├ ○ /contact
+├ ○ /manifest.webmanifest
+├ ƒ /products
+├ ƒ /products/[slug]
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

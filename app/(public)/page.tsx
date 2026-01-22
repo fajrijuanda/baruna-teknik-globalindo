@@ -1,12 +1,13 @@
 import { Hero } from "@/components/sections/home/hero";
-import { About } from "@/components/sections/home/about";
-import { Features } from "@/components/sections/home/features";
-import { ProductCarousel } from "@/components/sections/home/product-carousel";
 import { prisma } from "@/lib/prisma";
-
-import { Clients } from "@/components/sections/home/clients";
-import { Testimonials } from "@/components/sections/home/testimonials";
 import { getPageContent } from "@/lib/actions/content";
+import dynamic from "next/dynamic";
+
+const About = dynamic(() => import("@/components/sections/home/about").then(mod => mod.About));
+const Features = dynamic(() => import("@/components/sections/home/features").then(mod => mod.Features));
+const ProductCarousel = dynamic(() => import("@/components/sections/home/product-carousel").then(mod => mod.ProductCarousel));
+const Clients = dynamic(() => import("@/components/sections/home/clients").then(mod => mod.Clients));
+const Testimonials = dynamic(() => import("@/components/sections/home/testimonials").then(mod => mod.Testimonials));
 
 export const revalidate = 60;
 

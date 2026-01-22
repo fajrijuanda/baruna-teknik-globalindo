@@ -73,8 +73,8 @@ export function ContactSettingsForm({ initialContent }: ContactSettingsFormProps
         openLoading("Saving contact information...");
 
         try {
-            const result = await updatePageContent("contact", "info", values);
-            if (result.error) {
+            const result = await updatePageContent("contact", "info", values as any);
+            if (!result.success) {
                 openError(result.error);
             } else {
                 openSuccess("Contact info updated successfully");
