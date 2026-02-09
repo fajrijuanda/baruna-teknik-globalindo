@@ -123,7 +123,7 @@
 
 @layer utilities {
   .animate-scroll {
-    animation: scroll 40s linear infinite;
+    animation: scroll 60s linear infinite;
   }
 
   .pause {
@@ -138,6 +138,40 @@
 
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes loading-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.loading-indeterminate {
+  position: relative;
+}
+
+.loading-indeterminate::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 42%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22d3ee, #60a5fa, #22d3ee);
+  animation: loading-indeterminate 1.15s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll,
+  .animate-bounce,
+  .animate-pulse,
+  .animate-ping,
+  .loading-indeterminate::after {
+    animation: none !important;
   }
 }
 

@@ -35,7 +35,7 @@ export function Hero({ titleEn, titleId, subtitleEn, subtitleId, heroImage }: He
 
                 {/* Gradient Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/80 to-slate-950/40 z-10" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-transparent to-purple-900/20 z-10 animate-pulse" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-transparent to-purple-900/20 z-10" />
 
                 {/* Abstract Mesh Pattern */}
                 <div className="absolute inset-0 opacity-10 z-0"
@@ -87,7 +87,7 @@ export function Hero({ titleEn, titleId, subtitleEn, subtitleId, heroImage }: He
             </div>
 
             {/* Scroll Indicator */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+            <div className="absolute bottom-10 left-1/2 z-20 hidden -translate-x-1/2 md:block motion-safe:animate-bounce">
                 <div className="w-1 h-12 rounded-full border-2 border-white/20 flex justify-center p-1">
                     <div className="w-1 h-3 bg-blue-500 rounded-full" />
                 </div>
