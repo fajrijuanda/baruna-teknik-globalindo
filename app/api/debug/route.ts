@@ -14,7 +14,6 @@ export async function GET() {
       status: "ok",
       totalProducts: products.length,
       featuredCount: featured.length,
-      dbUrlStartsWith: process.env.DATABASE_URL?.substring(0, 15),
       sampleProduct: products[0],
     });
   } catch (error) {
