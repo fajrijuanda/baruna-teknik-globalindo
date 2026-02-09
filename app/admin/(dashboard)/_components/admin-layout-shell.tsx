@@ -15,7 +15,7 @@ export function AdminLayoutShell({ children, userEmail, userRole }: AdminLayoutS
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
-        <div className="min-h-screen bg-slate-50 flex">
+        <div className="min-h-screen bg-slate-50 flex overflow-x-hidden">
             {/* Sidebar */}
             <AdminSidebar
                 isCollapsed={isCollapsed}
@@ -25,7 +25,7 @@ export function AdminLayoutShell({ children, userEmail, userRole }: AdminLayoutS
 
             {/* Main Content */}
             <main className={cn(
-                "flex-1 transition-all duration-300 p-8 w-full",
+                "flex-1 min-w-0 transition-all duration-300 px-4 py-6 md:px-8",
                 isCollapsed ? "md:ml-20" : "md:ml-64"
             )}>
                 <AdminNavbar userEmail={userEmail} />

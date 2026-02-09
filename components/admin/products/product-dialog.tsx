@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import {
     Select,
     SelectContent,
@@ -118,137 +119,160 @@ export const ProductDialog: React.FC<ProductDialogProps> = ({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[700px] max-h-[85vh] overflow-y-auto">
+            <DialogContent className="max-h-[88vh] overflow-y-auto sm:max-w-[860px]">
                 <DialogHeader>
                     <DialogTitle>{initialData ? "Edit Product" : "Add New Product"}</DialogTitle>
                 </DialogHeader>
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
-                            <FormField
-                                control={form.control}
-                                name="slug"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Slug</FormLabel>
-                                        <FormControl>
-                                            <Input disabled={loading} placeholder="e.g. product-slug" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="categoryId"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Category</FormLabel>
-                                        <Select
-                                            disabled={loading}
-                                            onValueChange={field.onChange}
-                                            value={field.value}
-                                            defaultValue={field.value}
-                                        >
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                        <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-4">
+                            <h4 className="mb-4 text-sm font-semibold tracking-wide text-slate-700">Basic Information</h4>
+                            <div className="grid gap-4 md:grid-cols-2">
+                                <FormField
+                                    control={form.control}
+                                    name="slug"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Slug</FormLabel>
                                             <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select a category" />
-                                                </SelectTrigger>
+                                                <Input disabled={loading} placeholder="e.g. industrial-water-pump" {...field} />
                                             </FormControl>
-                                            <SelectContent>
-                                                {categories.map((category) => (
-                                                    <SelectItem key={category.id} value={category.id}>
-                                                        {category.name}
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="categoryId"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Category</FormLabel>
+                                            <Select
+                                                disabled={loading}
+                                                onValueChange={field.onChange}
+                                                value={field.value}
+                                                defaultValue={field.value}
+                                            >
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select a category" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    {categories.map((category) => (
+                                                        <SelectItem key={category.id} value={category.id}>
+                                                            {category.name}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="rounded-xl border border-slate-200 bg-white p-4">
+                            <h4 className="mb-4 text-sm font-semibold tracking-wide text-slate-700">Multilingual Content</h4>
+                            <div className="grid gap-4 md:grid-cols-2">
+                                <FormField
+                                    control={form.control}
+                                    name="titleEn"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Title (EN)</FormLabel>
+                                            <FormControl>
+                                                <Input disabled={loading} placeholder="Product name in English" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="titleId"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Title (ID)</FormLabel>
+                                            <FormControl>
+                                                <Input disabled={loading} placeholder="Nama produk dalam Bahasa Indonesia" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="descEn"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Description (EN)</FormLabel>
+                                            <FormControl>
+                                                <Textarea
+                                                    disabled={loading}
+                                                    placeholder="Short product description in English"
+                                                    className="min-h-28 resize-y"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="descId"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Description (ID)</FormLabel>
+                                            <FormControl>
+                                                <Textarea
+                                                    disabled={loading}
+                                                    placeholder="Deskripsi singkat produk dalam Bahasa Indonesia"
+                                                    className="min-h-28 resize-y"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="rounded-xl border border-slate-200 bg-white p-4">
+                            <FormField
+                                control={form.control}
+                                name="imageUrl"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Product Image</FormLabel>
+                                        <FormControl>
+                                            <ImageUpload
+                                                value={field.value ? [field.value] : []}
+                                                disabled={loading}
+                                                onChange={(url) => field.onChange(url)}
+                                                onRemove={() => field.onChange("")}
+                                            />
+                                        </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <FormField
-                                control={form.control}
-                                name="titleEn"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Title (EN)</FormLabel>
-                                        <FormControl>
-                                            <Input disabled={loading} placeholder="Product Name" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="titleId"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Title (ID)</FormLabel>
-                                        <FormControl>
-                                            <Input disabled={loading} placeholder="Nama Produk" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <FormField
-                                control={form.control}
-                                name="descEn"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Description (EN)</FormLabel>
-                                        <FormControl>
-                                            <Input disabled={loading} placeholder="Description" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="descId"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Description (ID)</FormLabel>
-                                        <FormControl>
-                                            <Input disabled={loading} placeholder="Deskripsi" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <FormField
-                            control={form.control}
-                            name="imageUrl"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Product Image</FormLabel>
-                                    <FormControl>
-                                        <ImageUpload
-                                            value={field.value ? [field.value] : []}
-                                            disabled={loading}
-                                            onChange={(url) => field.onChange(url)}
-                                            onRemove={() => field.onChange("")}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <div className="flex justify-end w-full">
+                        <div className="flex justify-end gap-3 border-t border-slate-200 pt-4">
+                            <Button
+                                type="button"
+                                variant="outline"
+                                onClick={() => onOpenChange(false)}
+                                disabled={loading}
+                            >
+                                Cancel
+                            </Button>
                             <Button disabled={loading} type="submit">
-                                {initialData ? "Save changes" : "Create"}
+                                {initialData ? "Save changes" : "Create Product"}
                             </Button>
                         </div>
                     </form>

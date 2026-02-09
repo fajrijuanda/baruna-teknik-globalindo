@@ -114,7 +114,7 @@ export function AdminSidebar({ isCollapsed, onToggle, userRole }: AdminSidebarPr
     return (
         <>
             <aside className={cn(
-                "bg-slate-900 text-white fixed h-full z-10 transition-all duration-300 flex flex-col hidden md:flex",
+                "bg-slate-900 text-white fixed h-full z-10 transition-all duration-300 flex flex-col hidden md:flex overflow-x-hidden",
                 isCollapsed ? "w-20" : "w-64"
             )}>
                 {/* Header */}
@@ -147,7 +147,7 @@ export function AdminSidebar({ isCollapsed, onToggle, userRole }: AdminSidebarPr
                 </div>
 
                 {/* Navigation */}
-                <nav className="p-4 flex-1 overflow-y-auto">
+                <nav className="p-4 flex-1 overflow-y-auto overflow-x-hidden">
                     {navigationGroups.map((group, groupIndex) => (
                         <div key={group.title} className={cn(groupIndex > 0 && "mt-6")}>
                             {/* Group Title */}
@@ -171,7 +171,7 @@ export function AdminSidebar({ isCollapsed, onToggle, userRole }: AdminSidebarPr
                                             key={link.href}
                                             href={link.href}
                                             className={cn(
-                                                "flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors group relative",
+                                                "flex w-full items-center gap-3 px-4 py-2.5 rounded-lg transition-colors relative",
                                                 isActive ? "bg-blue-600 text-white" : "hover:bg-slate-800 text-slate-300 hover:text-white",
                                                 isCollapsed && "justify-center px-2"
                                             )}
@@ -179,13 +179,6 @@ export function AdminSidebar({ isCollapsed, onToggle, userRole }: AdminSidebarPr
                                         >
                                             <Icon className="w-5 h-5 flex-shrink-0" />
                                             {!isCollapsed && <span className="text-sm">{link.label}</span>}
-
-                                            {/* Tooltip for collapsed mode */}
-                                            {isCollapsed && (
-                                                <div className="absolute left-full ml-2 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap pointer-events-none">
-                                                    {link.label}
-                                                </div>
-                                            )}
                                         </Link>
                                     );
                                 })}
