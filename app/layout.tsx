@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { WAFloating } from "@/components/shared/wa-floating";
 
@@ -66,6 +67,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/components/providers/language-provider";
+import { RouteTransitionLoader } from "@/components/providers/route-transition-loader";
 
 export default function RootLayout({
   children,
@@ -78,6 +80,9 @@ export default function RootLayout({
         className={`${inter.variable} ${oswald.variable} antialiased font-sans`}
       >
         <LanguageProvider>
+          <Suspense fallback={null}>
+            <RouteTransitionLoader />
+          </Suspense>
           {children}
           <WAFloating />
         </LanguageProvider>
