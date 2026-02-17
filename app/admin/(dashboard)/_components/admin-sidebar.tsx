@@ -8,7 +8,7 @@ import {
     LogOut,
     Users,
     FileText,
-    MessageSquareQuote,
+
     ChevronLeft,
     ChevronRight,
     Building2,
@@ -73,7 +73,7 @@ function getNavigationGroups(userRole?: string): NavGroup[] {
             title: "Business",
             links: [
                 { href: "/admin/clients", label: "Clients", icon: Building2 },
-                { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
+
             ],
         },
         {

@@ -1,31 +1,22 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { translations, Language } from "@/lib/translations";
 
 type LanguageContextType = {
     language: Language;
     setLanguage: (lang: Language) => void;
-    t: typeof translations.id | typeof translations.en;
+    t: typeof translations.id;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguage] = useState<Language>(() => {
-        // Lazy initialization - runs only on the client during first render
-        if (typeof window !== "undefined") {
-            const savedLang = localStorage.getItem("language") as Language;
-            if (savedLang && (savedLang === "id" || savedLang === "en")) {
-                return savedLang;
-            }
-        }
-        return "id";
-    });
+    const language: Language = "id";
 
     const handleSetLanguage = (lang: Language) => {
-        setLanguage(lang);
-        localStorage.setItem("language", lang);
+        // No-op as we only support ID now
+        console.log("Language change requested but only ID is supported:", lang);
     };
 
     const value = {

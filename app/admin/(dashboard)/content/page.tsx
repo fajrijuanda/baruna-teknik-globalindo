@@ -7,7 +7,7 @@ export default async function ContentPage() {
     const homeHero = await getPageContent("home", "hero");
     const homeAbout = await getPageContent("home", "about");
     const homeFeatures = await getPageContent("home", "features");
-    const homeTestimonials = await getPageContent("home", "testimonials");
+
 
     // Future placeholders
     const aboutPage = await getPageContent("about", "details");
@@ -22,7 +22,7 @@ export default async function ContentPage() {
                 homeHeroContent={homeHero}
                 homeAboutContent={homeAbout}
                 homeFeaturesContent={homeFeatures}
-                homeTestimonialsContent={homeTestimonials}
+
                 aboutPageContent={aboutPage}
                 contactContent={contactPage}
             />

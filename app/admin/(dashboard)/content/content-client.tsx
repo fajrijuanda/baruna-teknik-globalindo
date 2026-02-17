@@ -5,14 +5,14 @@ import { FeaturesSettingsForm } from "./_components/features-settings-form";
 import { AboutPageSettingsForm } from "./_components/about-page-settings-form";
 import { ContactSettingsForm } from "./_components/contact-settings-form";
 
-import { TestimonialsSettingsForm } from "./_components/testimonials-settings-form";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface SettingsPageProps {
     homeHeroContent: any;
     homeAboutContent: any;
     homeFeaturesContent: any;
-    homeTestimonialsContent: any;
+
     aboutPageContent: any;
     contactContent: any;
 }
@@ -21,7 +21,7 @@ export default function ContentTabWrapper({
     homeHeroContent,
     homeAboutContent,
     homeFeaturesContent,
-    homeTestimonialsContent,
+
     aboutPageContent,
     contactContent
 }: SettingsPageProps) {
@@ -44,8 +44,8 @@ export default function ContentTabWrapper({
                                 <TabsTrigger value="hero">Hero Section</TabsTrigger>
                                 <TabsTrigger value="about">About Section</TabsTrigger>
                                 <TabsTrigger value="features">Features</TabsTrigger>
-                                <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
                             </TabsList>
+
 
                             <TabsContent value="hero" className="space-y-4">
                                 <HomeSettingsForm initialContent={homeHeroContent} />
@@ -59,9 +59,7 @@ export default function ContentTabWrapper({
                                 <FeaturesSettingsForm initialContent={homeFeaturesContent} />
                             </TabsContent>
 
-                            <TabsContent value="testimonials" className="space-y-4">
-                                <TestimonialsSettingsForm initialContent={homeTestimonialsContent} />
-                            </TabsContent>
+
                         </Tabs>
                     </CardContent>
                 </Card>

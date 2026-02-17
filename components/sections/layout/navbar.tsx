@@ -6,13 +6,7 @@ import { usePathname } from "next/navigation";
 import { Search, Home, Info, Package, Phone } from "lucide-react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+
 
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -21,7 +15,7 @@ import { useLanguage } from "@/components/providers/language-provider";
 export function Navbar() {
     const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
-    const { language, setLanguage, t } = useLanguage();
+    const { t } = useLanguage();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -123,16 +117,7 @@ export function Navbar() {
 
                 {/* Right Actions */}
                 <div className="hidden md:flex items-center gap-4">
-                    {/* Language Switcher - Flags Only */}
-                    <Select value={language} onValueChange={(val: string) => setLanguage(val as 'id' | 'en')}>
-                        <SelectTrigger className={cn("w-[60px] h-9 border-none bg-transparent focus:ring-0 focus:ring-offset-0 text-2xl", isScrolled ? "text-slate-900 dark:text-white" : "text-white")}>
-                            <SelectValue placeholder="Lang" />
-                        </SelectTrigger>
-                        <SelectContent align="end" className="min-w-[70px]">
-                            <SelectItem value="id" className="text-2xl justify-center">🇮🇩</SelectItem>
-                            <SelectItem value="en" className="text-2xl justify-center">🇺🇸</SelectItem>
-                        </SelectContent>
-                    </Select>
+
 
                     <div className="relative w-64">
                         <Search
@@ -157,16 +142,7 @@ export function Navbar() {
 
                 {/* Mobile Navigation (Logo + Lang Only) */}
                 <div className="md:hidden flex items-center gap-4">
-                    {/* Language Switcher Mobile */}
-                    <Select value={language} onValueChange={(val: string) => setLanguage(val as 'id' | 'en')}>
-                        <SelectTrigger className={cn("w-[60px] h-9 border-none bg-transparent focus:ring-0 focus:ring-offset-0 text-2xl", isScrolled ? "text-slate-900 dark:text-white" : "text-white")}>
-                            <SelectValue placeholder="Lang" />
-                        </SelectTrigger>
-                        <SelectContent align="end" className="min-w-[70px]">
-                            <SelectItem value="id" className="text-2xl justify-center">🇮🇩</SelectItem>
-                            <SelectItem value="en" className="text-2xl justify-center">🇺🇸</SelectItem>
-                        </SelectContent>
-                    </Select>
+
                 </div>
             </div>
         </header>

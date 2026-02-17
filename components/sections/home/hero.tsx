@@ -6,19 +6,17 @@ import Image from "next/image";
 import { useLanguage } from "@/components/providers/language-provider";
 
 interface HeroProps {
-    titleEn?: string;
     titleId?: string;
-    subtitleEn?: string;
     subtitleId?: string;
     heroImage?: string;
 }
 
-export function Hero({ titleEn, titleId, subtitleEn, subtitleId, heroImage }: HeroProps) {
-    const { t, language } = useLanguage();
+export function Hero({ titleId, subtitleId, heroImage }: HeroProps) {
+    const { t } = useLanguage();
 
     // Determine content based on language and props
-    const title = language === "en" ? (titleEn || t.hero.title) : (titleId || t.hero.title);
-    const subtitle = language === "en" ? (subtitleEn || t.hero.subtitle) : (subtitleId || t.hero.subtitle);
+    const title = titleId || t.hero.title;
+    const subtitle = subtitleId || t.hero.subtitle;
     const bgImage = heroImage || "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop";
 
     return (
