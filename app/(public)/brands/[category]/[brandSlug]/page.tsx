@@ -29,8 +29,8 @@ export default async function BrandDetailPage({
     const waMessage = `Halo Baruna Teknik, saya ingin mendapatkan informasi lebih lanjut mengenai produk dari merek ${brandData.name}.`;
     const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(waMessage)}`;
 
-    // Catalog PDF path expectation: /catalogs/[brandSlug].pdf
-    const catalogPdfUrl = `/catalogs/${brandData.slug}.pdf`;
+    // Get catalogs from brand data
+    const catalogs = brandData.catalogs || [];
 
     return (
         <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-24">
@@ -120,24 +120,33 @@ export default async function BrandDetailPage({
                     {/* Action Cards Sidebar */}
                     <div className="lg:col-span-1 flex flex-col gap-6">
                         {/* Download Catalog Card */}
-                        <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm text-center">
-                            <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3">
-                                <Download className="h-8 w-8" />
+                        {catalogs.length > 0 && (
+                            <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm text-center">
+                                <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3">
+                                    <Download className="h-8 w-8" />
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Brosur & Katalog</h3>
+                                <p className="text-sm text-slate-500 mb-6 px-4">
+                                    Unduh file PDF untuk melihat spesifikasi detail produk {brandData.name}.
+                                </p>
+                                <div className="space-y-3">
+                                    {catalogs.map((catalog, i) => (
+                                        <Link
+                                            key={i}
+                                            href={catalog.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block"
+                                        >
+                                            <button className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700 text-white py-3.5 px-4 rounded-xl font-semibold transition-all hover:shadow-lg hover:-translate-y-0.5 text-sm">
+                                                <Download className="h-4 w-4 shrink-0" />
+                                                {catalog.name}
+                                            </button>
+                                        </Link>
+                                    ))}
+                                </div>
                             </div>
-                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Brosur & Katalog</h3>
-                            <p className="text-sm text-slate-500 mb-8 px-4">Unduh file PDF untuk melihat spesifikasi detail seluruh produk {brandData.name}.</p>
-                            <Link
-                                href={catalogPdfUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block"
-                            >
-                                <button className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700 text-white py-4 px-4 rounded-xl font-semibold transition-all hover:shadow-lg hover:-translate-y-0.5">
-                                    <Download className="h-5 w-5" />
-                                    Download PDF
-                                </button>
-                            </Link>
-                        </div>
+                        )}
 
                         {/* Contact Card */}
                         <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-950/40 dark:to-slate-900 rounded-2xl p-8 border border-emerald-200/60 dark:border-emerald-900/50 shadow-sm text-center">

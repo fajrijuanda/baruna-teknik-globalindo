@@ -58,6 +58,7 @@ export interface BrandMenuLink {
   name: string;
   slug: string;
   description?: string;
+  catalogs?: { name: string; url: string }[];
 }
 
 export interface CategoryMenuLink {
@@ -76,42 +77,93 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         slug: "cmp",
         description:
           "Motor listrik buatan Century Motors Producer yang dirancang tahan banting untuk kondisi ekstrem seperti pertambangan, offshore, dan area tropis. Tersedia dalam standar efisiensi IE1 hingga IE3 dengan sertifikasi ISO dan CE.",
+        catalogs: [
+          {
+            name: "Katalog Umum CMP Motors",
+            url: "/catalog/CMP-Motors-Catalogue.pdf",
+          },
+          {
+            name: "CMP NEMA NEP Series (Premium Efficiency)",
+            url: "/catalog/CMP NEMA MOTOR - NEP Series Premium Efficiency-1.pdf",
+          },
+        ],
       },
       {
         name: "TECO",
         slug: "teco",
         description:
           "Merek asal Taiwan yang dikenal handal dengan desain fungsional dan efisiensi energi yang baik. Cocok untuk kebutuhan industri, gedung komersial, hingga perumahan modern dengan perawatan mudah dan daya tahan tinggi.",
+        catalogs: [
+          {
+            name: "Brosur TECO AESV/AESU Series",
+            url: "/catalog/Brosur Teco AESV AESU AESV-LA Series SCIM.pdf",
+          },
+        ],
       },
       {
         name: "WEG",
         slug: "weg",
         description:
           "Produsen multinasional asal Brasil yang menawarkan motor listrik performa tinggi dan hemat energi. Tersedia untuk berbagai aplikasi mulai dari pompa besar, kompresor, hingga kebutuhan industri berat.",
+        catalogs: [
+          {
+            name: "WEG W21 Three Phase Motors",
+            url: "/catalog/WEG-WMO-W21-three-phase-induction-motors-chinese-market-50066711-brochure-english-web.pdf",
+          },
+          {
+            name: "WEG W20 Asia Series",
+            url: "/catalog/WEG-w20-WMO-asia-50124127-brochure-english-web.pdf",
+          },
+          { name: "WEG NEMA Motors", url: "/catalog/WNema_260208_190827.pdf" },
+        ],
       },
       {
         name: "Brook Crompton",
         slug: "brook-crompton",
         description:
           "Produsen motor listrik asal Inggris dengan pengalaman lebih dari 100 tahun. Dikenal luas di sektor pertambangan, water treatment, dan manufaktur berkat kualitas, keandalan, serta efisiensi energi yang terdepan.",
+        catalogs: [
+          {
+            name: "Brosur Brook Crompton WE3-5",
+            url: "/catalog/BC brochure - WE3-5.pdf",
+          },
+        ],
       },
       {
         name: "Titan",
         slug: "titan",
         description:
           "Motor listrik yang menawarkan keseimbangan antara harga terjangkau dan performa stabil, cocok untuk kebutuhan operasional industri sehari-hari.",
+        catalogs: [
+          {
+            name: "Brosur Motor Electric Titan",
+            url: "/catalog/Brosur Motor Electric TITAN.pdf",
+          },
+        ],
       },
       {
         name: "Yuema",
         slug: "yuema",
         description:
           "Solusi motor listrik ekonomis untuk keperluan standar industri. Hemat energi dengan daya tahan operasional yang baik untuk pemakaian harian.",
+        catalogs: [
+          {
+            name: "Brosur Yuema Motor YU & SA",
+            url: "/catalog/Brosur_Yuema_Motor_YU_&_SA.pdf",
+          },
+        ],
       },
       {
         name: "Elektrim",
         slug: "elektrim",
         description:
           "Motor listrik buatan Eropa (Polandia) dengan reputasi kuat untuk keandalan jangka panjang. Tersedia hingga 6300 HP untuk berbagai aplikasi industri seperti manufaktur, oil & gas, dan pertambangan.",
+        catalogs: [
+          {
+            name: "Katalog Elektrim IE1/IE3",
+            url: "/catalog/EMM ELEKTRIM IE1_IE3 katalog_removed (2).pdf",
+          },
+        ],
       },
     ],
   },
