@@ -3,7 +3,7 @@
 import { useLanguage } from "@/components/providers/language-provider";
 import { Card, CardContent } from "@/components/ui/card";
 
-export function VisionMissionTab({ content, missionContent }: { content?: Record<string, any>, missionContent?: Record<string, any> }) {
+export function VisionMissionTab({ content, missionContent }: { content?: { visionId?: string; visionEn?: string }, missionContent?: { missionListId?: string[]; missionListEn?: string[] } }) {
     const { t, language } = useLanguage();
     const isId = language === "id";
 

@@ -5,7 +5,7 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { PAGE_CONTENT } from "@/lib/data/static";
 
 export function AboutContent() {
-    const { language, t } = useLanguage();
+    const { language } = useLanguage();
     const isId = language === "id";
 
     const title = isId ? PAGE_CONTENT.home.about.titleId : PAGE_CONTENT.home.about.titleEn;
