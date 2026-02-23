@@ -1,13 +1,12 @@
 import { PageHeader } from "@/components/shared/page-header";
 import { AboutContent } from "@/components/sections/about/about-content";
 import { AboutTabsLayout } from "@/components/sections/about/about-tabs-layout";
-import { getPageContent } from "@/lib/actions/content";
+import { PAGE_CONTENT } from "@/lib/data/static";
 
 export const dynamic = "force-dynamic";
 
 export default async function AboutPage() {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const content = await getPageContent("about", "details") as any;
+    const content = PAGE_CONTENT.about.details;
 
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950">

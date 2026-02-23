@@ -1,6 +1,5 @@
 import { Hero } from "@/components/sections/home/hero";
-import { prisma } from "@/lib/prisma";
-import { getPageContent } from "@/lib/actions/content";
+import { PRODUCTS, PAGE_CONTENT, CLIENTS } from "@/lib/data/static";
 import dynamic from "next/dynamic";
 
 const About = dynamic(() => import("@/components/sections/home/about").then(mod => mod.About));
@@ -11,26 +10,15 @@ const Clients = dynamic(() => import("@/components/sections/home/clients").then(
 
 export const revalidate = 60;
 
-export default async function HomePage() {
-    const featuredProducts = await prisma.product.findMany({
-        where: { isFeatured: true },
-        include: {
-            category: true,
-            images: true,
-        },
-        take: 6,
-        orderBy: { createdAt: "desc" },
-    });
+export default function HomePage() {
+    const featuredProducts = PRODUCTS.filter(p => p.isFeatured).slice(0, 6);
 
-    const homeHeroContent = await getPageContent("home", "hero");
-    const homeAboutContent = await getPageContent("home", "about");
-    const homeFeaturesContent = await getPageContent("home", "features");
+    const homeHeroContent = PAGE_CONTENT.home.hero;
+    const homeAboutContent = PAGE_CONTENT.home.about;
+    const homeFeaturesContent = PAGE_CONTENT.home.features;
 
 
-    const clients = await prisma.client.findMany({
-        where: { isFeatured: true },
-        orderBy: { createdAt: "desc" },
-    });
+    const clients = CLIENTS.filter(c => c.isFeatured);
 
     return (
         <>

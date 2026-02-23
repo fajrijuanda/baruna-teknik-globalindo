@@ -3,7 +3,7 @@ import { Footer } from "@/components/sections/layout/footer";
 import { WAFloating } from "@/components/shared/wa-floating";
 import { BottomNav } from "@/components/sections/layout/bottom-nav";
 import { VisitorTracker } from "@/components/visitor-tracker";
-import { getPageContent } from "@/lib/actions/content";
+import { PAGE_CONTENT } from "@/lib/data/static";
 import type { ContactContent } from "@/lib/types";
 
 export default async function PublicLayout({
@@ -11,7 +11,7 @@ export default async function PublicLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const rawContent = await getPageContent("contact", "info");
+    const rawContent = PAGE_CONTENT.contact.info;
     const contactContent = rawContent as ContactContent | null;
 
     return (

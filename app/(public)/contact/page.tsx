@@ -1,9 +1,9 @@
 
-import { getPageContent } from "@/lib/actions/content";
+import { PAGE_CONTENT } from "@/lib/data/static";
 import { ContactContent } from "@/components/sections/contact/contact-content";
 
 export default async function ContactPage() {
-    const contactContent = await getPageContent("contact", "info");
+    const contactContent = PAGE_CONTENT.contact.info;
 
     return <ContactContent contactContent={contactContent} />;
 }
