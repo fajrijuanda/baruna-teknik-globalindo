@@ -77,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${oswald.variable} antialiased font-sans`}
+        className={`${inter.variable} ${oswald.variable} antialiased font-sans overflow-x-hidden`}
       >
         <LanguageProvider>
           <Suspense fallback={null}>

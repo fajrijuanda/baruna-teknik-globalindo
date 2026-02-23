@@ -9,7 +9,7 @@
 export const SITE_CONFIG = {
   name: "PT BARUNA TEKNIK GLOBALINDO",
   description: "Specialist in Industrial Pumps, Valves, and Spareparts",
-  email: "info@barunateknikglobalindo.com",
+  email: "admin@barunateknikglobalindo.com",
   phone: "+62 877-8848-7287",
   address:
     "Jl. Letjen M.T. Haryono No.Kav.10, Bidara Cina, Kecamatan Jatinegara, Jakarta, Daerah Khusus Ibukota Jakarta 13330",
