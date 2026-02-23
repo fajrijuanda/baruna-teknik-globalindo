@@ -15,7 +15,7 @@ export default function HomePage() {
 
     const homeHeroContent = PAGE_CONTENT.home.hero;
     const homeAboutContent = PAGE_CONTENT.home.about;
-    const homeFeaturesContent = PAGE_CONTENT.home.features;
+
 
 
     const clients = CLIENTS.filter(c => c.isFeatured);
@@ -32,8 +32,7 @@ export default function HomePage() {
             />
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <About content={homeAboutContent as any} />
-            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <Features content={homeFeaturesContent as any} />
+            <Features />
             <ProductCarousel products={featuredProducts} />
             <Clients clients={clients} />
 

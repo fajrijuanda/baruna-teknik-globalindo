@@ -191,6 +191,30 @@ export const CLIENTS = [
     logoUrl: "/images/placeholder.jpg",
     isFeatured: false,
   },
+  {
+    id: "client-19",
+    name: "Brook Crompton",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-20",
+    name: "Emec",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-21",
+    name: "Yangtze River Pump",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-22",
+    name: "Torishima",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
 ];
 
 export const PAGE_CONTENT = {
@@ -209,25 +233,49 @@ export const PAGE_CONTENT = {
       titleId: "Tentang Baruna Teknik",
       titleEn: "About Baruna Teknik",
       contentId:
-        "CV Baruna Teknik Globalindo adalah perusahaan yang bergerak di bidang pengadaan barang dan jasa teknik. Kami berkomitmen untuk memberikan pelayanan terbaik dan produk berkualitas...",
+        "PT. Baruna Teknik Globalindo adalah Perusahaan yang bergerak di bidang machining dan general trading dengan tujuan utama menyediakan solusi berkualitas tinggi bagi kebutuhan industri di seluruh indonesia dan berbagai layanan seperti perdagangan besar mesin, peralatan, perlengkapan industri, serta jasa industri untuk pengerjaan khusus logam. Kami memastikan setiap produk dan layanan yang kami tawarkan memenuhi standar kualitas dan efisiensi tertinggi. Dan didukung oleh tim profesional yang berpengalaman serta teknologi terkini.\n\nPT. Baruna Teknik Globalindo memiliki inovasi berkelanjutan dan pelayanan yang prima. Kami memahami bahwa setiap pelanggan memiliki kebutuhan unik, dan oleh karena itu, kami menawarkan solusi yang disesuaikan untuk memastikan kepuasan pelanggan maksimal.",
       contentEn:
-        "CV Baruna Teknik Globalindo is a company engaged in the procurement of technical goods and services. We are committed to providing the best service and quality products...",
+        "PT. Baruna Teknik Globalindo is a company engaged in machining and general trading with the main goal of providing high-quality solutions for industrial needs throughout Indonesia. We offer various services such as wholesale trade of machinery, equipment, industrial supplies, and industrial services for special metal works. We ensure every product and service we offer meets the highest standards of quality and efficiency. Supported by a team of experienced professionals and the latest technology.\n\nPT. Baruna Teknik Globalindo features continuous innovation and prime service. We understand that every customer has unique needs, and therefore, we offer customized solutions to ensure maximum customer satisfaction.",
     },
     features: {
-      titleId: "Mengapa Memilih Kami",
-      titleEn: "Why Choose Us",
+      titleId: "Layanan Usaha",
+      titleEn: "Business Services",
+      services: [
+        {
+          titleId: "Pump Specialist & Electric Motors",
+          titleEn: "Pump Specialist & Electric Motors",
+          descriptionId:
+            "PT. Baruna Teknik Globalindo hadir sebagai spesialis terpercaya dalam solusi Pump Specialist & Electric Motors. Kami menyediakan berbagai jenis pompa industri dan motor listrik berkualitas tinggi untuk mendukung kebutuhan vital operasional perusahaan Anda. Kami menawarkan rangkaian produk lengkap, mulai dari pompa sentrifugal, submersible, hingga berbagai spesifikasi motor listrik (induksi/dinamo) yang handal. Selain penyediaan unit, kami didukung oleh tenaga ahli yang siap memberikan dukungan teknis, mulai dari konsultasi pemilihan unit yang tepat, instalasi, hingga layanan purna jual. Komitmen kami adalah memastikan efisiensi energi dan keandalan sistem rotasi mesin Anda, sehingga meminimalkan downtime dan menjaga produktivitas industri tetap optimal.",
+          descriptionEn:
+            "PT. Baruna Teknik Globalindo is present as a trusted specialist in Pump Specialist & Electric Motors solutions. We provide various types of high-quality industrial pumps and electric motors to support the vital operational needs of your company. We offer a complete range of products, from centrifugal, submersible pumps, to various specifications of reliable electric motors (induction/dynamo). In addition to providing units, we are supported by experts ready to provide technical support, from consulting on choosing the right unit, installation, to after-sales service. Our commitment is to ensure energy efficiency and the reliability of your engine rotation system, thereby minimizing downtime and keeping industrial productivity optimal.",
+        },
+        {
+          titleId: "General Trading",
+          titleEn: "General Trading",
+          descriptionId:
+            "PT. Baruna Teknik Globalindo menyediakan layanan general supply yang mencakup penyediaan berbagai macam barang dan perlengkapan untuk keperluan industri. Kami menawarkan beragam produk, mulai dari alat-alat tangan dan listrik, pneumatic, perlengkapan keselamatan kerja, hingga bahan habis pakai seperti pelumas dan pembersih industri. Dengan jaringan pemasok yang luas dan terpercaya, kami mampu menyediakan produk-produk berkualitas tinggi dengan harga kompetitif. Layanan general supply kami dirancang untuk mendukung operasi harian pelanggan dengan memastikan ketersediaan barang dan perlengkapan yang dibutuhkan secara cepat dan efisien. Perusahaan dapat fokus pada kegiatan utama tanpa khawatir kekurangan bahan atau perlengkapan penting.",
+          descriptionEn:
+            "PT. Baruna Teknik Globalindo provides general supply services encompassing the provision of various goods and equipment for industrial needs. We offer a variety of products, ranging from hand and power tools, pneumatics, occupational safety equipment, to consumables such as industrial lubricants and cleaners. With a wide and trusted supplier network, we are able to provide high-quality products at competitive prices. Our general supply service is designed to support customers' daily operations by ensuring the availability of needed goods and equipment quickly and efficiently. Companies can focus on their core activities without worrying about a shortage of essential materials or tools.",
+        },
+      ],
     },
   },
   about: {
     details: {
       visionId:
-        "Menjadi perusahaan penyedia solusi teknik kelas dunia yang inovatif.",
+        "Menjadi perusahaan terdepan dalam bidang machining dan general supply, yang dikenal akan inovasi, kualitas, dan pelayanan terbaik kepada pelanggan di seluruh Indonesia.",
       visionEn:
-        "To become a world-class innovative engineering solutions provider.",
-      missionId:
-        "Memberikan produk dan layanan berkualitas tinggi yang melebihi ekspektasi pelanggan.",
-      missionEn:
-        "Providing high quality products and services that exceed customer expectations.",
+        "To become a leading company in the field of machining and general supply, known for innovation, quality, and the best service to customers throughout Indonesia.",
+      missionListId: [
+        "Menyediakan produk dan layanan machining serta general supply yang berkualitas tinggi dan tepat waktu untuk memenuhi kebutuhan pelanggan.",
+        "Mengembangkan solusi inovatif dan efisien yang dapat meningkatkan produktivitas dan kinerja industri.",
+        "Membangun kemitraan yang kuat dan saling menguntungkan dengan pelanggan dan pemasok untuk mencapai kesuksesan bersama.",
+      ],
+      missionListEn: [
+        "Providing high-quality and timely machining and general supply products and services to meet customer needs.",
+        "Developing innovative and efficient solutions that can increase industrial productivity and performance.",
+        "Building strong and mutually beneficial partnerships with customers and suppliers to achieve mutual success.",
+      ],
       historyId:
         "Didirikan pada tahun 2010 dengan pengalaman lebih dari satu dekade.",
       historyEn: "Established in 2010 with over a decade of experience.",
@@ -240,7 +288,7 @@ export const PAGE_CONTENT = {
       address:
         "MT Haryono St No.Kav.10, Bidara Cina, Jatinegara, Jakarta 13330",
       phone: "+62 877-8848-7287",
-      email: "info@barunateknik.com",
+      email: "info@barunateknikglobalindo.com",
       googleMapsUrl:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15865.034338908752!2d106.8643883!3d-6.2378902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3a14acccdbb%3A0xcfabcbf8b84d1685!2sJl.%20Letjen%20M.T.%20Haryono%20Kav.%2010%2C%20Bidara%20Cina%2C%20Kec.%20Jatinegara%2C%20Kota%20Jakarta%20Timur%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2013330!5e0!3m2!1sen!2sid!4v1709623832159!5m2!1sen!2sid",
       facebook: "https://facebook.com/barunateknik",

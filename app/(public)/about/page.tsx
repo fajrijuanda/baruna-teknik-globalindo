@@ -1,6 +1,6 @@
 import { PageHeader } from "@/components/shared/page-header";
 import { AboutContent } from "@/components/sections/about/about-content";
-import { AboutTabsLayout } from "@/components/sections/about/about-tabs-layout";
+import { VisionMissionTab } from "@/components/sections/about/tabs/vision-mission";
 import { PAGE_CONTENT } from "@/lib/data/static";
 
 export const dynamic = "force-dynamic";
@@ -10,19 +10,20 @@ export default async function AboutPage() {
 
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950">
-            {/* Note: PageHeader currently uses client-side translations. 
-                For now, we keep it as is, or we could pass content if we wanted. 
-                The user's request focused on content settings for sections.*/}
             <PageHeader
                 title="ABOUT US"
                 subtitle="Building the industrial future with trusted and innovative engineering solutions."
             />
 
-            {/* Futuristic About Content (Hero-like) */}
+            {/* Main About Details */}
             <AboutContent />
 
-            {/* Vertical Tabs Section (Vision, CEO, Org, History) */}
-            <AboutTabsLayout content={content} />
+            {/* Vision and Mission Section */}
+            <section className="py-12 lg:py-20 bg-slate-50 dark:bg-slate-950">
+                <div className="container mx-auto px-4 max-w-5xl">
+                    <VisionMissionTab content={content} missionContent={content} />
+                </div>
+            </section>
         </main>
     );
 }

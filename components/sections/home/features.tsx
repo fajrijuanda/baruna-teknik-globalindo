@@ -1,113 +1,54 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import * as LucideIcons from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Settings, ShoppingBag } from "lucide-react";
 import { SectionHeader } from "@/components/shared/section-header";
 import { useLanguage } from "@/components/providers/language-provider";
+import { PAGE_CONTENT } from "@/lib/data/static";
 
-interface FeaturesProps {
-    content?: {
-        titleEn?: string;
-        titleId?: string;
-        subtitleEn?: string;
-        subtitleId?: string;
-        // Dynamic Cards
-        card1Icon?: string;
-        card1TitleEn?: string;
-        card1TitleId?: string;
-        card1DescEn?: string;
-        card1DescId?: string;
-
-        card2Icon?: string;
-        card2TitleEn?: string;
-        card2TitleId?: string;
-        card2DescEn?: string;
-        card2DescId?: string;
-
-        card3Icon?: string;
-        card3TitleEn?: string;
-        card3TitleId?: string;
-        card3DescEn?: string;
-        card3DescId?: string;
-
-        card4Icon?: string;
-        card4TitleEn?: string;
-        card4TitleId?: string;
-        card4DescEn?: string;
-        card4DescId?: string;
-    }
-}
-
-export function Features({ content }: FeaturesProps) {
+export function Features() {
     const { language, t } = useLanguage();
     const isId = language === "id";
 
-    const title = isId ? (content?.titleId || t.features.title) : (content?.titleEn || t.features.title);
-    const subtitle = isId ? (content?.subtitleId || t.features.subtitle) : (content?.subtitleEn || t.features.subtitle);
+    const title = isId ? PAGE_CONTENT.home.features.titleId : PAGE_CONTENT.home.features.titleEn;
+    const services = PAGE_CONTENT.home.features.services;
 
-    const getIcon = (name: string, fallback: any) => {
-        if (!name) return fallback;
-        const Icon = (LucideIcons as any)[name];
-        return Icon ? <Icon className="h-10 w-10 text-blue-600" /> : fallback;
+    // Use specific icons for the two services
+    const getIcon = (index: number) => {
+        if (index === 0) return <Settings className="h-10 w-10 text-blue-600" />;
+        return <ShoppingBag className="h-10 w-10 text-blue-600" />;
     };
-
-    const features = [
-        {
-            icon: getIcon(content?.card1Icon || "", <LucideIcons.BadgeCheck className="h-10 w-10 text-blue-600" />),
-            title: isId ? (content?.card1TitleId || t.features.card1Title) : (content?.card1TitleEn || t.features.card1Title),
-            description: isId ? (content?.card1DescId || t.features.card1Desc) : (content?.card1DescEn || t.features.card1Desc),
-        },
-        {
-            icon: getIcon(content?.card2Icon || "", <LucideIcons.Cog className="h-10 w-10 text-blue-600" />),
-            title: isId ? (content?.card2TitleId || t.features.card2Title) : (content?.card2TitleEn || t.features.card2Title),
-            description: isId ? (content?.card2DescId || t.features.card2Desc) : (content?.card2DescEn || t.features.card2Desc),
-        },
-        {
-            icon: getIcon(content?.card3Icon || "", <LucideIcons.Truck className="h-10 w-10 text-blue-600" />),
-            title: isId ? (content?.card3TitleId || t.features.card3Title) : (content?.card3TitleEn || t.features.card3Title),
-            description: isId ? (content?.card3DescId || t.features.card3Desc) : (content?.card3DescEn || t.features.card3Desc),
-        },
-        {
-            icon: getIcon(content?.card4Icon || "", <LucideIcons.ShieldCheck className="h-10 w-10 text-blue-600" />),
-            title: isId ? (content?.card4TitleId || t.features.card4Title) : (content?.card4TitleEn || t.features.card4Title),
-            description: isId ? (content?.card4DescId || t.features.card4Desc) : (content?.card4DescEn || t.features.card4Desc),
-        },
-    ];
 
     return (
         <section className="py-24 bg-slate-950">
             <div className="container mx-auto px-4">
                 <SectionHeader
                     title={title}
-                    subtitle={subtitle}
-                    className="text-white"
+                    subtitle={isId ? t.features.subtitle : t.features.subtitle} // Keep old subtitle logic if it exists in translation, else we can pass empty string if not needed
+                    className="text-white mb-16"
                     titleClassName="text-white"
                     subtitleClassName="text-slate-400"
                 />
 
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-                    {features.map((feature, index) => (
-                        <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300 group bg-white">
-                            <CardHeader className="p-4 md:p-6 pb-2 md:pb-4">
-                                <div className="mb-3 md:mb-4 p-2 md:p-3 bg-blue-50 rounded-xl w-fit group-hover:scale-110 transition-transform duration-300">
-                                    {/* Clone icon with distinct classes for mobile/desktop if needed, but standard sizing usually works. 
-                                        However, since we used a helper function earlier that hardcoded classes, let's just rely on scaling or adjust the helper if needed.
-                                        But actually, the helper renders <Icon className="h-10 w-10..." />.
-                                        On mobile 2-col, 10 might be big. We can't easily change it here without refactoring getIcon. 
-                                        Let's trust it fits or assume user is okay with big icons. 
-                                        Actually, I should refactor getIcon to be responsive or accept className.
-                                        BUT, I can't edit getIcon in this block easily since it's earlier in file.
-                                        I'll stick to adjusting the container.
-                                    */}
-                                    {feature.icon}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+                    {services.map((service, index) => (
+                        <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300 group bg-slate-900 overflow-hidden flex flex-col h-full">
+                            <CardHeader className="p-8 pb-4 relative z-10">
+                                <div className="mb-6 p-4 bg-slate-800 rounded-2xl w-fit group-hover:scale-110 group-hover:bg-blue-600/20 transition-all duration-300">
+                                    {getIcon(index)}
                                 </div>
-                                <CardTitle className="text-base md:text-xl font-oswald text-slate-900 leading-tight">{feature.title}</CardTitle>
+                                <CardTitle className="text-2xl font-oswald text-white leading-tight">
+                                    {isId ? service.titleId : service.titleEn}
+                                </CardTitle>
                             </CardHeader>
-                            <CardContent className="p-4 md:p-6 pt-0 md:pt-0">
-                                <CardDescription className="text-xs md:text-base text-slate-600 leading-relaxed line-clamp-3 md:line-clamp-none">
-                                    {feature.description}
-                                </CardDescription>
+                            <CardContent className="p-8 pt-0 relative z-10 flex-grow">
+                                <div className="text-lg text-slate-400 leading-relaxed text-justify">
+                                    {isId ? service.descriptionId : service.descriptionEn}
+                                </div>
                             </CardContent>
+
+                            {/* Decorative background glow */}
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none transition-all duration-500 group-hover:bg-blue-500/10" />
                         </Card>
                     ))}
                 </div>

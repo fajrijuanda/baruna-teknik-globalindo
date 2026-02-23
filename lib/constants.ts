@@ -9,7 +9,7 @@
 export const SITE_CONFIG = {
   name: "PT BARUNA TEKNIK GLOBALINDO",
   description: "Specialist in Industrial Pumps, Valves, and Spareparts",
-  email: "info@barunateknik.co.id",
+  email: "info@barunateknikglobalindo.com",
   phone: "+62 877-8848-7287",
   address:
     "Jl. Letjen M.T. Haryono No.Kav.10, Bidara Cina, Kecamatan Jatinegara, Jakarta, Daerah Khusus Ibukota Jakarta 13330",
@@ -84,10 +84,10 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
           "Produsen peralatan listrik multinasional asal Brasil yang menawarkan solusi motor listrik dengan performa ekstrem dan hemat energi.",
       },
       {
-        name: "Siemens",
-        slug: "siemens",
+        name: "Brook Crompton",
+        slug: "brook-crompton",
         description:
-          "Merek teknologi Jerman dengan standar motor listrik presisi tinggi, inovatif, dan terintegrasi untuk otomatisasi modern.",
+          "Produsen motor listrik pionir asal Inggris dengan pengalaman lebih dari seabad, menghadirkan efisiensi energi terdepan dan jaminan ketahanan tangguh untuk berbagai kebutuhan komersial dan industri berat.",
       },
       {
         name: "Titan",
@@ -156,10 +156,22 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
           "Ahli pompa air dan katup asal Jerman yang mengutamakan teknologi canggih untuk keamanan dan efisiensi penanganan cairan.",
       },
       {
-        name: "Wilo",
-        slug: "wilo",
+        name: "Emec",
+        slug: "emec",
         description:
-          "Penyedia pompa premium kelas dunia untuk bangunan, tata air, dan industri dengan fokus kuat pada otomatisasi dan penghematan energi.",
+          "Merek terpercaya asal Italia yang berspesialisasi dalam sistem pompa dosis (dosing pump) mutakhir dan instrumen kontrol kimia dengan presisi dan keamanan tingkat tinggi.",
+      },
+      {
+        name: "Yangtze River Pump",
+        slug: "yangtze-river-pump",
+        description:
+          "Varian pompa industri tangguh asal Tiongkok yang menawarkan nilai ekonomis dengan desain solid untuk pemompaan fluida skala besar, cocok diaplikasikan pada proyek pengairan dan utilitas manufaktur.",
+      },
+      {
+        name: "Torishima",
+        slug: "torishima",
+        description:
+          "Produsen pompa sentrifugal raksasa asal Jepang yang mendominasi pasar infrastruktur global melalui rekayasa teknologi tinggi untuk operasional pembangkit listrik, desalinasi air laut, dan irigasi besar.",
       },
       {
         name: "Milton Roy",
@@ -175,6 +187,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
       },
     ],
   },
+
   {
     category: "General",
     slug: "general",
