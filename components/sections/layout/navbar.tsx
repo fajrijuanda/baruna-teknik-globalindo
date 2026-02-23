@@ -8,7 +8,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 
 
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, PRODUCT_BRANDS_MENU } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/providers/language-provider";
 
@@ -91,12 +91,65 @@ export function Navbar() {
                 <nav className="hidden md:flex items-center gap-8">
                     {NAV_LINKS.map((link) => {
                         const isActive = isActiveLink(link.href);
+                        if (link.label === "Products") {
+                            return (
+                                <div key={link.href} className="relative group">
+                                    <Link
+                                        href={link.href}
+                                        className={cn(
+                                            "text-sm font-medium transition-colors flex items-center gap-2 py-6",
+                                            isActive
+                                                ? "text-blue-600 dark:text-blue-400 font-bold"
+                                                : isScrolled
+                                                    ? "text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400"
+                                                    : "text-white/90 hover:text-white"
+                                        )}
+                                    >
+                                        {getIcon(link.label)}
+                                        {getTranslatedLabel(link.label)}
+                                        {isActive && (
+                                            <span className="absolute bottom-4 left-0 w-full h-[2px] bg-current rounded-full" />
+                                        )}
+                                    </Link>
+
+                                    {/* First Level Dropdown (Categories) */}
+                                    <div className="absolute top-[80px] left-0 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+                                        <div className="bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-100 dark:border-slate-800 py-2">
+                                            {PRODUCT_BRANDS_MENU.map((category) => (
+                                                <div key={category.slug} className="relative group/sub">
+                                                    <div className="px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 cursor-pointer flex justify-between items-center transition-colors">
+                                                        <span>{category.category}</span>
+                                                        <span className="text-xs">▶</span>
+                                                    </div>
+
+                                                    {/* Second Level Dropdown (Brands) */}
+                                                    <div className="absolute top-0 left-full w-48 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 transform -translate-x-2 group-hover/sub:translate-x-0">
+                                                        <div className="bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-100 dark:border-slate-800 py-2 ml-1">
+                                                            {category.brands.map((brand) => (
+                                                                <Link
+                                                                    key={brand.slug}
+                                                                    href={`/brands/${category.slug}/${brand.slug}`}
+                                                                    className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors"
+                                                                >
+                                                                    {brand.name}
+                                                                </Link>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        }
+
                         return (
                             <Link
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
-                                    "text-sm font-medium transition-colors flex items-center gap-2 relative group",
+                                    "text-sm font-medium transition-colors flex items-center gap-2 py-6 relative group",
                                     isActive
                                         ? "text-blue-600 dark:text-blue-400 font-bold"
                                         : isScrolled
@@ -108,7 +161,7 @@ export function Navbar() {
                                 {getTranslatedLabel(link.label)}
                                 {/* Active Indicator Dot */}
                                 {isActive && (
-                                    <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-current rounded-full" />
+                                    <span className="absolute bottom-4 left-0 w-full h-[2px] bg-current rounded-full" />
                                 )}
                             </Link>
                         );

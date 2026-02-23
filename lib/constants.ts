@@ -51,6 +51,151 @@ export const PRODUCT_CATEGORIES: readonly ProductCategory[] = [
 ] as const;
 
 // ============================================================================
+// Product Brands Menu (Nested Dropdown)
+// ============================================================================
+
+export interface BrandMenuLink {
+  name: string;
+  slug: string;
+  description?: string;
+}
+
+export interface CategoryMenuLink {
+  category: string;
+  slug: string;
+  brands: BrandMenuLink[];
+}
+
+export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
+  {
+    category: "Electric Motors",
+    slug: "electric-motors",
+    brands: [
+      {
+        name: "TECO",
+        slug: "teco",
+        description:
+          "Produsen motor listrik global terkemuka dari Taiwan, terkenal dengan efisiensi tinggi dan keandalannya di berbagai industri berat.",
+      },
+      {
+        name: "WEG",
+        slug: "weg",
+        description:
+          "Produsen peralatan listrik multinasional asal Brasil yang menawarkan solusi motor listrik dengan performa ekstrem dan hemat energi.",
+      },
+      {
+        name: "Siemens",
+        slug: "siemens",
+        description:
+          "Merek teknologi Jerman dengan standar motor listrik presisi tinggi, inovatif, dan terintegrasi untuk otomatisasi modern.",
+      },
+      {
+        name: "Titan",
+        slug: "titan",
+        description:
+          "Motor listrik andal yang dirancang untuk kebutuhan industri standar dengan keseimbangan sempurna antara harga dan performa.",
+      },
+      {
+        name: "Yuema",
+        slug: "yuema",
+        description:
+          "Solusi motor listrik ekonomis dan efisien untuk keperluan standar industri dengan daya tahan operasional harian yang baik.",
+      },
+      {
+        name: "CMP",
+        slug: "cmp",
+        description:
+          "Menyediakan lini motor premium yang fokus pada daya tahan tinggi dan desain kokoh untuk lingkungan kerja ekstrem.",
+      },
+      {
+        name: "Elektrim",
+        slug: "elektrim",
+        description:
+          "Motor listrik tangguh buatan Eropa dengan reputasi legendaris untuk keandalan jangka panjang dan efisiensi IE tinggi.",
+      },
+    ],
+  },
+  {
+    category: "Sparepart",
+    slug: "sparepart",
+    brands: [
+      {
+        name: "Maktec",
+        slug: "maktec",
+        description:
+          "Suku cadang dan peralatan daya listrik berkualitas yang terkenal awet untuk keperluan bengkel dan konstruksi.",
+      },
+    ],
+  },
+  {
+    category: "Pompa",
+    slug: "pompa",
+    brands: [
+      {
+        name: "CNP",
+        slug: "cnp",
+        description:
+          "Spesialis pompa sentrifugal asal Tiongkok dengan material baja tahan karat bermutu tinggi untuk kebutuhan domestik dan industri water treatment.",
+      },
+      {
+        name: "Ebara",
+        slug: "ebara",
+        description:
+          "Produsen pompa air terkemuka dari Jepang yang menawarkan keandalan tinggi untuk hidraulik, drainase, dan sirkulasi fluida industri.",
+      },
+      {
+        name: "Flugo",
+        slug: "flugo",
+        description:
+          "Merek pompa industri yang menawarkan desain inovatif untuk optimasi aliran cairan dalam volume besar atau bertekanan tinggi.",
+      },
+      {
+        name: "KSB",
+        slug: "ksb",
+        description:
+          "Ahli pompa air dan katup asal Jerman yang mengutamakan teknologi canggih untuk keamanan dan efisiensi penanganan cairan.",
+      },
+      {
+        name: "Wilo",
+        slug: "wilo",
+        description:
+          "Penyedia pompa premium kelas dunia untuk bangunan, tata air, dan industri dengan fokus kuat pada otomatisasi dan penghematan energi.",
+      },
+      {
+        name: "Milton Roy",
+        slug: "milton-roy",
+        description:
+          "Pimpinan global di bidang pompa dosis (dosing pump) yang memberikan kontrol presisi tinggi untuk aplikasi bahan kimia.",
+      },
+      {
+        name: "Tokico",
+        slug: "tokico",
+        description:
+          "Spesialis dalam alat ukur fluida (flow meter) dan pompa untuk menjamin akurasi tinggi pada perhitungan bahan bakar laut maupun industri.",
+      },
+    ],
+  },
+  {
+    category: "General",
+    slug: "general",
+    brands: [
+      {
+        name: "Crosby",
+        slug: "crosby",
+        description:
+          "Solusi rintisan alat berat (rigging) dan angkat (lifting hardware) dengan standar keamanan tertinggi di seluruh dunia.",
+      },
+      {
+        name: "Kondo",
+        slug: "kondo",
+        description:
+          "Merek andal untuk kebutuhan perlengkapan industri maritim dan general engineering.",
+      },
+    ],
+  },
+] as const;
+
+// ============================================================================
 // Revalidation Paths (for server actions)
 // ============================================================================
 

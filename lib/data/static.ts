@@ -167,6 +167,30 @@ export const CLIENTS = [
     logoUrl: "/images/clients/bosch.png",
     isFeatured: true,
   },
+  {
+    id: "client-15",
+    name: "Titan",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-16",
+    name: "Yuema",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-17",
+    name: "CMP",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-18",
+    name: "Elektrim",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
 ];
 
 export const PAGE_CONTENT = {
