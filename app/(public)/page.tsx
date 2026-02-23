@@ -1,5 +1,5 @@
 import { Hero } from "@/components/sections/home/hero";
-import { PRODUCTS, PAGE_CONTENT, CLIENTS } from "@/lib/data/static";
+import { PAGE_CONTENT, CLIENTS } from "@/lib/data/static";
 import dynamic from "next/dynamic";
 
 const About = dynamic(() => import("@/components/sections/home/about").then(mod => mod.About));
@@ -11,7 +11,7 @@ const Clients = dynamic(() => import("@/components/sections/home/clients").then(
 export const revalidate = 60;
 
 export default function HomePage() {
-    const featuredProducts = PRODUCTS.filter(p => p.isFeatured).slice(0, 6);
+
 
     const homeHeroContent = PAGE_CONTENT.home.hero;
     const homeAboutContent = PAGE_CONTENT.home.about;
@@ -33,7 +33,7 @@ export default function HomePage() {
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <About content={homeAboutContent as any} />
             <Features />
-            <ProductCarousel products={featuredProducts} />
+            <ProductCarousel />
             <Clients clients={clients} />
 
         </>

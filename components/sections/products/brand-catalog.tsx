@@ -10,6 +10,7 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { PageHeader } from "@/components/shared/page-header";
 import { PRODUCT_BRANDS_MENU, BrandMenuLink } from "@/lib/constants";
 import { CLIENTS } from "@/lib/data/static";
+import { getCategoryBadgeClasses } from "@/components/sections/home/product-carousel";
 
 export function BrandCatalog() {
     const { t } = useLanguage();
@@ -115,6 +116,10 @@ export function BrandCatalog() {
                                             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full transform group-hover:-translate-y-1 group-hover:border-blue-200 dark:group-hover:border-blue-900/50">
                                                 {/* Image Container */}
                                                 <div className="w-full aspect-video relative rounded-xl mb-4 bg-slate-50 flex items-center justify-center p-4">
+                                                    {/* Colored Category Badge */}
+                                                    <span className={`absolute top-2 left-2 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${getCategoryBadgeClasses(categorySlug).bg} ${getCategoryBadgeClasses(categorySlug).text} ${getCategoryBadgeClasses(categorySlug).border}`}>
+                                                        {category}
+                                                    </span>
                                                     <Image
                                                         src={logoUrl}
                                                         alt={brand.name}
@@ -125,8 +130,10 @@ export function BrandCatalog() {
 
                                                 {/* Content info */}
                                                 <div className="flex-1 flex flex-col items-center text-center">
-                                                    <div className="text-xs font-semibold text-blue-600 dark:text-blue-400 mb-2 uppercase tracking-wider">{category}</div>
                                                     <h3 className="text-xl font-bold font-oswald text-slate-900 dark:text-white mb-2">{brand.name}</h3>
+                                                    {brand.description && (
+                                                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed mb-3">{brand.description}</p>
+                                                    )}
                                                     <p className="text-sm text-slate-500 mt-auto pt-4 border-t border-slate-100 dark:border-slate-800/60 w-full group-hover:text-blue-600 transition-colors">
                                                         Lihat Detail Produk →
                                                     </p>
