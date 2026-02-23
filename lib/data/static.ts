@@ -215,7 +215,7 @@ export const PAGE_CONTENT = {
     info: {
       address:
         "MT Haryono St No.Kav.10, Bidara Cina, Jatinegara, Jakarta 13330",
-      phone: "+62 811 2835 789",
+      phone: "+62 877-8848-7287",
       email: "info@barunateknik.com",
       googleMapsUrl:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15865.034338908752!2d106.8643883!3d-6.2378902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3a14acccdbb%3A0xcfabcbf8b84d1685!2sJl.%20Letjen%20M.T.%20Haryono%20Kav.%2010%2C%20Bidara%20Cina%2C%20Kec.%20Jatinegara%2C%20Kota%20Jakarta%20Timur%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2013330!5e0!3m2!1sen!2sid!4v1709623832159!5m2!1sen!2sid",
