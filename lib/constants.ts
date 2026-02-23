@@ -68,50 +68,50 @@ export interface CategoryMenuLink {
 
 export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
   {
-    category: "Electric Motors",
+    category: "Elektrik Motor",
     slug: "electric-motors",
     brands: [
+      {
+        name: "CMP",
+        slug: "cmp",
+        description:
+          "Motor listrik buatan Century Motors Producer yang dirancang tahan banting untuk kondisi ekstrem seperti pertambangan, offshore, dan area tropis. Tersedia dalam standar efisiensi IE1 hingga IE3 dengan sertifikasi ISO dan CE.",
+      },
       {
         name: "TECO",
         slug: "teco",
         description:
-          "Produsen motor listrik global terkemuka dari Taiwan, terkenal dengan efisiensi tinggi dan keandalannya di berbagai industri berat.",
+          "Merek asal Taiwan yang dikenal handal dengan desain fungsional dan efisiensi energi yang baik. Cocok untuk kebutuhan industri, gedung komersial, hingga perumahan modern dengan perawatan mudah dan daya tahan tinggi.",
       },
       {
         name: "WEG",
         slug: "weg",
         description:
-          "Produsen peralatan listrik multinasional asal Brasil yang menawarkan solusi motor listrik dengan performa ekstrem dan hemat energi.",
+          "Produsen multinasional asal Brasil yang menawarkan motor listrik performa tinggi dan hemat energi. Tersedia untuk berbagai aplikasi mulai dari pompa besar, kompresor, hingga kebutuhan industri berat.",
       },
       {
         name: "Brook Crompton",
         slug: "brook-crompton",
         description:
-          "Produsen motor listrik pionir asal Inggris dengan pengalaman lebih dari seabad, menghadirkan efisiensi energi terdepan dan jaminan ketahanan tangguh untuk berbagai kebutuhan komersial dan industri berat.",
+          "Produsen motor listrik asal Inggris dengan pengalaman lebih dari 100 tahun. Dikenal luas di sektor pertambangan, water treatment, dan manufaktur berkat kualitas, keandalan, serta efisiensi energi yang terdepan.",
       },
       {
         name: "Titan",
         slug: "titan",
         description:
-          "Motor listrik andal yang dirancang untuk kebutuhan industri standar dengan keseimbangan sempurna antara harga dan performa.",
+          "Motor listrik yang menawarkan keseimbangan antara harga terjangkau dan performa stabil, cocok untuk kebutuhan operasional industri sehari-hari.",
       },
       {
         name: "Yuema",
         slug: "yuema",
         description:
-          "Solusi motor listrik ekonomis dan efisien untuk keperluan standar industri dengan daya tahan operasional harian yang baik.",
-      },
-      {
-        name: "CMP",
-        slug: "cmp",
-        description:
-          "Menyediakan lini motor premium yang fokus pada daya tahan tinggi dan desain kokoh untuk lingkungan kerja ekstrem.",
+          "Solusi motor listrik ekonomis untuk keperluan standar industri. Hemat energi dengan daya tahan operasional yang baik untuk pemakaian harian.",
       },
       {
         name: "Elektrim",
         slug: "elektrim",
         description:
-          "Motor listrik tangguh buatan Eropa dengan reputasi legendaris untuk keandalan jangka panjang dan efisiensi IE tinggi.",
+          "Motor listrik buatan Eropa (Polandia) dengan reputasi kuat untuk keandalan jangka panjang. Tersedia hingga 6300 HP untuk berbagai aplikasi industri seperti manufaktur, oil & gas, dan pertambangan.",
       },
     ],
   },
