@@ -1,0 +1,115 @@
+
+> baruna-teknik-web@0.1.0 lint
+> eslint
+
+
+D:\Project\baruna-teknik-web\app\admin\(dashboard)\_components\admin-sidebar-wrapper.tsx
+  3:20  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Project\baruna-teknik-web\app\admin\(dashboard)\categories\page.tsx
+  4:10  warning  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Project\baruna-teknik-web\app\admin\(dashboard)\content\_components\about-page-settings-form.tsx
+  84:76  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  97:65  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\app\admin\(dashboard)\content\_components\about-settings-form.tsx
+  66:62  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\app\admin\(dashboard)\content\_components\contact-settings-form.tsx
+  76:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\app\admin\(dashboard)\content\_components\home-settings-form.tsx
+  43:61  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\app\admin\(dashboard)\content\content-client.tsx
+  12:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  13:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  14:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  16:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  17:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\app\admin\(dashboard)\users\_components\user-form.tsx
+  71:70  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  74:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\components\admin\categories\category-dialog.tsx
+  81:18  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Project\baruna-teknik-web\components\admin\dashboard\visitor-chart.tsx
+   6:22  warning  'CalendarIcon' is defined but never used    @typescript-eslint/no-unused-vars
+   9:10  warning  'Card' is defined but never used            @typescript-eslint/no-unused-vars
+   9:16  warning  'CardContent' is defined but never used     @typescript-eslint/no-unused-vars
+   9:46  warning  'CardHeader' is defined but never used      @typescript-eslint/no-unused-vars
+  10:10  warning  'Popover' is defined but never used         @typescript-eslint/no-unused-vars
+  10:19  warning  'PopoverContent' is defined but never used  @typescript-eslint/no-unused-vars
+  10:35  warning  'PopoverTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Project\baruna-teknik-web\components\admin\data-table\data-table-pagination.tsx
+  2:37  warning  'ChevronsLeft' is defined but never used   @typescript-eslint/no-unused-vars
+  2:51  warning  'ChevronsRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Project\baruna-teknik-web\components\admin\data-table\data-table.tsx
+  98:19  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+D:\Project\baruna-teknik-web\components\admin\data-table\data-table.tsx:98:19
+   96 |     const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+   97 |
+>  98 |     const table = useReactTable({
+      |                   ^^^^^^^^^^^^^ TanStack Table's `useReactTable()` API returns functions that cannot be memoized safely
+   99 |         data,
+  100 |         columns,
+  101 |         getCoreRowModel: getCoreRowModel(),  react-hooks/incompatible-library
+
+D:\Project\baruna-teknik-web\components\admin\ui\icon-picker.tsx
+   4:10  warning  'Check' is defined but never used              @typescript-eslint/no-unused-vars
+  13:5   warning  'CommandInput' is defined but never used       @typescript-eslint/no-unused-vars
+  14:5   warning  'CommandItem' is defined but never used        @typescript-eslint/no-unused-vars
+  25:7   warning  'iconList' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  55:50  error    Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  99:70  error    Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\components\sections\contact\contact-content.tsx
+  10:70  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\components\sections\home\product-carousel.tsx
+  18:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  19:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  22:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\components\sections\home\product-grid.tsx
+  16:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  17:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  20:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\components\sections\products\product-feed.tsx
+  20:11  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  26:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  27:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  31:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  49:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\components\ui\command.tsx
+  26:11  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+D:\Project\baruna-teknik-web\dl.js
+  1:15  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+D:\Project\baruna-teknik-web\dump_content.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+D:\Project\baruna-teknik-web\lib\actions\products.ts
+  92:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Project\baruna-teknik-web\scripts\promote-admin.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+D:\Project\baruna-teknik-web\seed-about-details.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+✖ 51 problems (34 errors, 17 warnings)
+
