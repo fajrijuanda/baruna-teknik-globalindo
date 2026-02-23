@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
-import { SITE_CONFIG, PRODUCT_CATEGORIES, NAV_LINKS } from "@/lib/constants";
+import { PRODUCT_CATEGORIES, NAV_LINKS } from "@/lib/constants";
 import { useLanguage } from "@/components/providers/language-provider";
 import type { ContactContent } from "@/lib/types";
 
@@ -11,10 +11,11 @@ export function Footer({ contactContent }: { contactContent?: ContactContent }) 
     const { t } = useLanguage();
 
     // Fallback values
-    const address = contactContent?.address || SITE_CONFIG.address;
-    const phone = contactContent?.phone || SITE_CONFIG.phone;
-    const email = contactContent?.email || SITE_CONFIG.email;
-    const googleMapsUrl = contactContent?.googleMapsUrl || "https://maps.google.com/maps?q=Jl.+Letjen+M.T.+Haryono+No.Kav.10,+Jakarta&z=15&output=embed";
+    // Extract values directly from contactContent
+    const address = contactContent?.address || "";
+    const phone = contactContent?.phone || "";
+    const email = contactContent?.email || "";
+    const googleMapsUrl = contactContent?.googleMapsUrl || "";
 
     return (
         <footer className="bg-slate-950 text-slate-200">

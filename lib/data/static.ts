@@ -85,16 +85,86 @@ export const PRODUCTS = [
 export const CLIENTS = [
   {
     id: "client-1",
-    name: "Pertamina",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/id/thumb/0/05/Logo_Pertamina_%282005%29.svg/1200px-Logo_Pertamina_%282005%29.svg.png",
+    name: "TECO",
+    logoUrl: "/images/clients/teco.png",
     isFeatured: true,
   },
   {
     id: "client-2",
-    name: "PLN",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Logo_PLN.png/1200px-Logo_PLN.png",
+    name: "WEG",
+    logoUrl: "/images/clients/weg.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-3",
+    name: "Siemens",
+    logoUrl: "/images/clients/siemens.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-4",
+    name: "Milton Roy",
+    logoUrl: "/images/clients/milton_roy.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-5",
+    name: "CNP",
+    logoUrl: "/images/clients/cnp.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-6",
+    name: "Flugo",
+    logoUrl: "/images/clients/flugo.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-7",
+    name: "KSB",
+    logoUrl: "/images/clients/ksb.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-8",
+    name: "Ebara",
+    logoUrl: "/images/clients/ebara.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-9",
+    name: "Wilo",
+    logoUrl: "/images/clients/wilo.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-10",
+    name: "Maktec",
+    logoUrl: "/images/clients/maktec.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-11",
+    name: "Tokico",
+    logoUrl: "/images/clients/tokico.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-12",
+    name: "Arita",
+    logoUrl: "/images/clients/arita.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-13",
+    name: "Ebro Armaturen",
+    logoUrl: "/images/clients/ebro.png",
+    isFeatured: true,
+  },
+  {
+    id: "client-14",
+    name: "Bosch",
+    logoUrl: "/images/clients/bosch.png",
     isFeatured: true,
   },
 ];
@@ -143,10 +213,12 @@ export const PAGE_CONTENT = {
   },
   contact: {
     info: {
-      address: "Jl. Contoh Alamat No. 123, Jakarta, Indonesia",
+      address:
+        "MT Haryono St No.Kav.10, Bidara Cina, Jatinegara, Jakarta 13330",
       phone: "+62 811 2835 789",
       email: "info@barunateknik.com",
-      googleMapsUrl: "https://goo.gl/maps/example",
+      googleMapsUrl:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15865.034338908752!2d106.8643883!3d-6.2378902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3a14acccdbb%3A0xcfabcbf8b84d1685!2sJl.%20Letjen%20M.T.%20Haryono%20Kav.%2010%2C%20Bidara%20Cina%2C%20Kec.%20Jatinegara%2C%20Kota%20Jakarta%20Timur%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2013330!5e0!3m2!1sen!2sid!4v1709623832159!5m2!1sen!2sid",
       facebook: "https://facebook.com/barunateknik",
       instagram: "https://instagram.com/barunateknik",
       linkedin: "https://linkedin.com/company/barunateknik",
