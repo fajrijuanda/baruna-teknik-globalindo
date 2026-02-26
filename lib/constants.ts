@@ -59,6 +59,7 @@ export interface BrandMenuLink {
   slug: string;
   description?: string;
   catalogs?: { name: string; url: string }[];
+  images?: string[];
 }
 
 export interface CategoryMenuLink {
@@ -163,6 +164,16 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
             name: "Katalog Elektrim IE1/IE3",
             url: "/catalog/EMM ELEKTRIM IE1_IE3 katalog_removed (2).pdf",
           },
+        ],
+        images: [
+          "/images/products/elektrim-1.jpeg",
+          "/images/products/elektrim-2.jpeg",
+          "/images/products/elektrim-3.jpeg",
+          "/images/products/elektrim-4.jpeg",
+          "/images/products/elektrim-5.jpeg",
+          "/images/products/elektrim-6.jpeg",
+          "/images/products/elektrim-7.jpeg",
+          "/images/products/elektrim-8.jpeg",
         ],
       },
     ],

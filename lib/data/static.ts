@@ -86,19 +86,13 @@ export const CLIENTS = [
   {
     id: "client-1",
     name: "TECO",
-    logoUrl: "/images/clients/media__1771831858264.png",
+    logoUrl: "/images/clients/teco.png",
     isFeatured: true,
   },
   {
     id: "client-2",
     name: "WEG",
     logoUrl: "/images/clients/weg_real.png",
-    isFeatured: true,
-  },
-  {
-    id: "client-3",
-    name: "Siemens",
-    logoUrl: "/images/clients/media__1771831858309.png",
     isFeatured: true,
   },
   {

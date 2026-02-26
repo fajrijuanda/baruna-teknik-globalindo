@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MessageCircle, Download, ChevronRight, CheckCircle2 } from "lucide-react";
 import { PRODUCT_BRANDS_MENU, SITE_CONFIG } from "@/lib/constants";
 import { CLIENTS } from "@/lib/data/static";
+import { BrandImageCarousel } from "@/components/shared/brand-image-carousel";
 
 // Next.js 15 requires dynamic route params to be treated as a Promise
 export default async function BrandDetailPage({
@@ -23,6 +24,9 @@ export default async function BrandDetailPage({
     // Find Logo if exists in CLIENTS
     const clientData = CLIENTS.find(c => c.name.toLowerCase() === brandData.name.toLowerCase());
     const logoUrl = clientData?.logoUrl || "/images/placeholder.jpg";
+
+    // Brand product images for carousel
+    const brandImages = brandData.images || [];
 
     // Format WhatsApp phone number (remove non-digits)
     const waPhone = SITE_CONFIG.phone.replace(/\D/g, "");
@@ -52,16 +56,23 @@ export default async function BrandDetailPage({
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-10 items-stretch">
-                        {/* Logo Container */}
+                        {/* Logo/Carousel Container */}
                         <div className="w-full md:w-[350px] shrink-0">
-                            <div className="aspect-[4/3] relative bg-white rounded-2xl p-8 shadow-xl flex items-center justify-center">
-                                <Image
-                                    src={logoUrl}
-                                    alt={`${brandData.name} Logo`}
-                                    fill
-                                    className="object-contain p-6"
+                            {brandImages.length > 0 ? (
+                                <BrandImageCarousel
+                                    images={brandImages}
+                                    brandName={brandData.name}
                                 />
-                            </div>
+                            ) : (
+                                <div className="aspect-[4/3] relative bg-white rounded-2xl p-8 shadow-xl flex items-center justify-center">
+                                    <Image
+                                        src={logoUrl}
+                                        alt={`${brandData.name} Logo`}
+                                        fill
+                                        className="object-contain p-6"
+                                    />
+                                </div>
+                            )}
                         </div>
 
                         {/* Brand Info */}
