@@ -76,7 +76,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         name: "CMP",
         slug: "cmp",
         description:
-          "Motor listrik buatan Century Motors Producer yang dirancang tahan banting untuk kondisi ekstrem seperti pertambangan, offshore, dan area tropis. Tersedia dalam standar efisiensi IE1 hingga IE3 dengan sertifikasi ISO dan CE.",
+          "CMP (Century Motors Producer) adalah merek motor listrik asal Australia (diproduksi di China) yang banyak digunakan untuk kebutuhan industri dan komersial. Motor ini dikenal karena efisiensinya dan sering digunakan sebagai penggerak pada sistem pompa, konveyor, dan mesin manufaktur lainnya.",
         catalogs: [
           {
             name: "Katalog Umum CMP Motors",
