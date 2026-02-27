@@ -11,6 +11,7 @@ import { PageHeader } from "@/components/shared/page-header";
 import { PRODUCT_BRANDS_MENU, BrandMenuLink } from "@/lib/constants";
 import { CLIENTS } from "@/lib/data/static";
 import { getCategoryBadgeClasses } from "@/components/sections/home/product-carousel";
+import { BrandImageCarousel } from "@/components/shared/brand-image-carousel";
 
 export function BrandCatalog() {
     const { t } = useLanguage();
@@ -106,6 +107,7 @@ export function BrandCatalog() {
                                 {displayBrands.map(({ category, categorySlug, brand }) => {
                                     const clientData = CLIENTS.find(c => c.name.toLowerCase() === brand.name.toLowerCase());
                                     const logoUrl = clientData?.logoUrl || "/images/placeholder.jpg";
+                                    const brandImages = brand.images || [];
 
                                     return (
                                         <Link
@@ -115,17 +117,27 @@ export function BrandCatalog() {
                                         >
                                             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full transform group-hover:-translate-y-1 group-hover:border-blue-200 dark:group-hover:border-blue-900/50">
                                                 {/* Image Container */}
-                                                <div className="w-full aspect-video relative rounded-xl mb-4 bg-slate-50 flex items-center justify-center p-4">
+                                                <div className="w-full relative rounded-xl mb-4">
                                                     {/* Colored Category Badge */}
-                                                    <span className={`absolute top-2 left-2 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${getCategoryBadgeClasses(categorySlug).bg} ${getCategoryBadgeClasses(categorySlug).text} ${getCategoryBadgeClasses(categorySlug).border}`}>
+                                                    <span className={`absolute top-2 left-2 z-20 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${getCategoryBadgeClasses(categorySlug).bg} ${getCategoryBadgeClasses(categorySlug).text} ${getCategoryBadgeClasses(categorySlug).border}`}>
                                                         {category}
                                                     </span>
-                                                    <Image
-                                                        src={logoUrl}
-                                                        alt={brand.name}
-                                                        fill
-                                                        className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
-                                                    />
+                                                    {brandImages.length > 0 ? (
+                                                        <BrandImageCarousel
+                                                            images={brandImages}
+                                                            brandName={brand.name}
+                                                            compact
+                                                        />
+                                                    ) : (
+                                                        <div className="aspect-video relative bg-slate-50 rounded-xl flex items-center justify-center p-4">
+                                                            <Image
+                                                                src={logoUrl}
+                                                                alt={brand.name}
+                                                                fill
+                                                                className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                                                            />
+                                                        </div>
+                                                    )}
                                                 </div>
 
                                                 {/* Content info */}

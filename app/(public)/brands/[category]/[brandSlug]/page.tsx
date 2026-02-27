@@ -57,7 +57,7 @@ export default async function BrandDetailPage({
 
                     <div className="flex flex-col md:flex-row gap-10 items-stretch">
                         {/* Logo/Carousel Container */}
-                        <div className="w-full md:w-[350px] shrink-0">
+                        <div className="w-full md:w-[450px] shrink-0">
                             {brandImages.length > 0 ? (
                                 <BrandImageCarousel
                                     images={brandImages}
