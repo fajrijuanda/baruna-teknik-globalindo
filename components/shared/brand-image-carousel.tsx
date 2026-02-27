@@ -56,8 +56,8 @@ export function BrandImageCarousel({
                 {/* Image Container */}
                 <div
                     className={cn(
-                        "relative bg-white rounded-2xl shadow-xl overflow-hidden",
-                        compact ? "aspect-video" : "aspect-[16/10]",
+                        "relative rounded-2xl overflow-hidden",
+                        compact ? "bg-slate-50 aspect-[4/5]" : "bg-white shadow-xl aspect-[3/4]",
                         !compact && "cursor-pointer"
                     )}
                     onClick={() => !compact && setIsFullscreen(true)}
@@ -74,10 +74,7 @@ export function BrandImageCarousel({
                                 src={src}
                                 alt={`${brandName} - Produk ${i + 1}`}
                                 fill
-                                className={cn(
-                                    "object-contain",
-                                    compact ? "p-2" : "p-2"
-                                )}
+                                className="object-cover"
                                 sizes={compact ? "(max-width: 768px) 100vw, 300px" : "(max-width: 768px) 100vw, 500px"}
                                 priority={i === 0}
                             />
