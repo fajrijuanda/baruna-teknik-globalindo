@@ -100,6 +100,11 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
             url: "/catalog/Brosur Teco AESV AESU AESV-LA Series SCIM.pdf",
           },
         ],
+        images: [
+          "/images/products/teco-1.jpeg",
+          "/images/products/teco-2.jpeg",
+          "/images/products/teco-3.jpeg",
+        ],
       },
       {
         name: "WEG",
@@ -117,6 +122,17 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
           },
           { name: "WEG NEMA Motors", url: "/catalog/WNema_260208_190827.pdf" },
         ],
+        images: [
+          "/images/products/weg-1.jpeg",
+          "/images/products/weg-2.jpeg",
+          "/images/products/weg-3.jpeg",
+          "/images/products/weg-4.jpeg",
+          "/images/products/weg-5.jpeg",
+          "/images/products/weg-6.jpeg",
+          "/images/products/weg-7.jpeg",
+          "/images/products/weg-8.jpeg",
+          "/images/products/weg-9.jpeg",
+        ],
       },
       {
         name: "Brook Crompton",
@@ -128,6 +144,13 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
             name: "Brosur Brook Crompton WE3-5",
             url: "/catalog/BC brochure - WE3-5.pdf",
           },
+        ],
+        images: [
+          "/images/products/brook-crompton-1.jpeg",
+          "/images/products/brook-crompton-2.jpeg",
+          "/images/products/brook-crompton-3.jpeg",
+          "/images/products/brook-crompton-4.jpeg",
+          "/images/products/brook-crompton-5.jpeg",
         ],
       },
       {
