@@ -88,6 +88,13 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
             url: "/catalog/CMP NEMA MOTOR - NEP Series Premium Efficiency-1.pdf",
           },
         ],
+        images: [
+          "/images/products/cmp-1.jpeg",
+          "/images/products/cmp-2.jpeg",
+          "/images/products/cmp-3.jpeg",
+          "/images/products/cmp-4.jpeg",
+          "/images/products/cmp-5.jpeg",
+        ],
       },
       {
         name: "TECO",
@@ -164,6 +171,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
             url: "/catalog/Brosur Motor Electric TITAN.pdf",
           },
         ],
+        images: ["/images/products/titan-1.jpeg"],
       },
       {
         name: "Yuema",
@@ -289,6 +297,13 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         slug: "kondo",
         description:
           "Merek andal untuk kebutuhan perlengkapan industri maritim dan general engineering.",
+      },
+      {
+        name: "General Item",
+        slug: "general-item",
+        description:
+          "Berbagai macam kebutuhan barang dan perlengkapan industri harian, mulai dari alat perkakas, perlengkapan kelistrikan, sistem pneumatik, alat keselamatan kerja (K3), hingga bahan kebutuhan harian seperti pelumas dan pembersih khusus industri.",
+        images: ["/images/products/general-1.jpeg"],
       },
     ],
   },
