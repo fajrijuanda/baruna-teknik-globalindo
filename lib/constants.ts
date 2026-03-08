@@ -287,20 +287,8 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
     slug: "general",
     brands: [
       {
-        name: "Crosby",
-        slug: "crosby",
-        description:
-          "Solusi rintisan alat berat (rigging) dan angkat (lifting hardware) dengan standar keamanan tertinggi di seluruh dunia.",
-      },
-      {
-        name: "Kondo",
-        slug: "kondo",
-        description:
-          "Merek andal untuk kebutuhan perlengkapan industri maritim dan general engineering.",
-      },
-      {
-        name: "General Item",
-        slug: "general-item",
+        name: "General Supply",
+        slug: "general-supply",
         description:
           "Berbagai macam kebutuhan barang dan perlengkapan industri harian, mulai dari alat perkakas, perlengkapan kelistrikan, sistem pneumatik, alat keselamatan kerja (K3), hingga bahan kebutuhan harian seperti pelumas dan pembersih khusus industri.",
         images: ["/images/products/general-1.jpeg"],
