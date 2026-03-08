@@ -1,0 +1,36 @@
+
+> baruna-teknik-web@0.1.0 build
+> prisma generate && next build
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (v7.4.2) to .\node_modules\@prisma\client in 120ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+▲ Next.js 16.1.3 (Turbopack)
+- Environments: .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 9.5s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+Error [PrismaClientConstructorValidationError]: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+    at module evaluation (D:\Project\baruna-teknik-web\.next\server\chunks\[root-of-the-server]__d2d1dc2f._.js:1:1168)
+    at instantiateModule (D:\Project\baruna-teknik-web\.next\server\chunks\[turbopack]_runtime.js:740:9)
+    at getOrInstantiateModuleFromParent (D:\Project\baruna-teknik-web\.next\server\chunks\[turbopack]_runtime.js:763:12)
+    at Context.esmImport [as i] (D:\Project\baruna-teknik-web\.next\server\chunks\[turbopack]_runtime.js:228:20)
+    at module evaluation (D:\Project\baruna-teknik-web\.next\server\chunks\[root-of-the-server]__d2d1dc2f._.js:1:1521)
+    at instantiateModule (D:\Project\baruna-teknik-web\.next\server\chunks\[turbopack]_runtime.js:740:9)
+    at instantiateRuntimeModule (D:\Project\baruna-teknik-web\.next\server\chunks\[turbopack]_runtime.js:768:12)
+
+> Build error occurred
+Error: Failed to collect page data for /api/debug
+    at ignore-listed frames {
+  type: 'Error'
+}

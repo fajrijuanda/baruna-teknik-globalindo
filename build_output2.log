@@ -1,0 +1,82 @@
+
+> baruna-teknik-web@0.1.0 build
+> prisma generate && next build
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (v7.4.2) to .\node_modules\@prisma\client in 116ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+▲ Next.js 16.1.3 (Turbopack)
+- Environments: .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.6s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/16) ...
+(node:29352) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 15 workers (4/16) 
+prisma:error 
+Invalid `prisma.product.count()` invocation:
+
+
+Error opening a TLS connection: self-signed certificate in certificate chain
+prisma:error 
+Invalid `prisma.client.findMany()` invocation:
+
+
+Error opening a TLS connection: self-signed certificate in certificate chain
+prisma:error 
+Invalid `prisma.category.count()` invocation:
+
+
+Error opening a TLS connection: self-signed certificate in certificate chain
+prisma:error 
+Invalid `prisma.visitor.count()` invocation:
+
+
+Error opening a TLS connection: self-signed certificate in certificate chain
+prisma:error 
+Invalid `prisma.client.count()` invocation:
+
+
+Error opening a TLS connection: self-signed certificate in certificate chain
+prisma:error 
+Invalid `prisma.category.findMany()` invocation:
+
+
+Error opening a TLS connection: self-signed certificate in certificate chain
+prisma:error 
+Invalid `prisma.admin.count()` invocation:
+
+
+Error opening a TLS connection: self-signed certificate in certificate chain
+Error occurred prerendering page "/admin". Read more: https://nextjs.org/docs/messages/prerender-error
+Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.product.count()` invocation:
+
+
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at async o (D:\Project\baruna-teknik-web\.next\server\chunks\ssr\[root-of-the-server]__029b6540._.js:1:5198)
+    at async q (D:\Project\baruna-teknik-web\.next\server\chunks\ssr\[root-of-the-server]__029b6540._.js:1:5567) {
+  code: 'P1011',
+  meta: [Object],
+  clientVersion: '7.4.2',
+  digest: '605020900'
+}
+Export encountered an error on /admin/(dashboard)/page: /admin, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null

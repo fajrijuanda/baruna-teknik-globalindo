@@ -295,6 +295,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         images: ["/images/products/general-1.jpeg"],
         partnerLogos: [
           "/images/general/3m.png",
+          "/images/general/bosch.png",
           "/images/general/broco.png",
           "/images/general/dekson.png",
           "/images/general/dynabrade.png",
@@ -302,6 +303,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
           "/images/general/fluke.png",
           "/images/general/karcher.png",
           "/images/general/krisbow.png",
+          "/images/general/makita.png",
           "/images/general/metabo.png",
           "/images/general/philips.png",
           "/images/general/schneider.png",

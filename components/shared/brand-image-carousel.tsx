@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -108,23 +109,23 @@ export function BrandImageCarousel({
             </div>
 
             {/* Fullscreen Lightbox */}
-            {isFullscreen && !compact && (
+            {isFullscreen && !compact && typeof document !== "undefined" && createPortal(
                 <div
-                    className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-sm flex items-center justify-center"
+                    className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
                     onClick={() => setIsFullscreen(false)}
                 >
                     {/* Close Button */}
                     <button
                         onClick={() => setIsFullscreen(false)}
-                        className="absolute top-4 right-4 z-10 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+                        className="absolute top-4 right-4 md:top-6 md:right-6 z-10 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
                         aria-label="Tutup"
                     >
-                        <X className="h-6 w-6" />
+                        <X className="h-6 w-6 md:h-8 md:w-8" />
                     </button>
 
                     {/* Fullscreen Image */}
                     <div
-                        className="relative w-[90vw] h-[80vh] max-w-5xl"
+                        className="relative w-full h-full max-w-5xl max-h-[85vh]"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {images.map((src, i) => (
@@ -170,10 +171,11 @@ export function BrandImageCarousel({
                     )}
 
                     {/* Image counter */}
-                    <div className="absolute top-4 left-4 text-white/70 text-sm font-medium">
+                    <div className="absolute top-4 left-4 md:top-6 md:left-6 text-white/70 text-sm md:text-base font-medium">
                         {currentIndex + 1} / {images.length}
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     );
