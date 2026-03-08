@@ -181,6 +181,29 @@ export default async function BrandDetailPage({
                     </div>
                 </div>
             </div>
+
+            {/* Partner Logos Section */}
+            {brandData.partnerLogos && brandData.partnerLogos.length > 0 && (
+                <div className="mt-12 w-full">
+                    <section className="bg-white dark:bg-slate-900 rounded-2xl p-8 lg:p-12 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 className="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
+                            Mitra Principal Kami
+                        </h3>
+                        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-6 lg:gap-8 items-center justify-center">
+                            {brandData.partnerLogos.map((logo, index) => (
+                                <div key={index} className="aspect-[3/2] relative flex items-center justify-center group">
+                                    <Image
+                                        src={logo}
+                                        alt={`${brandData.name} Partner Logo ${index + 1}`}
+                                        fill
+                                        className="object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                </div>
+            )}
         </div>
     );
 }

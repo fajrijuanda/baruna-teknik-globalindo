@@ -60,6 +60,7 @@ export interface BrandMenuLink {
   description?: string;
   catalogs?: { name: string; url: string }[];
   images?: string[];
+  partnerLogos?: string[];
 }
 
 export interface CategoryMenuLink {
@@ -290,8 +291,24 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         name: "General Supply",
         slug: "general-supply",
         description:
-          "Berbagai macam kebutuhan barang dan perlengkapan industri harian, mulai dari alat perkakas, perlengkapan kelistrikan, sistem pneumatik, alat keselamatan kerja (K3), hingga bahan kebutuhan harian seperti pelumas dan pembersih khusus industri.",
+          "Solusi lengkap untuk berbagai macam kebutuhan barang dan perlengkapan industri harian Anda. Kami menyediakan mulai dari alat perkakas presisi, perlengkapan kelistrikan yang aman, sistem pneumatik, alat keselamatan kerja (K3) standar tinggi, perkengkapan kebersihan profesional, hingga bahan maintenance harian seperti pelumas dan chemical khusus industri. Melalui jaringan mitra global, kami memastikan kualitas dan ketersediaan barang untuk menjaga kelancaran operasional perusahaan Anda.",
         images: ["/images/products/general-1.jpeg"],
+        partnerLogos: [
+          "/images/general/3m.png",
+          "/images/general/broco.png",
+          "/images/general/dekson.png",
+          "/images/general/dynabrade.png",
+          "/images/general/elora.png",
+          "/images/general/fluke.png",
+          "/images/general/karcher.png",
+          "/images/general/krisbow.png",
+          "/images/general/metabo.png",
+          "/images/general/philips.png",
+          "/images/general/schneider.png",
+          "/images/general/sellery.png",
+          "/images/general/stanley.png",
+          "/images/general/toto.png",
+        ],
       },
     ],
   },
