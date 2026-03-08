@@ -98,6 +98,28 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         ],
       },
       {
+        name: "Elektrim",
+        slug: "elektrim",
+        description:
+          "Motor listrik buatan Eropa (Polandia) dengan reputasi kuat untuk keandalan jangka panjang. Tersedia hingga 6300 HP untuk berbagai aplikasi industri seperti manufaktur, oil & gas, dan pertambangan.",
+        catalogs: [
+          {
+            name: "Katalog Elektrim IE1/IE3",
+            url: "/catalog/EMM ELEKTRIM IE1_IE3 katalog_removed (2).pdf",
+          },
+        ],
+        images: [
+          "/images/products/elektrim-1.jpeg",
+          "/images/products/elektrim-2.jpeg",
+          "/images/products/elektrim-3.jpeg",
+          "/images/products/elektrim-4.jpeg",
+          "/images/products/elektrim-5.jpeg",
+          "/images/products/elektrim-6.jpeg",
+          "/images/products/elektrim-7.jpeg",
+          "/images/products/elektrim-8.jpeg",
+        ],
+      },
+      {
         name: "TECO",
         slug: "teco",
         description:
@@ -185,28 +207,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
             url: "/catalog/Brosur_Yuema_Motor_YU_&_SA.pdf",
           },
         ],
-      },
-      {
-        name: "Elektrim",
-        slug: "elektrim",
-        description:
-          "Motor listrik buatan Eropa (Polandia) dengan reputasi kuat untuk keandalan jangka panjang. Tersedia hingga 6300 HP untuk berbagai aplikasi industri seperti manufaktur, oil & gas, dan pertambangan.",
-        catalogs: [
-          {
-            name: "Katalog Elektrim IE1/IE3",
-            url: "/catalog/EMM ELEKTRIM IE1_IE3 katalog_removed (2).pdf",
-          },
-        ],
-        images: [
-          "/images/products/elektrim-1.jpeg",
-          "/images/products/elektrim-2.jpeg",
-          "/images/products/elektrim-3.jpeg",
-          "/images/products/elektrim-4.jpeg",
-          "/images/products/elektrim-5.jpeg",
-          "/images/products/elektrim-6.jpeg",
-          "/images/products/elektrim-7.jpeg",
-          "/images/products/elektrim-8.jpeg",
-        ],
+        images: ["/images/products/yuema-1.jpeg"],
       },
     ],
   },
