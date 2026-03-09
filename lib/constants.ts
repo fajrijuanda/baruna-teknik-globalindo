@@ -47,7 +47,6 @@ export interface ProductCategory {
 export const PRODUCT_CATEGORIES: readonly ProductCategory[] = [
   { id: "industrial-pump", name: "Industrial Pump", slug: "industrial-pump" },
   { id: "valve", name: "Valve", slug: "valve" },
-  { id: "sparepart", name: "Sparepart", slug: "sparepart" },
 ] as const;
 
 // ============================================================================
@@ -208,18 +207,6 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
           },
         ],
         images: ["/images/products/yuema-1.jpeg"],
-      },
-    ],
-  },
-  {
-    category: "Sparepart",
-    slug: "sparepart",
-    brands: [
-      {
-        name: "Maktec",
-        slug: "maktec",
-        description:
-          "Suku cadang dan peralatan daya listrik berkualitas yang terkenal awet untuk keperluan bengkel dan konstruksi.",
       },
     ],
   },
