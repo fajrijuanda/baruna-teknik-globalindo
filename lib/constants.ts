@@ -262,12 +262,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         description:
           "Pimpinan global di bidang pompa dosis (dosing pump) yang memberikan kontrol presisi tinggi untuk aplikasi bahan kimia.",
       },
-      {
-        name: "Tokico",
-        slug: "tokico",
-        description:
-          "Spesialis dalam alat ukur fluida (flow meter) dan pompa untuk menjamin akurasi tinggi pada perhitungan bahan bakar laut maupun industri.",
-      },
+
     ],
   },
 

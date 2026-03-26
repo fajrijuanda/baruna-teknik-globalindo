@@ -138,12 +138,6 @@ export const CLIENTS = [
     isFeatured: true,
   },
   {
-    id: "client-11",
-    name: "Tokico",
-    logoUrl: "/images/clients/tokico.png",
-    isFeatured: true,
-  },
-  {
     id: "client-12",
     name: "Arita",
     logoUrl: "/images/clients/arita.png",
