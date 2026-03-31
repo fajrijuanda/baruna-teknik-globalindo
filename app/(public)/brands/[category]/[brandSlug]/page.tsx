@@ -43,6 +43,21 @@ export default async function BrandDetailPage({
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-400 via-slate-900 to-slate-900"></div>
 
+                {/* Header Background Image (decorative, right side) */}
+                {brandData.headerBgImage && (
+                    <div className="absolute right-0 top-0 h-full w-1/2 hidden md:block">
+                        <Image
+                            src={brandData.headerBgImage}
+                            alt=""
+                            fill
+                            className="object-cover object-center opacity-20"
+                            priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-slate-900/60" />
+                    </div>
+                )}
+
                 <div className="container relative z-10 mx-auto px-4">
                     {/* Breadcrumbs */}
                     <div className="flex flex-wrap items-center gap-2 text-sm text-slate-300 mb-8 md:mb-12">

@@ -60,6 +60,7 @@ export interface BrandMenuLink {
   catalogs?: { name: string; url: string }[];
   images?: string[];
   partnerLogos?: string[];
+  headerBgImage?: string;
 }
 
 export interface CategoryMenuLink {
@@ -117,6 +118,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
           "/images/products/elektrim-7.jpeg",
           "/images/products/elektrim-8.jpeg",
         ],
+        headerBgImage: "/images/products/elektrim-bg.jpeg",
       },
       {
         name: "TECO",
@@ -219,6 +221,13 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         slug: "cnp",
         description:
           "Spesialis pompa sentrifugal asal Tiongkok dengan material baja tahan karat bermutu tinggi untuk kebutuhan domestik dan industri water treatment.",
+        catalogs: [
+          {
+            name: "CNP SZ Series",
+            url: "/catalog/CNP SZ.pdf",
+          },
+        ],
+        images: ["/images/products/cnp-1.jpeg"],
       },
       {
         name: "Ebara",
@@ -231,6 +240,21 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         slug: "flugo",
         description:
           "Merek pompa industri yang menawarkan desain inovatif untuk optimasi aliran cairan dalam volume besar atau bertekanan tinggi.",
+        catalogs: [
+          {
+            name: "Flugo Air-Operated Diaphragm Pump - FAP-P Series",
+            url: "/catalog/(Brochure) Flugo Air-Operated Diaphragm Pump - FAP-P Series.pdf",
+          },
+          {
+            name: "Flugo GMS Series",
+            url: "/catalog/GMS.pdf",
+          },
+          {
+            name: "Flugo RCB Gear Pump",
+            url: "/catalog/RCB Gear Pump Catalogue (1).pdf",
+          },
+        ],
+        images: ["/images/products/flugo-1.jpeg"],
       },
       {
         name: "KSB",
@@ -261,6 +285,54 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
         slug: "milton-roy",
         description:
           "Pimpinan global di bidang pompa dosis (dosing pump) yang memberikan kontrol presisi tinggi untuk aplikasi bahan kimia.",
+      },
+      {
+        name: "Dura",
+        slug: "dura",
+        description:
+          "Produsen pompa standar ANSI yang menghadirkan performa andal dan tahan lama untuk aplikasi industri berat seperti petrokimia, pengolahan air, dan proses manufaktur.",
+        catalogs: [
+          {
+            name: "DURA Pump ANSI Standard Brochure",
+            url: "/catalog/DURA Pump ANSI Standard Brochure.pdf",
+          },
+        ],
+      },
+      {
+        name: "OBL",
+        slug: "obl",
+        description:
+          "Merek pompa dosis (dosing pump) asal Italia dengan teknologi presisi tinggi, ideal untuk injeksi bahan kimia di industri oil & gas, water treatment, dan petrokimia.",
+        catalogs: [
+          {
+            name: "Katalog OBL Dosing Pump",
+            url: "/catalog/OBL-all.pdf",
+          },
+        ],
+      },
+      {
+        name: "Rotor",
+        slug: "rotor",
+        description:
+          "Spesialis pompa magnetik (magnetic drive pump) yang dirancang untuk penanganan cairan korosif dan berbahaya tanpa risiko kebocoran, cocok untuk industri kimia dan farmasi.",
+        catalogs: [
+          {
+            name: "Rotor Magnetic Pump CQF Series",
+            url: "/catalog/Rotor_Magnetic_Pump CQF.pdf",
+          },
+        ],
+      },
+      {
+        name: "Yamada",
+        slug: "yamada",
+        description:
+          "Produsen pompa diafragma operasi udara (AODD) terkemuka asal Jepang, dikenal karena keandalan dan efisiensi tinggi dalam memindahkan berbagai jenis fluida industri.",
+        catalogs: [
+          {
+            name: "YAMADA AODD Catalog 2024",
+            url: "/catalog/YAMADA AODD_Catalog-2024.pdf",
+          },
+        ],
       },
 
     ],

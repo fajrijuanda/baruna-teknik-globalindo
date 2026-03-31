@@ -203,6 +203,30 @@ export const CLIENTS = [
     logoUrl: "/images/placeholder.jpg",
     isFeatured: false,
   },
+  {
+    id: "client-23",
+    name: "Dura",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-24",
+    name: "OBL",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-25",
+    name: "Rotor",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
+  {
+    id: "client-26",
+    name: "Yamada",
+    logoUrl: "/images/placeholder.jpg",
+    isFeatured: false,
+  },
 ];
 
 export const PAGE_CONTENT = {
