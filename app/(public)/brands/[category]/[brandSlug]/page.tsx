@@ -41,13 +41,12 @@ export default async function BrandDetailPage({
             {/* Hero Banner Image (only when headerBgImage exists) */}
             {brandData.headerBgImage && (
                 <div className="w-full bg-slate-900 pt-20">
-                    <div className="w-full h-[250px] md:h-[350px] lg:h-[420px] relative">
-                        <Image
+                    <div className="w-full relative bg-white">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src={brandData.headerBgImage}
                             alt={`${brandData.name} banner`}
-                            fill
-                            className="object-cover object-center"
-                            priority
+                            className="w-full h-auto max-h-[500px] object-contain mx-auto"
                         />
                     </div>
                 </div>
