@@ -36,31 +36,25 @@ export default async function BrandDetailPage({
     // Get catalogs from brand data
     const catalogs = brandData.catalogs || [];
 
-    const hasHeroBg = !!brandData.headerBgImage;
-
     return (
         <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-24">
-            {/* Header Area */}
-            <div className={`relative bg-slate-900 overflow-hidden ${hasHeroBg ? 'pt-32 pb-0 md:pt-40 md:pb-0' : 'pt-32 pb-16 md:pt-40 md:pb-24'}`}>
-                {/* Background Pattern (shown when no hero image) */}
-                {!hasHeroBg && (
-                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-400 via-slate-900 to-slate-900"></div>
-                )}
+            {/* Hero Banner Image (only when headerBgImage exists) */}
+            {brandData.headerBgImage && (
+                <div className="w-full h-[300px] md:h-[400px] lg:h-[480px] relative">
+                    <Image
+                        src={brandData.headerBgImage}
+                        alt={`${brandData.name} banner`}
+                        fill
+                        className="object-cover object-center"
+                        priority
+                    />
+                </div>
+            )}
 
-                {/* Full Hero Background Image */}
-                {hasHeroBg && (
-                    <>
-                        <Image
-                            src={brandData.headerBgImage!}
-                            alt={`${brandData.name} banner`}
-                            fill
-                            className="object-cover object-center"
-                            priority
-                        />
-                        {/* Dark overlay for readability */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/40 to-slate-900/80" />
-                    </>
-                )}
+            {/* Header Area with Dark Theme */}
+            <div className={`relative bg-slate-900 overflow-hidden ${brandData.headerBgImage ? 'pt-10 pb-16 md:pt-14 md:pb-24' : 'pt-32 pb-16 md:pt-40 md:pb-24'}`}>
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-400 via-slate-900 to-slate-900"></div>
 
                 <div className="container relative z-10 mx-auto px-4">
                     {/* Breadcrumbs */}
@@ -74,84 +68,49 @@ export default async function BrandDetailPage({
                         <span className="font-semibold text-white">{brandData.name}</span>
                     </div>
 
-                    {hasHeroBg ? (
-                        /* Hero layout: brand name + tagline centered over the full image */
-                        <div className="flex flex-col items-center justify-center text-center py-12 md:py-20">
-                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-semibold tracking-wide uppercase mb-6">
-                                {categoryData.category} Partner
-                            </span>
-                            <h1 className="text-5xl md:text-7xl font-bold font-oswald text-white tracking-tight mb-5 drop-shadow-lg">
-                                {brandData.name}
-                            </h1>
-                            <p className="text-lg md:text-xl text-slate-200 max-w-2xl leading-relaxed drop-shadow-md">
-                                Kami adalah penyedia resmi dan terpercaya untuk produk-produk {brandData.name}. Temukan solusi {categoryData.category.toLowerCase()} terbaik untuk kebutuhan industri Anda.
-                            </p>
-                        </div>
-                    ) : (
-                        /* Default layout: carousel + info side by side */
-                        <div className="flex flex-col md:flex-row gap-10 items-stretch">
-                            {/* Logo/Carousel Container */}
-                            <div className="w-full md:w-[320px] shrink-0">
-                                {brandImages.length > 0 ? (
-                                    <BrandImageCarousel
-                                        images={brandImages}
-                                        brandName={brandData.name}
+                    <div className="flex flex-col md:flex-row gap-10 items-stretch">
+                        {/* Logo/Carousel Container */}
+                        <div className="w-full md:w-[320px] shrink-0">
+                            {brandImages.length > 0 ? (
+                                <BrandImageCarousel
+                                    images={brandImages}
+                                    brandName={brandData.name}
+                                />
+                            ) : (
+                                <div className="aspect-[4/3] relative bg-white rounded-2xl p-8 shadow-xl flex items-center justify-center">
+                                    <Image
+                                        src={logoUrl}
+                                        alt={`${brandData.name} Logo`}
+                                        fill
+                                        className="object-contain p-6"
                                     />
-                                ) : (
-                                    <div className="aspect-[4/3] relative bg-white rounded-2xl p-8 shadow-xl flex items-center justify-center">
-                                        <Image
-                                            src={logoUrl}
-                                            alt={`${brandData.name} Logo`}
-                                            fill
-                                            className="object-contain p-6"
-                                        />
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Brand Info */}
-                            <div className="flex-1 flex flex-col justify-center space-y-5">
-                                <div>
-                                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold tracking-wide uppercase mb-4">
-                                        {categoryData.category} Partner
-                                    </span>
-                                    <h1 className="text-4xl md:text-6xl font-bold font-oswald text-white tracking-tight mb-4">
-                                        {brandData.name}
-                                    </h1>
-                                    <p className="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-                                        Kami adalah penyedia resmi dan terpercaya untuk produk-produk {brandData.name}. Temukan solusi {categoryData.category.toLowerCase()} terbaik untuk kebutuhan industri Anda dengan standar kualitas kelas dunia.
-                                    </p>
                                 </div>
+                            )}
+                        </div>
+
+                        {/* Brand Info */}
+                        <div className="flex-1 flex flex-col justify-center space-y-5">
+                            <div>
+                                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold tracking-wide uppercase mb-4">
+                                    {categoryData.category} Partner
+                                </span>
+                                <h1 className="text-4xl md:text-6xl font-bold font-oswald text-white tracking-tight mb-4">
+                                    {brandData.name}
+                                </h1>
+                                <p className="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
+                                    Kami adalah penyedia resmi dan terpercaya untuk produk-produk {brandData.name}. Temukan solusi {categoryData.category.toLowerCase()} terbaik untuk kebutuhan industri Anda dengan standar kualitas kelas dunia.
+                                </p>
                             </div>
                         </div>
-                    )}
+                    </div>
                 </div>
 
                 {/* Bottom Fade */}
                 <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent z-10" />
             </div>
 
-            {/* Carousel section below header (only for hero bg layout) */}
-            {hasHeroBg && brandImages.length > 0 && (
-                <div className="container relative z-20 mx-auto px-4 -mt-8 mb-10">
-                    <div className="flex flex-col md:flex-row gap-8 items-start">
-                        <div className="w-full md:w-[320px] shrink-0">
-                            <BrandImageCarousel
-                                images={brandImages}
-                                brandName={brandData.name}
-                            />
-                        </div>
-                        <div className="flex-1 flex items-center">
-                            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                                {brandData.description || `Produk dari ${brandData.name} dirancang untuk memberikan kinerja optimal dan ketahanan jangka panjang di berbagai aplikasi industri.`}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             {/* Content & Action Area */}
-            <div className={`container relative z-20 mx-auto px-4 ${hasHeroBg && brandImages.length > 0 ? '' : '-mt-8'}`}>
+            <div className="container relative z-20 mx-auto px-4 -mt-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                     {/* Main Content Details */}
                     <div className="lg:col-span-2">
