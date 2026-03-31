@@ -93,6 +93,9 @@ export function ProductCarousel() {
                                 c => c.name.toLowerCase() === brand.name.toLowerCase()
                             );
                             const logoUrl = clientData?.logoUrl || "/images/placeholder.jpg";
+                            // Use first product image if available, otherwise fall back to logo
+                            const displayImage = (brand.images && brand.images.length > 0) ? brand.images[0] : logoUrl;
+                            const isProductImage = !!(brand.images && brand.images.length > 0);
                             const badgeColors = getCategoryBadgeClasses(brand.categorySlug);
 
                             return (
@@ -103,17 +106,17 @@ export function ProductCarousel() {
                                             className="group block h-full"
                                         >
                                             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group-hover:-translate-y-1 group-hover:border-blue-200 dark:group-hover:border-blue-900/50">
-                                                {/* Logo Area */}
-                                                <div className="w-full aspect-[4/3] relative bg-slate-50 dark:bg-slate-800/50 flex items-center justify-center p-6">
+                                                {/* Image Area */}
+                                                <div className="w-full aspect-[4/3] relative bg-slate-50 dark:bg-slate-800/50 flex items-center justify-center overflow-hidden">
                                                     {/* Category Badge */}
                                                     <span className={`absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${badgeColors.bg} ${badgeColors.text} ${badgeColors.border}`}>
                                                         {brand.category}
                                                     </span>
                                                     <Image
-                                                        src={logoUrl}
+                                                        src={displayImage}
                                                         alt={brand.name}
                                                         fill
-                                                        className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+                                                        className={`group-hover:scale-105 transition-transform duration-500 ${isProductImage ? "object-cover" : "object-contain p-6"}`}
                                                         sizes="(max-width: 768px) 260px, 300px"
                                                     />
                                                 </div>

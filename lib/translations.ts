@@ -53,7 +53,7 @@ export const translations = {
       subtitle: "Jelajahi beberapa solusi industri terlaris kami.",
     },
     clients: {
-      title: "KLIEN & MITRA KAMI",
+      title: "MITRA KAMI",
     },
 
     footer: {

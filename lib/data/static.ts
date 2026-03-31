@@ -86,73 +86,73 @@ export const CLIENTS = [
   {
     id: "client-1",
     name: "TECO",
-    logoUrl: "/images/clients/teco.png",
+    logoUrl: "/images/mitra/teco.png",
     isFeatured: true,
   },
   {
     id: "client-2",
     name: "WEG",
-    logoUrl: "/images/clients/weg_real.png",
+    logoUrl: "/images/mitra/weg_real.png",
     isFeatured: true,
   },
   {
     id: "client-4",
     name: "Milton Roy",
-    logoUrl: "/images/clients/milton_roy_real.png",
+    logoUrl: "/images/mitra/milton_roy_real.png",
     isFeatured: true,
   },
   {
     id: "client-5",
     name: "CNP",
-    logoUrl: "/images/clients/cnp_real.png",
+    logoUrl: "/images/mitra/cnp_real.png",
     isFeatured: true,
   },
   {
     id: "client-6",
     name: "Flugo",
-    logoUrl: "/images/clients/flugo_real.png",
+    logoUrl: "/images/mitra/flugo_real.png",
     isFeatured: true,
   },
   {
     id: "client-7",
     name: "KSB",
-    logoUrl: "/images/clients/ksb.svg",
+    logoUrl: "/images/mitra/ksb.svg",
     isFeatured: false,
   },
   {
     id: "client-8",
     name: "Ebara",
-    logoUrl: "/images/clients/ebara_real.png",
+    logoUrl: "/images/mitra/ebara_real.png",
     isFeatured: true,
   },
   {
     id: "client-9",
     name: "Wilo",
-    logoUrl: "/images/clients/wilo.svg",
+    logoUrl: "/images/mitra/wilo.svg",
     isFeatured: false,
   },
   {
     id: "client-10",
     name: "Maktec",
-    logoUrl: "/images/clients/maktec.png",
+    logoUrl: "/images/mitra/maktec.png",
     isFeatured: true,
   },
   {
     id: "client-12",
     name: "Arita",
-    logoUrl: "/images/clients/arita.png",
+    logoUrl: "/images/mitra/arita.png",
     isFeatured: true,
   },
   {
     id: "client-13",
     name: "Ebro Armaturen",
-    logoUrl: "/images/clients/ebro.png",
+    logoUrl: "/images/mitra/ebro.png",
     isFeatured: true,
   },
   {
     id: "client-14",
     name: "Bosch",
-    logoUrl: "/images/clients/bosch.png",
+    logoUrl: "/images/mitra/bosch.png",
     isFeatured: true,
   },
   {
@@ -170,7 +170,7 @@ export const CLIENTS = [
   {
     id: "client-17",
     name: "CMP",
-    logoUrl: "/images/clients/cmp-catalog.jpg",
+    logoUrl: "/images/mitra/cmp-catalog.jpg",
     isFeatured: false,
   },
   {
@@ -206,14 +206,14 @@ export const CLIENTS = [
   {
     id: "client-23",
     name: "Dura",
-    logoUrl: "/images/placeholder.jpg",
-    isFeatured: false,
+    logoUrl: "/images/mitra/dura.png",
+    isFeatured: true,
   },
   {
     id: "client-24",
     name: "OBL",
-    logoUrl: "/images/placeholder.jpg",
-    isFeatured: false,
+    logoUrl: "/images/mitra/obl.png",
+    isFeatured: true,
   },
   {
     id: "client-25",
@@ -224,8 +224,8 @@ export const CLIENTS = [
   {
     id: "client-26",
     name: "Yamada",
-    logoUrl: "/images/placeholder.jpg",
-    isFeatured: false,
+    logoUrl: "/images/mitra/yamada.png",
+    isFeatured: true,
   },
 ];
 
