@@ -40,7 +40,7 @@ export default async function BrandDetailPage({
         <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-24">
             {/* Hero Banner Image (only when headerBgImage exists) */}
             {brandData.headerBgImage && (
-                <div className="w-full bg-slate-900 pt-20">
+                <div className="w-full bg-slate-900 pt-[88px]">
                     <div className="w-full relative bg-white">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
