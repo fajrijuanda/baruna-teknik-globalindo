@@ -46,7 +46,7 @@ export default async function BrandDetailPage({
                         <img
                             src={brandData.headerBgImage}
                             alt={`${brandData.name} banner`}
-                            className="w-full h-auto max-h-[500px] object-contain mx-auto"
+                            className="w-full h-auto max-h-[400px] md:max-h-none object-contain mx-auto"
                         />
                     </div>
                 </div>
