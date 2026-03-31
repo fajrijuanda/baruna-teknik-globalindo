@@ -40,19 +40,21 @@ export default async function BrandDetailPage({
         <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-24">
             {/* Hero Banner Image (only when headerBgImage exists) */}
             {brandData.headerBgImage && (
-                <div className="w-full h-[300px] md:h-[400px] lg:h-[480px] relative">
-                    <Image
-                        src={brandData.headerBgImage}
-                        alt={`${brandData.name} banner`}
-                        fill
-                        className="object-cover object-center"
-                        priority
-                    />
+                <div className="w-full bg-slate-900 pt-20">
+                    <div className="w-full h-[250px] md:h-[350px] lg:h-[420px] relative">
+                        <Image
+                            src={brandData.headerBgImage}
+                            alt={`${brandData.name} banner`}
+                            fill
+                            className="object-cover object-center"
+                            priority
+                        />
+                    </div>
                 </div>
             )}
 
             {/* Header Area with Dark Theme */}
-            <div className={`relative bg-slate-900 overflow-hidden ${brandData.headerBgImage ? 'pt-10 pb-16 md:pt-14 md:pb-24' : 'pt-32 pb-16 md:pt-40 md:pb-24'}`}>
+            <div className={`relative bg-slate-900 overflow-hidden ${brandData.headerBgImage ? 'pt-8 pb-16 md:pt-12 md:pb-24' : 'pt-32 pb-16 md:pt-40 md:pb-24'}`}>
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-400 via-slate-900 to-slate-900"></div>
 
