@@ -46,12 +46,12 @@ export default async function BrandDetailPage({
                 {/* Header Background Image (decorative, right side) */}
                 {brandData.headerBgImage && (
                     <div className="absolute right-[10%] lg:right-[12%] top-1/2 -translate-y-1/2 hidden md:block z-[5]">
-                        <div className="relative w-[360px] h-[300px] lg:w-[460px] lg:h-[360px] rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="relative w-[360px] h-[300px] lg:w-[460px] lg:h-[360px] rounded-2xl overflow-hidden shadow-2xl bg-white">
                             <Image
                                 src={brandData.headerBgImage}
                                 alt={`${brandData.name} product`}
                                 fill
-                                className="object-cover"
+                                className="object-contain p-4"
                                 priority
                             />
                         </div>
