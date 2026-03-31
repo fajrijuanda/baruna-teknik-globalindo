@@ -5,6 +5,7 @@ import { MessageCircle, Download, ChevronRight, CheckCircle2 } from "lucide-reac
 import { PRODUCT_BRANDS_MENU, SITE_CONFIG } from "@/lib/constants";
 import { CLIENTS } from "@/lib/data/static";
 import { BrandImageCarousel } from "@/components/shared/brand-image-carousel";
+import { HeaderBrandImage } from "@/components/shared/header-brand-image";
 
 // Next.js 15 requires dynamic route params to be treated as a Promise
 export default async function BrandDetailPage({
@@ -46,15 +47,10 @@ export default async function BrandDetailPage({
                 {/* Header Background Image (decorative, right side) */}
                 {brandData.headerBgImage && (
                     <div className="absolute right-[10%] lg:right-[12%] top-1/2 -translate-y-1/2 hidden md:block z-[5]">
-                        <div className="relative w-[360px] h-[300px] lg:w-[460px] lg:h-[360px] rounded-2xl overflow-hidden shadow-2xl bg-white">
-                            <Image
-                                src={brandData.headerBgImage}
-                                alt={`${brandData.name} product`}
-                                fill
-                                className="object-contain p-4"
-                                priority
-                            />
-                        </div>
+                        <HeaderBrandImage
+                            src={brandData.headerBgImage}
+                            brandName={brandData.name}
+                        />
                     </div>
                 )}
 
