@@ -16,6 +16,7 @@ export function Navbar() {
     const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const { t } = useLanguage();
+    const isBrandPage = pathname.startsWith("/brands/");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -63,7 +64,9 @@ export function Navbar() {
                 "fixed top-0 z-50 w-full transition-all duration-300",
                 isScrolled
                     ? "bg-white/80 backdrop-blur-md shadow-sm dark:bg-black/80"
-                    : "bg-transparent"
+                    : isBrandPage
+                        ? "bg-slate-950/90 backdrop-blur-md"
+                        : "bg-transparent"
             )}
         >
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">

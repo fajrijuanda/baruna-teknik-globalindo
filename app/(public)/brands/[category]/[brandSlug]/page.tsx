@@ -38,40 +38,34 @@ export default async function BrandDetailPage({
 
     return (
         <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-24">
-            {/* Hero Banner Image (only when headerBgImage exists) */}
-            {brandData.headerBgImage && (
-                <div className="w-full bg-slate-900 pt-[88px]">
-                    <div className="w-full relative bg-white">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+            {/* Header Area */}
+            <div className={`relative mt-2 md:mt-3 bg-slate-900 overflow-hidden ${brandData.headerBgImage ? 'h-80 sm:h-128 md:h-200' : 'pt-16 pb-16 md:pt-20 md:pb-24'}`}>
+                {/* Header background image */}
+                {brandData.headerBgImage && (
+                    <div className="absolute inset-0" aria-hidden>
+                        <Image
                             src={brandData.headerBgImage}
-                            alt={`${brandData.name} banner`}
-                            className="w-full h-auto max-h-[400px] md:max-h-none object-contain mx-auto"
+                            alt=""
+                            fill
+                            className="object-fill object-center"
+                            sizes="100vw"
+                            priority
                         />
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* Header Area with Dark Theme */}
-            <div className={`relative bg-slate-900 overflow-hidden ${brandData.headerBgImage ? 'pt-8 pb-16 md:pt-12 md:pb-24' : 'pt-32 pb-16 md:pt-40 md:pb-24'}`}>
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-400 via-slate-900 to-slate-900"></div>
+                {/* Solid fallback when no header background image */}
+                {!brandData.headerBgImage && <div className="absolute inset-0 bg-slate-950" />}
 
-                <div className="container relative z-10 mx-auto px-4">
-                    {/* Breadcrumbs */}
-                    <div className="flex flex-wrap items-center gap-2 text-sm text-slate-300 mb-8 md:mb-12">
-                        <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
-                        <ChevronRight className="h-4 w-4 text-slate-500" />
-                        <Link href="/products" className="hover:text-white transition-colors text-slate-400">Produk</Link>
-                        <ChevronRight className="h-4 w-4 text-slate-500" />
-                        <Link href={`/products?category=${categoryData.slug}`} className="hover:text-white transition-colors text-slate-400">{categoryData.category}</Link>
-                        <ChevronRight className="h-4 w-4 text-slate-500" />
-                        <span className="font-semibold text-white">{brandData.name}</span>
-                    </div>
+                {/* Background pattern only for fallback mode */}
+                {!brandData.headerBgImage && (
+                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-slate-400 via-slate-900 to-slate-900" />
+                )}
 
-                    <div className="flex flex-col md:flex-row gap-10 items-stretch">
+                <div className={`container relative z-10 mx-auto px-4 ${brandData.headerBgImage ? 'absolute inset-0 flex items-start pt-18 sm:pt-36 md:pt-64' : ''}`}>
+                    <div className="flex w-full justify-start">
                         {/* Logo/Carousel Container */}
-                        <div className="w-full md:w-[320px] shrink-0">
+                        <div className="ml-2 sm:ml-8 md:ml-24 w-36 sm:w-56 md:w-72 shrink-0">
                             {brandImages.length > 0 ? (
                                 <BrandImageCarousel
                                     images={brandImages}
@@ -88,30 +82,26 @@ export default async function BrandDetailPage({
                                 </div>
                             )}
                         </div>
-
-                        {/* Brand Info */}
-                        <div className="flex-1 flex flex-col justify-center space-y-5">
-                            <div>
-                                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold tracking-wide uppercase mb-4">
-                                    {categoryData.category} Partner
-                                </span>
-                                <h1 className="text-4xl md:text-6xl font-bold font-oswald text-white tracking-tight mb-4">
-                                    {brandData.name}
-                                </h1>
-                                <p className="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-                                    Kami adalah penyedia resmi dan terpercaya untuk produk-produk {brandData.name}. Temukan solusi {categoryData.category.toLowerCase()} terbaik untuk kebutuhan industri Anda dengan standar kualitas kelas dunia.
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 {/* Bottom Fade */}
-                <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent z-10" />
+                <div className="absolute bottom-0 left-0 w-full h-10 md:h-16 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent z-10" />
             </div>
 
             {/* Content & Action Area */}
-            <div className="container relative z-20 mx-auto px-4 -mt-8">
+            <div className="container relative z-20 mx-auto px-4 mt-6 md:mt-8">
+                {/* Breadcrumbs */}
+                <div className="mb-6 flex flex-wrap items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <Link href="/" className="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">Beranda</Link>
+                    <ChevronRight className="h-4 w-4 text-slate-400" />
+                    <Link href="/products" className="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">Produk</Link>
+                    <ChevronRight className="h-4 w-4 text-slate-400" />
+                    <Link href={`/products?category=${categoryData.slug}`} className="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">{categoryData.category}</Link>
+                    <ChevronRight className="h-4 w-4 text-slate-400" />
+                    <span className="font-semibold text-slate-700 dark:text-slate-200">{brandData.name}</span>
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                     {/* Main Content Details */}
                     <div className="lg:col-span-2">

@@ -118,7 +118,7 @@ export const PRODUCT_BRANDS_MENU: readonly CategoryMenuLink[] = [
           "/images/products/elektrim-7.jpeg",
           "/images/products/elektrim-8.jpeg",
         ],
-        headerBgImage: "/images/products/elektrim-bg.jpeg",
+        headerBgImage: "/images/products/elektrim-bg-2.jpeg",
       },
       {
         name: "TECO",
